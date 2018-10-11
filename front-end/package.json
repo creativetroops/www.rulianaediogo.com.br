@@ -2,7 +2,11 @@
 	"name": "rulianaediogo-front-end",
 	"version": "0.0.1",
 	"private": true,
-	"homepage": "http://creativetroops.github.io/www.rulianaediogo.com.br",
+	"homepage": "./",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/creativetroops/www.rulianaediogo.com.br"
+	},
 	"dependencies": {
 		"axios": "^0.18.0",
 		"firebase": "^5.5.2",
