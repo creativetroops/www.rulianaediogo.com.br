@@ -10,21 +10,21 @@ class PagSeguroGateway {
 			sandbox_email : configs.pagseguro_sandbox_email
 		}
 		this.shipping = {
-			street           : "Rua Primo Bozelli",
-			number           : "124",
-			district         : "Jd. Bandeirantes",
-			city             : "CORNELIO PROCOPIO",
-			state            : "PR",
-			postal_code      : "86300000",
-			same_for_billing : true,
-			shipping_cost    : 0
+			street           : configs.pagseguro_default_shipping_street,
+			number           : configs.pagseguro_default_shipping_number,
+			district         : configs.pagseguro_default_shipping_district,
+			city             : configs.pagseguro_default_shipping_city,
+			state            : configs.pagseguro_default_shipping_state,
+			postal_code      : configs.pagseguro_default_shipping_postal_code,
+			same_for_billing : configs.pagseguro_default_shipping_same_for_billing,
+			shipping_cost    : configs.pagseguro_default_shipping_shipping_cost
 		}
 		this.item = {
-			qtde        : 1,
-			description : "Presente de Casamento"
+			qtde        : configs.pagseguro_default_item_qtde,
+			description : configs.pagseguro_default_item_description
 		}
 		this.transaction = {
-			method: "boleto"
+			method : configs.pagseguro_default_transaction_method
 		}
 	}
 	setPayment() {
@@ -57,14 +57,15 @@ class PagSeguroGateway {
 		this.setShipping()
 		this.setItem(value)
 		const data = this.transaction
-		//data['hash'] = senderHash
+		if(!this.configs.sandbox)
+			data['hash'] = senderHash
 		const jsonResponse = {
 			'success' : true,
 			'infos'   : ''
 		}
 		this.payment.sendTransaction(data,
 			(err, infos) => {
-				jsonResponse["infos"] = infos;
+				jsonResponse["infos"] = infos
 				if(err) jsonResponse['success'] = false
 				res.status(200).json(jsonResponse)
 			}
