@@ -30,8 +30,11 @@ class Server {
 			this.SendEmail.send(req, res, 'contact')
 		})
 		this.app.post("/send-rsvp", (req, res) => {
-			this.SendEmail.send(req, res, 'rsvp');
-		});
+			this.SendEmail.send(req, res, 'rsvp')
+		})
+		this.app.get("/teste", (req, res) => {
+			res.send('Olá mundo!')
+		})
 	}
 }
 

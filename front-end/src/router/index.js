@@ -14,9 +14,9 @@ class Router extends Component {
 				<Fragment>
 					<Navbar />
 					<Switch>
-						<Route exact path="/" component={CommingSoon} />
-						<Route path="/home" component={Home} />
-						<Route path="/login" component={LogIn} />
+						<Route exact path="/"    component={CommingSoon} />
+						<Route path="/home"      component={Home} />
+						<Route path="/login"     component={LogIn} />
 						<Route path="/dashboard" component={Dashboard} />
 					</Switch>
 				</Fragment>
