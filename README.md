@@ -7,6 +7,7 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Colocar Dashboard como opção do menu; [OK]
 * Refatorar sistema de rotas no back-end; [OK]
 * Colocar informações padrão no env; [OK]
+* Fazer o apache do servidor apontar para uma url sem porta; [OK]
 * Refatorar modulo de email de forma a ter um método para cada chamada de rota;
 * Refatorar o sistema de envio de emails com templates HTML;
 * Enviar email para a pessoa que mandou o presente;
@@ -16,7 +17,6 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Refatorar exibição das informações da Dashboard;
 * Criar o design das telas;
 * Criar os estilos com styled components;
-* Fazer o apache do servidor apontar para uma url sem porta;
 * Validar formulários com Formik e Yup;
 
 # Template .env
@@ -58,6 +58,8 @@ MAIL_SUBJECT =
 
 http://pm2.keymetrics.io/docs/usage/quick-start/
 
+http://pm2.keymetrics.io/docs/usage/watch-and-restart/
+
 ## PM2 on Apache
 
 https://vedmant.com/setup-node-js-production-application-apache-multiple-virtual-host-server/
@@ -81,4 +83,21 @@ https://vedmant.com/setup-node-js-production-application-apache-multiple-virtual
   RewriteCond %{QUERY_STRING} transport=websocket    [NC]
   RewriteRule /(.*)           ws://localhost:3000/$1 [P,L]
 </VirtualHost>
+```
+
+# Configuração utilizada
+
+```
+<IfModule mod_ssl.c>
+<VirtualHost *:80>
+        ServerName rulianaediogo.diogocezar.com
+        ServerAlias rulianaediogo.diogocezar.com
+        ErrorLog /var/www/ruliana-diogo/logs/error_log
+        CustomLog /var/www/ruliana-diogo/logs/access_log combined
+        ProxyRequests Off
+        ProxyPreserveHost On
+        ProxyPass / http://localhost:8888/
+        ProxyPassReverse / http://localhost:8888/
+</VirtualHost>
+</IfModule>
 ```
