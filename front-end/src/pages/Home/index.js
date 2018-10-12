@@ -12,9 +12,9 @@ class Home extends Component {
 			<Fragment>
 				<Gift />
 				<Instagram />
+				<Contact />
 				<Countdown />
 				<Rsvp />
-				<Contact />
 			</Fragment>
 		)
 	}
