@@ -50,7 +50,7 @@ class Contact extends Component{
 		this.props.createContact(this.state)
 	}
 	render(){
-		const { loadingContact } = this.props
+		const { loadingContact, contactMessage } = this.props;
 		return (
 			<Fragment>
 				<Formik
@@ -113,6 +113,7 @@ class Contact extends Component{
 											/>
 										</Switch>
 										{this.state.errorMsg && <div className="error-message">{this.state.errorMsg}</div>}
+										{contactMessage && <h2>{contactMessage}</h2>}
 									</Fragment>
 								) : (
 									<h5>Carregando...</h5>
