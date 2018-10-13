@@ -1,13 +1,27 @@
-import React, { Fragment } from 'react'
-import { withRouter }      from 'react-router-dom'
+import React, { Fragment }      from 'react'
+import { withRouter, Redirect } from 'react-router-dom'
 
 const ContactMessage = (props) => {
-	const nextStep = (errors) => {
-		if (!errors.message)
+	const prevStep = () => {
+		props.history.push("/home/contact/identification")
+		props.changeStep(2)
+		props.changeError('')
+	};
+	const nextStep = (props) => {
+		if (props.values.message !== "" &&
+			!props.errors.message
+		) {
 			props.history.push("/home/contact/thanks")
+			props.changeStep(4)
+			props.changeError('')
+		}
+		else {
+			props.changeError('Oops, será que você não esqueceu de preencher a mensagem corretamente?')
+		}
 	}
 	return (
 		<Fragment>
+			{props.values.name === '' && props.values.email === '' && <Redirect to="/home/" />}
 			<h5 className="center">E qual a sua mensagem?</h5>
 			<textarea
 				id          = "message"
@@ -21,7 +35,8 @@ const ContactMessage = (props) => {
 					{props.errors.message}
 				</div>
 			}
-			<button type="button" onClick={() => {nextStep(props.errors)}}>Continuar</button>
+			<button type="button" onClick={() => { prevStep() }}     >Voltar</button>
+			<button type="button" onClick={() => { nextStep(props) }}>Continuar</button>
 		</Fragment>
 	)
 }

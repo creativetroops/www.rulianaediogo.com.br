@@ -1,17 +1,25 @@
 import React, { Fragment } from 'react'
-import { withRouter, Link }      from 'react-router-dom'
+import { withRouter }      from 'react-router-dom'
 
 const ContactIdentification = (props) => {
+	const prevStep = () => {
+		props.history.push("/home")
+		props.changeStep(1)
+		props.changeError('')
+	};
 	const nextStep = (props) => {
-		console.log(props.values)
-		console.log(props.errors)
-		if( props.values.name != "" &&
-			props.values.email != "" &&
+		if( props.values.name  !== "" &&
+			props.values.email !== "" &&
 			!props.errors.name &&
 			!props.errors.email
-			)
-			props.history.push("/home/contact/message")
-			props.changeStep(2)
+			){
+				props.history.push("/home/contact/message")
+				props.changeStep(3)
+				props.changeError('')
+			}
+		else{
+			props.changeError('Oops, será que você não esqueceu de preencher o nome ou o email corretamente?')
+		}
 	}
 	return (
 		<Fragment>
@@ -42,7 +50,7 @@ const ContactIdentification = (props) => {
 					{props.errors.email}
 				</div>
 			}
-			<Link to="/home/contact/message">Continuar</Link>
+			<button type="button" onClick={() => { prevStep() }}     >Voltar</button>
 			<button type="button" onClick={() => { nextStep(props) }}>Continuar</button>
 		</Fragment>
 	)
