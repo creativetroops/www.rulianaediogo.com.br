@@ -6,6 +6,12 @@ export const startLoadingContact = () => {
 	}
 }
 
+export const clearContactMessage = () => {
+	return (dispatch) => {
+		dispatch({ type: "CLEAR_CONTACT_MESSAGE" })
+	}
+}
+
 export const createContact = (contact) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore  = getFirestore()

@@ -1,7 +1,10 @@
 import React, { Component, Fragment }         from 'react'
 import { connect }                            from 'react-redux'
-import { createContact,	startLoadingContact } from '../../store/actions/contactActions'
-import { Switch, Route, withRouter }          from 'react-router-dom'
+import {
+	createContact,
+	startLoadingContact,
+	clearContactMessage }                     from '../../store/actions/contactActions'
+import { Route, withRouter, Switch }          from 'react-router-dom'
 import { Formik, Form }                       from 'formik'
 import * as Yup                               from 'yup'
 
@@ -9,6 +12,8 @@ import ContactStart          from './Steps/ContactStart'
 import ContactIdentification from './Steps/ContactIdentification'
 import ContactMessage        from './Steps/ContactMessage'
 import ContactThanks         from './Steps/ContactThanks'
+
+import './contact.css'
 
 const initialValues = {
 	name     : '',
@@ -44,10 +49,14 @@ class Contact extends Component{
 	validation = () => {
 		return Yup.object().shape(this.getFormValidation())
 	}
-	handleSubmit = (values) => {
+	clearContactMessage = () => {
+		this.props.clearContactMessage()
+	}
+	handleSubmit = (values, { resetForm }) => {
 		this.setState(values)
 		this.props.startLoadingContact()
 		this.props.createContact(this.state)
+		resetForm()
 	}
 	render(){
 		const { loadingContact, contactMessage } = this.props;
@@ -56,7 +65,7 @@ class Contact extends Component{
 				<Formik
 					initialValues    = {initialValues}
 					validationSchema = {this.validation()}
-					onSubmit         = { (values) => { this.handleSubmit(values)} }
+					onSubmit={(values, actions) => { this.handleSubmit(values, actions)} }
 					render           = { ({ values, touched, errors, dirty, isSubmitting, handleSubmit, handleChange, handleBlur, handleReset }) =>
 					(
 						<Form className="white">
@@ -80,13 +89,14 @@ class Contact extends Component{
 											<Route exact path="/home/contact/identification"
 												render={ () =>
 												<ContactIdentification
-													changeStep   = {this.changeStep}
-													changeError={this.changeError}
-													values       = {values}
-													handleChange = {handleChange}
-													handleBlur   = {handleBlur}
-													errors       = {errors}
-													touched      = {touched} />}
+													changeStep          = {this.changeStep}
+													changeError         = {this.changeError}
+													clearContactMessage = {this.clearContactMessage}
+													values              = {values}
+													handleChange        = {handleChange}
+													handleBlur          = {handleBlur}
+													errors              = {errors}
+													touched             = {touched} />}
 											/>
 											<Route exact path="/home/contact/message"
 												render={ () =>
@@ -137,7 +147,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
 	return {
 		createContact: contact  => dispatch(createContact(contact)),
-		startLoadingContact: () => dispatch(startLoadingContact())
+		startLoadingContact: () => dispatch(startLoadingContact()),
+		clearContactMessage: () => dispatch(clearContactMessage())
 	 }
 }
 

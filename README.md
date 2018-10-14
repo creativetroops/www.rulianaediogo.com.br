@@ -8,18 +8,22 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Refatorar sistema de rotas no back-end; [OK]
 * Colocar informações padrão no env; [OK]
 * Fazer o apache do servidor apontar para uma url sem porta; [OK]
-* Criar sistema de passos para formulários;
+* Criar sistema de passos para contato; [OK]
+* Validar formulários com Formik e Yup; [OK]
+* Limpar formulário depois de enviar; [OK]
+* Remover mensagem de enviado com sucesso depois de iniciar; [OK]
+* Sistema de transição de rotas no passo a passo;
+* Refatorar os outros formulário para o sistema de passos;
 * Refatorar modulo de email de forma a ter um método para cada chamada de rota;
 * Refatorar o sistema de envio de emails com templates HTML;
 * Enviar email para a pessoa que mandou o presente;
 * Sistema de substituição de templates nos htmls dos emails;
-* Trater erros do http do nodejs;
+* Tratar erros do http do nodejs;
 * Sistema de adicionar pessoas em uma lista no js;
 * Criar tempaltes de email;
 * Refatorar exibição das informações da Dashboard;
 * Criar o design das telas;
 * Criar os estilos com styled components;
-* Validar formulários com Formik e Yup;
 
 # Template .env
 
@@ -105,3 +109,9 @@ https://vedmant.com/setup-node-js-production-application-apache-multiple-virtual
 ```
 
 https://codedaily.io/tutorials/50/Create-a-Form-Wizard-with-Data-Loss-Prevention-using-Formik-and-React-Router
+
+https://reacttraining.com/react-router/web/example/animated-transitions
+
+https://medium.com/onfido-tech/animations-with-react-router-8e97222e25e1
+
+https://blog.logrocket.com/routes-animation-transitions-in-react-router-v4-9f4788deb964

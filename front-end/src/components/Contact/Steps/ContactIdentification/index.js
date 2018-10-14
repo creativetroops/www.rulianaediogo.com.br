@@ -1,59 +1,64 @@
-import React, { Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import { withRouter }      from 'react-router-dom'
 
-const ContactIdentification = (props) => {
-	const prevStep = () => {
-		props.history.push("/home")
-		props.changeStep(1)
-		props.changeError('')
+class ContactIdentification extends Component {
+	prevStep = () => {
+		this.props.history.push("/home")
+		this.props.changeStep(1)
+		this.props.changeError('')
 	};
-	const nextStep = (props) => {
-		if( props.values.name  !== "" &&
-			props.values.email !== "" &&
-			!props.errors.name &&
-			!props.errors.email
+	nextStep = () => {
+		if( this.props.values.name  !== "" &&
+			this.props.values.email !== "" &&
+			!this.props.errors.name &&
+			!this.props.errors.email
 			){
-				props.history.push("/home/contact/message")
-				props.changeStep(3)
-				props.changeError('')
+				this.props.history.push("/home/contact/message")
+				this.props.changeStep(3)
+				this.props.changeError('')
 			}
 		else{
-			props.changeError('Oops, será que você não esqueceu de preencher o nome ou o email corretamente?')
+			this.props.changeError('Oops, será que você não esqueceu de preencher o nome ou o email corretamente?')
 		}
 	}
-	return (
-		<Fragment>
-			<h5 className="center">Muito bem! Entre em contato com o casal</h5>
-			<input
-				id="name"
-				placeholder = "Digite o seu nome"
-				type        = "text"
-				value       = {props.values.name}
-				onChange    = {props.handleChange}
-				onBlur      = {props.handleBlur}
-				className   = {props.errors.name && props.touched.name ? "error" : ""} />
-			{ props.errors.name && props.touched.name &&
-				<div className="error-message">
-					{props.errors.name}
-				</div>
-			}
-			<input
-				id          = "email"
-				placeholder = "Digite o seu e-mail"
-				type        = "text"
-				value       = {props.values.email}
-				onChange    = {props.handleChange}
-				onBlur      = {props.handleBlur}
-				className   = {props.errors.email && props.touched.email ? "error" : ""} />
-			{ props.errors.email && props.touched.email &&
-				<div className="error-message">
-					{props.errors.email}
-				</div>
-			}
-			<button type="button" onClick={() => { prevStep() }}     >Voltar</button>
-			<button type="button" onClick={() => { nextStep(props) }}>Continuar</button>
-		</Fragment>
-	)
+	componentDidMount(){
+		this.props.clearContactMessage()
+	}
+	render(){
+		return (
+			<Fragment>
+				<h5 className="center">Muito bem! Entre em contato com o casal</h5>
+				<input
+					id="name"
+					placeholder = "Digite o seu nome"
+					type        = "text"
+					value       = {this.props.values.name}
+					onChange    = {this.props.handleChange}
+					onBlur      = {this.props.handleBlur}
+					className   = {this.props.errors.name && this.props.touched.name ? "error" : ""} />
+				{ this.props.errors.name && this.props.touched.name &&
+					<div className="error-message">
+						{this.props.errors.name}
+					</div>
+				}
+				<input
+					id          = "email"
+					placeholder = "Digite o seu e-mail"
+					type        = "text"
+					value       = {this.props.values.email}
+					onChange    = {this.props.handleChange}
+					onBlur      = {this.props.handleBlur}
+					className   = {this.props.errors.email && this.props.touched.email ? "error" : ""} />
+				{ this.props.errors.email && this.props.touched.email &&
+					<div className="error-message">
+						{this.props.errors.email}
+					</div>
+				}
+				<button type="button" onClick={() => { this.prevStep() }}     >Voltar</button>
+				<button type="button" onClick={() => { this.nextStep() }}>Continuar</button>
+			</Fragment>
+		)
+	}
 }
 
 export default withRouter(ContactIdentification)

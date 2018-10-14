@@ -22,6 +22,13 @@ const contactReducer = (state = initState, action) => {
 				loadingContact: false,
 				contactMessage: 'Houve um erro ao enviar o contato.'
 			}
+		case "CLEAR_CONTACT_MESSAGE":
+			console.log("clear contact message")
+			return {
+				...state,
+				loadingContact: false,
+				contactMessage: ''
+			}
 		default:
 			return {
 				...state,

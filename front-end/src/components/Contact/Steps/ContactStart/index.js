@@ -8,7 +8,7 @@ const ContactStart = (props) => {
 	}
 	return (
 		<Fragment>
-			<h2 class="center">
+			<h2 className="center">
 				Olá, aqui temos uma área para que você possa entrar em
 				contato com o casal!
 			</h2>
