@@ -1,0 +1,13 @@
+.switch-wrapper div{
+	position: relative;
+	float: left;
+	width: 100%;
+}
+
+.route-wrapper {
+  position: relative;
+}
+
+.route-wrapper > div {
+  position: absolute;
+}

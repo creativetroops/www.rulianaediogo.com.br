@@ -7,6 +7,7 @@ import {
 import { Route, withRouter, Switch }          from 'react-router-dom'
 import { Formik, Form }                       from 'formik'
 import * as Yup                               from 'yup'
+import { AnimatedSwitch }                     from 'react-router-transition'
 
 import ContactStart          from './Steps/ContactStart'
 import ContactIdentification from './Steps/ContactIdentification'
@@ -74,7 +75,12 @@ class Contact extends Component{
 								{!loadingContact ? (
 									<Fragment>
 										<h4>Passo: {this.state.step} de {this.state.steps}</h4>
-										<Switch>
+											<AnimatedSwitch
+												atEnter   = {{ opacity: 0 }}
+												atLeave   = {{ opacity: 1 }}
+												atActive  = {{ opacity: 1 }}
+												className = "switch-wrapper"
+											>
 											<Route exact path="/home"
 												render={ () =>
 												<ContactStart
@@ -121,7 +127,7 @@ class Contact extends Component{
 													errors       = {errors}
 													touched      = {touched} />}
 											/>
-										</Switch>
+										</AnimatedSwitch>
 										{this.state.errorMsg && <div className="error-message">{this.state.errorMsg}</div>}
 										{contactMessage && <h2>{contactMessage}</h2>}
 									</Fragment>

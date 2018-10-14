@@ -12,7 +12,7 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Validar formulários com Formik e Yup; [OK]
 * Limpar formulário depois de enviar; [OK]
 * Remover mensagem de enviado com sucesso depois de iniciar; [OK]
-* Sistema de transição de rotas no passo a passo;
+* Sistema de transição de rotas no passo a passo; [OK]
 * Refatorar os outros formulário para o sistema de passos;
 * Refatorar modulo de email de forma a ter um método para cada chamada de rota;
 * Refatorar o sistema de envio de emails com templates HTML;
