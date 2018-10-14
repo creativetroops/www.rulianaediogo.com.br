@@ -35,11 +35,17 @@ class SendMail {
 	sendRsvp(req, res){
 
 	}
-	sendPaymentSender(req, res){
-
+	sendPaymentReciver(data){
+		const html = this.loadTemplate('payment-reciver', data)
+		this.send(html)
 	}
-	sendPayment(req, res){
-
+	sendPaymentSender(data){
+		const html = this.loadTemplate('payment-sender', data)
+		this.send(html)
+	}
+	sendPayment(data){
+		this.sendPaymentReciver(data)
+		this.sendPaymentSender(data)
 	}
 	sendContact(req, res){
 		const data = {
@@ -48,9 +54,9 @@ class SendMail {
 			message : req.body.message
 		}
 		const html = this.loadTemplate('contact', data)
-		this.send(req, res, html)
+		this.send(html, res)
 	}
-	send(req, res, html) {
+	send(html, res) {
 		this.mailOptions.html = html
 		const jsonResponse = {
 			'success' : true,
@@ -58,13 +64,18 @@ class SendMail {
 		}
 		const transporter = nodemailer.createTransport(this.smtpConfig)
 		transporter.sendMail(this.mailOptions, (err, infos) => {
-			let status = 200
-			jsonResponse["infos"] = infos
-			if (err) {
-				status = 500
-				jsonResponse["success"] = false
+			if(res){
+				let status = 200
+				jsonResponse["infos"] = infos
+				if (err) {
+					status = 500
+					jsonResponse["success"] = false
+				}
+				res.status(status).json(jsonResponse)
 			}
-			res.status(status).json(jsonResponse)
+			else{
+				return (err === true)
+			}
 		})
 	}
 }

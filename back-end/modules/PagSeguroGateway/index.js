@@ -1,5 +1,6 @@
 const PagSeguro = require('node-pagseguro')
 const configs   = require('../../configs')
+const SendMail  = require('../SendMail')
 
 class PagSeguroGateway {
 	constructor() {
@@ -65,9 +66,20 @@ class PagSeguroGateway {
 		}
 		this.payment.sendTransaction(data,
 			(err, infos) => {
+				const status = 200
 				jsonResponse["infos"] = infos
-				if(err) jsonResponse['success'] = false
-				res.status(200).json(jsonResponse)
+				if(err){
+					jsonResponse['success'] = false
+					status = 500
+				}
+				const infosMail = {
+					'sender'   : sender,
+					'shipping' : this.shipping,
+					'infos'    : infos,
+					'message'  : req.body.message
+				}
+				SendMail.sendPayment(infosMail)
+				res.status(status).json(jsonResponse)
 			}
 		)
 	}

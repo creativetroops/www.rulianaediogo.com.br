@@ -1,5 +1,9 @@
+const protocol = 'http://'
+const port     = 8888
+const host     = (window.location.hostname === "localhost") ? `localhost:${port}` : 'rulianaediogo.diogocezar.com'
+
 const apiConfig = {
-	baseURL : 'http://localhost:8888',
+	baseURL : `${protocol}${host}`,
 	endpoints : {
 		'send-payment': 'pagseguro-gateway/send-payment',
 		'send-rsvp'   : 'send-rsvp',

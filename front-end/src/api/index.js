@@ -13,6 +13,7 @@ class Api {
 			'send-rsvp'   : `${apiConfig.baseURL}/${apiConfig.endpoints['send-rsvp']}`,
 			'get-photos'  : `${instagramConfig.baseURL}/${instagramConfig.hashTag}/media/recent?access_token=${instagramConfig.token}&count=${instagramConfig.count}`
 		}
+		console.log(this.urls)
 		this.endpoints = this.loadApis()
 	}
 	loadApis = () => {

@@ -128,17 +128,17 @@ class Contact extends Component{
 												touched      = {touched} />}
 										/>
 									</AnimatedSwitch>
-									<div class="error-box">
+									<div className="error-box">
 										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 											{this.state.errorMsg && <div className="error-message">{this.state.errorMsg}</div>}
 										</ReactCSSTransitionGroup>
 									</div>
-									<div class="error-box">
+									<div className="error-box">
 										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 											{loadingContact ? <h1>Carregando...</h1> : null}
 										</ReactCSSTransitionGroup>
 									</div>
-									<div class="error-box">
+									<div className="error-box">
 										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 											{contactMessage && <h2>{contactMessage}</h2>}
 										</ReactCSSTransitionGroup>
