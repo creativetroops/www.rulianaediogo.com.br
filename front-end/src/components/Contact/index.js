@@ -4,10 +4,11 @@ import {
 	createContact,
 	startLoadingContact,
 	clearContactMessage }                     from '../../store/actions/contactActions'
-import { Route, withRouter, Switch }          from 'react-router-dom'
+import { Route, withRouter }                  from 'react-router-dom'
 import { Formik, Form }                       from 'formik'
 import * as Yup                               from 'yup'
 import { AnimatedSwitch }                     from 'react-router-transition'
+import ReactCSSTransitionGroup                from 'react-addons-css-transition-group'
 
 import ContactStart          from './Steps/ContactStart'
 import ContactIdentification from './Steps/ContactIdentification'
@@ -72,68 +73,77 @@ class Contact extends Component{
 						<Form className="white">
 							<div className="container">
 								<h1>Entre em Contato</h1>
-								{!loadingContact ? (
-									<Fragment>
-										<h4>Passo: {this.state.step} de {this.state.steps}</h4>
-											<AnimatedSwitch
-												atEnter   = {{ opacity: 0 }}
-												atLeave   = {{ opacity: 1 }}
-												atActive  = {{ opacity: 1 }}
-												className = "switch-wrapper"
-											>
-											<Route exact path="/home"
-												render={ () =>
-												<ContactStart
-													changeStep   = {this.changeStep}
-													changeError  = {this.changeError}
- 													values       = {values}
-													handleChange = {handleChange}
-													handleBlur   = {handleBlur}
-													errors       = {errors}
-													touched      = {touched} />}
-											/>
-											<Route exact path="/home/contact/identification"
-												render={ () =>
-												<ContactIdentification
-													changeStep          = {this.changeStep}
-													changeError         = {this.changeError}
-													clearContactMessage = {this.clearContactMessage}
-													values              = {values}
-													handleChange        = {handleChange}
-													handleBlur          = {handleBlur}
-													errors              = {errors}
-													touched             = {touched} />}
-											/>
-											<Route exact path="/home/contact/message"
-												render={ () =>
-												<ContactMessage
-													changeStep   = {this.changeStep}
-													changeError  = {this.changeError}
-													values       = {values}
-													handleChange = {handleChange}
-													handleBlur   = {handleBlur}
-													errors       = {errors}
-													touched      = {touched} />}
-											/>
-											<Route exact path="/home/contact/thanks"
-												render={ () =>
-												<ContactThanks
-													changeStep   = {this.changeStep}
-													changeError  = {this.changeError}
-													handleSubmit = {handleSubmit}
-													values       = {values}
-													handleChange = {handleChange}
-													handleBlur   = {handleBlur}
-													errors       = {errors}
-													touched      = {touched} />}
-											/>
-										</AnimatedSwitch>
-										{this.state.errorMsg && <div className="error-message">{this.state.errorMsg}</div>}
-										{contactMessage && <h2>{contactMessage}</h2>}
-									</Fragment>
-								) : (
-									<h5>Carregando...</h5>
-								)}
+								<Fragment>
+									<h4>Passo: {this.state.step} de {this.state.steps}</h4>
+										<AnimatedSwitch
+											atEnter   = {{ opacity: 0 }}
+											atLeave   = {{ opacity: 1 }}
+											atActive  = {{ opacity: 1 }}
+											className = "switch-wrapper"
+										>
+										<Route exact path="/home"
+											render={ () =>
+											<ContactStart
+												changeStep   = {this.changeStep}
+												changeError  = {this.changeError}
+												values       = {values}
+												handleChange = {handleChange}
+												handleBlur   = {handleBlur}
+												errors       = {errors}
+												touched      = {touched} />}
+										/>
+										<Route exact path="/home/contact/identification"
+											render={ () =>
+											<ContactIdentification
+												changeStep          = {this.changeStep}
+												changeError         = {this.changeError}
+												clearContactMessage = {this.clearContactMessage}
+												values              = {values}
+												handleChange        = {handleChange}
+												handleBlur          = {handleBlur}
+												errors              = {errors}
+												touched             = {touched} />}
+										/>
+										<Route exact path="/home/contact/message"
+											render={ () =>
+											<ContactMessage
+												changeStep   = {this.changeStep}
+												changeError  = {this.changeError}
+												values       = {values}
+												handleChange = {handleChange}
+												handleBlur   = {handleBlur}
+												errors       = {errors}
+												touched      = {touched} />}
+										/>
+										<Route exact path="/home/contact/thanks"
+											render={ () =>
+											<ContactThanks
+												changeStep   = {this.changeStep}
+												changeError  = {this.changeError}
+												handleSubmit = {handleSubmit}
+												values       = {values}
+												handleChange = {handleChange}
+												handleBlur   = {handleBlur}
+												errors       = {errors}
+												touched      = {touched} />}
+										/>
+									</AnimatedSwitch>
+									<div class="error-box">
+										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+											{this.state.errorMsg && <div className="error-message">{this.state.errorMsg}</div>}
+										</ReactCSSTransitionGroup>
+									</div>
+									<div class="error-box">
+										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+											{loadingContact ? <h1>Carregando...</h1> : null}
+										</ReactCSSTransitionGroup>
+									</div>
+									<div class="error-box">
+										<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+											{contactMessage && <h2>{contactMessage}</h2>}
+										</ReactCSSTransitionGroup>
+									</div>
+								</Fragment>
 							</div>
 						</Form>
 					)}

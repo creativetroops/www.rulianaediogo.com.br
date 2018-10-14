@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
-import { withRouter }      from 'react-router-dom'
+import { withRouter }                 from 'react-router-dom'
+import ReactCSSTransitionGroup        from 'react-addons-css-transition-group'
 
 class ContactIdentification extends Component {
 	prevStep = () => {
@@ -36,11 +37,15 @@ class ContactIdentification extends Component {
 					onChange    = {this.props.handleChange}
 					onBlur      = {this.props.handleBlur}
 					className   = {this.props.errors.name && this.props.touched.name ? "error" : ""} />
-				{ this.props.errors.name && this.props.touched.name &&
-					<div className="error-message">
-						{this.props.errors.name}
-					</div>
-				}
+				<div class="error-box">
+					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+						{this.props.errors.name && this.props.touched.name &&
+							<div className="error-message">
+								{this.props.errors.name}
+							</div>
+						}
+					</ReactCSSTransitionGroup>
+				</div>
 				<input
 					id          = "email"
 					placeholder = "Digite o seu e-mail"
@@ -49,11 +54,15 @@ class ContactIdentification extends Component {
 					onChange    = {this.props.handleChange}
 					onBlur      = {this.props.handleBlur}
 					className   = {this.props.errors.email && this.props.touched.email ? "error" : ""} />
-				{ this.props.errors.email && this.props.touched.email &&
-					<div className="error-message">
-						{this.props.errors.email}
-					</div>
-				}
+				<div class="error-box">
+					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+						{this.props.errors.email && this.props.touched.email &&
+							<div className="error-message">
+								{this.props.errors.email}
+							</div>
+						}
+					</ReactCSSTransitionGroup>
+				</div>
 				<button type="button" onClick={() => { this.prevStep() }}     >Voltar</button>
 				<button type="button" onClick={() => { this.nextStep() }}>Continuar</button>
 			</Fragment>

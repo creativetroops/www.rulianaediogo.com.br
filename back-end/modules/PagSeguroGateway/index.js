@@ -1,5 +1,5 @@
 const PagSeguro = require('node-pagseguro')
-const configs   = require('../configs')
+const configs   = require('../../configs')
 
 class PagSeguroGateway {
 	constructor() {

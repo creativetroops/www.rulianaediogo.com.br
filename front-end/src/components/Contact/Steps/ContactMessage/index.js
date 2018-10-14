@@ -1,5 +1,6 @@
 import React, { Fragment }      from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
+import ReactCSSTransitionGroup  from 'react-addons-css-transition-group'
 
 const ContactMessage = (props) => {
 	const prevStep = () => {
@@ -30,11 +31,16 @@ const ContactMessage = (props) => {
 				onChange    = {props.handleChange}
 				onBlur      = {props.handleBlur}
 				className   = {props.errors.message && props.touched.message ? "error" : ""}></textarea>
-			{ props.errors.message  && props.touched.message &&
-				<div className="error-message">
-					{props.errors.message}
-				</div>
-			}
+
+			<div class="error-box">
+				<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
+					{props.errors.message && props.touched.message &&
+						<div className="error-message">
+							{props.errors.message}
+						</div>
+					}
+				</ReactCSSTransitionGroup>
+			</div>
 			<button type="button" onClick={() => { prevStep() }}     >Voltar</button>
 			<button type="button" onClick={() => { nextStep(props) }}>Continuar</button>
 		</Fragment>

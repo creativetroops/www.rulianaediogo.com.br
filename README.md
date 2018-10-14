@@ -13,14 +13,15 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Limpar formulário depois de enviar; [OK]
 * Remover mensagem de enviado com sucesso depois de iniciar; [OK]
 * Sistema de transição de rotas no passo a passo; [OK]
+* Animação nas mudanças de estados e mensagems de aviso; [OK]
+* Refatorar modulo de email de forma a ter um método para cada chamada de rota; [OK]
+* Refatorar o sistema de envio de emails com templates HTML; [OK]
+* Sistema de substituição de templates nos htmls dos emails; [OK]
+* Implementar envio de emails para pagamento;
 * Refatorar os outros formulário para o sistema de passos;
-* Refatorar modulo de email de forma a ter um método para cada chamada de rota;
-* Refatorar o sistema de envio de emails com templates HTML;
 * Enviar email para a pessoa que mandou o presente;
-* Sistema de substituição de templates nos htmls dos emails;
 * Tratar erros do http do nodejs;
 * Sistema de adicionar pessoas em uma lista no js;
-* Criar tempaltes de email;
 * Refatorar exibição das informações da Dashboard;
 * Criar o design das telas;
 * Criar os estilos com styled components;

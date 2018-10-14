@@ -4,13 +4,13 @@ class Routes{
             server.PagSeguroGateway.send(req, res)
         })
         app.post("/send-contact", (req, res) => {
-            server.SendEmail.send(req, res, 'contact')
+            server.SendMail.sendContact(req, res)
         })
         app.post("/send-rsvp", (req, res) => {
-            server.SendEmail.send(req, res, 'rsvp')
+            server.SendMail.sendRsvp(req, res)
         })
         app.get("/ping", (req, res) => {
-            res.send('new pong')
+            res.send('new pong 14-0')
         })
     }
 }

@@ -3,15 +3,15 @@ const express    = require('express')
 const bodyParser = require('body-parser')
 const configs    = require('./configs')
 
-const PagSeguroGateway = require('./modules/pagseguro-gateway')
-const SendEmail        = require('./modules/send-email')
-const Routes           = require('./routes/routes')
+const PagSeguroGateway = require("./modules/PagSeguroGateway");
+const SendMail         = require('./modules/SendMail')
+const Routes           = require('./routes')
 
 class Server {
 	constructor(){
 		this.configureExpress()
 		this.PagSeguroGateway = new PagSeguroGateway()
-		this.SendEmail        = new SendEmail()
+		this.SendMail         = new SendMail()
 		this.Routes           = new Routes()
 		this.Routes.setRoutes(this.app, this)
 	}
