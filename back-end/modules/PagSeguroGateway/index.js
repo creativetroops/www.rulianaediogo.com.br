@@ -78,7 +78,7 @@ class PagSeguroGateway {
 					'infos'    : infos,
 					'message'  : req.body.message
 				}
-				SendMail.sendPayment(infosMail)
+				//SendMail.sendPayment(infosMail)
 				res.status(status).json(jsonResponse)
 			}
 		)

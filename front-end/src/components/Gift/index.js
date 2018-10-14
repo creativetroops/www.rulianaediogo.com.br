@@ -33,12 +33,8 @@ class Gift extends Component {
     render () {
 		const { giftMessage, loadingGift } = this.props
         return <Fragment>
-				<div className="container">
 					<form className="white">
 						<div className="row">
-							<h5 className="grey-text text-darken-3">
-								Presente dos Noivos
-							</h5>
 							<p>
 								Preencha as informações para enviar um
 								presente para os noivos
@@ -101,7 +97,6 @@ class Gift extends Component {
 							</div>
 						</div>
 					</form>
-				</div>
 			</Fragment>;
     }
 }

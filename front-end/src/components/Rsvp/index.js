@@ -26,13 +26,10 @@ class Rsvp extends Component {
 	render () {
 		const { rsvpMessage, loadingRsvp } = this.props;
 		return <Fragment>
-				<div className="container">
 					<form className="white">
 						<div className="row">
-							<h5 className="grey-text text-darken-3">
-								Rsvp
-							</h5>
-							<p>Confirme aqui a sua presença</p>
+							<h2>Confirme por Gentileza sua Presença</h2>
+							<p>Confirme aqui a sua presença, até o dia xxx</p>
 						</div>
 						<div className="input-field">
 							<label htmlFor="name">Nome</label>
@@ -95,7 +92,6 @@ class Rsvp extends Component {
 							</div>
 						</div>
 					</form>
-				</div>
 			</Fragment>;
 	}
 }

@@ -19,7 +19,7 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Sistema de substituição de templates nos htmls dos emails; [OK]
 * Sistema automtico de seleção de endpoint baseado na url; [OK]
 * Implementar envio de emails para pagamento;
-
+* Na lista de presentes colocar o valor real (netAmount);
 * Refatorar os outros formulário para o sistema de passos;
 * Enviar email para a pessoa que mandou o presente;
 * Tratar erros do http do nodejs;
