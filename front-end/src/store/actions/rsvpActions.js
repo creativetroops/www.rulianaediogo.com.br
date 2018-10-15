@@ -20,7 +20,7 @@ export const createRsvp = (rsvp) => {
 				Api.endpoints
 					.sendRsvp(saveObject)
 					.then(res => {
-						const infos = res.data.infos;
+						const infos = res.data.infos
 						if (res.data.success) dispatch({
 							type: 'CREATE_RSVP',
 							saveObject

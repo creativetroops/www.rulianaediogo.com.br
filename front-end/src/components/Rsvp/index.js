@@ -9,9 +9,9 @@ class Rsvp extends Component {
 		area_code     : '45',
 		phone         : '31322956',
 		people        : 2,
-		children      : 0,
+		children      : 2,
 		people_list   : ['Mario Sergio', 'Isabel Cristina José Teixeira Batista'],
-		children_list : '',
+		children_list : ['Criança 1', 'Criança 2'],
 		message       : 'Parabéns aos noivos!',
 	}
 	handleChange = (e) => {

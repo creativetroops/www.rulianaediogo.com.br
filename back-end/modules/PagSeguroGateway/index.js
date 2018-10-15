@@ -27,6 +27,7 @@ class PagSeguroGateway {
 		this.transaction = {
 			method : configs.pagseguro_default_transaction_method
 		}
+		this.SendMail = new SendMail()
 	}
 	setPayment() {
 		this.payment = new PagSeguro(this.configs)
@@ -74,11 +75,10 @@ class PagSeguroGateway {
 				}
 				const infosMail = {
 					'sender'   : sender,
-					'shipping' : this.shipping,
 					'infos'    : infos,
 					'message'  : req.body.message
 				}
-				//SendMail.sendPayment(infosMail)
+				this.SendMail.sendPayment(infosMail)
 				res.status(status).json(jsonResponse)
 			}
 		)

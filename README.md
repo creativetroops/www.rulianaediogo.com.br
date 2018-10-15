@@ -18,13 +18,16 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Refatorar o sistema de envio de emails com templates HTML; [OK]
 * Sistema de substituição de templates nos htmls dos emails; [OK]
 * Sistema automtico de seleção de endpoint baseado na url; [OK]
-* Implementar envio de emails para pagamento;
-* Na lista de presentes colocar o valor real (netAmount);
+* Implementar envio de emails para pagamento; [OK]
+* Na lista de presentes colocar o valor real (netAmount); [OK]
+* Implementar o envio da confirmação de presença; [OK]
+* Enviar email para a pessoa que mandou o presente; [OK]
+* Tratar erros do http do nodejs; [OK]
+
 * Refatorar os outros formulário para o sistema de passos;
-* Enviar email para a pessoa que mandou o presente;
-* Tratar erros do http do nodejs;
 * Sistema de adicionar pessoas em uma lista no js;
 * Refatorar exibição das informações da Dashboard;
+
 * Criar o design das telas;
 * Criar os estilos com styled components;
 

@@ -46,7 +46,7 @@ class Gift extends Component {
 						</div>
 						<div className="input-field">
 							<label htmlFor="email">Email</label>
-							<input type="email" id="email" onChange={this.handleChange} value="batistamariosergio@gmail.com" disabled={loadingGift ? 'disabled' : null} />
+							<input type="email" id="email" onChange={this.handleChange} value="diogoctb@gmail.com" disabled={loadingGift ? 'disabled' : null} />
 						</div>
 						<div className="input-field">
 							<label htmlFor="cpf_cnpj">

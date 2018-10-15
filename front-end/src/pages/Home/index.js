@@ -26,6 +26,8 @@ class Home extends Component {
 						<li>Horário: 17h</li>
 						<li>Fotos do Rancho</li>
 						<li>Site: http://ranchosanfernando.com.br</li>
+						<li>Como chegar - Mapa</li>
+						<li>Dica de Hospedagem - Mapa</li>
 					</ul>
 					<h2>História do Casal</h2>
 					<ul>
