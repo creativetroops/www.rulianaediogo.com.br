@@ -24,10 +24,12 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Enviar email para a pessoa que mandou o presente; [OK]
 * Tratar erros do http do nodejs; [OK]
 * Sistema de adicionar pessoas em uma lista no js; [OK]
-	* Limitar a quantidade máxima de pessoas e crianças;
-	* Transformar todos os nomes para maiúsculas;
-	* Não permitir enfiar o formulário com menos que 1 pessoa na lista;
-
+	* Limitar a quantidade máxima de pessoas e crianças; [OK]
+	* Limitar o mínimo de pessoas; [OK]
+	* Não permitir inserir vazio; [OK]
+	* Não permitir entradas duplicadas; [OK]
+	* Transformar todos os nomes para maiúsculas; [OK]
+	* Não permitir enviar o formulário com menos que 1 pessoa na lista; [OK]
 * Refatorar os outros formulário para o sistema de passos;
 	* Refatorar Rsvp;
 	* Refatorar Gift;

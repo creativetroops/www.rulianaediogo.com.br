@@ -12,82 +12,90 @@ const rsvpConfig = {
 
 class Rsvp extends Component {
 	state = {
-		error_people_list : "",
-		error_child_list: "",
-		typed_child: "",
-		typed_people: "",
+		errorMsg: "",
+		errorPeopleList : "",
+		errorChildList: "",
+		typedChild: "",
+		typesPeople: "",
 		name: "Mario Sergio",
 		email: "batistamariosergio@gmail.com",
-		area_code: "45",
+		areaCode: "45",
 		phone: "31322956",
-		people_list: ["Mario Sergio", "Isabel Cristina José Teixeira Batista"],
-		children_list: ["Criança 1", "Criança 2"],
+		peopleList: [],
+		childrenList: [],
 		message: "Parabéns aos noivos!"
 	}
 	addChild = () => {
-		if (!this.state.typed_child){
-			this.setState({ error_child_list: `Digite um nome para salvar na lista.` })
+		if (!this.state.typedChild){
+			this.setState({ errorChildList: `Digite um nome para salvar na lista.` })
 			return
 		}
-		if (this.state.children_list.includes(this.state.typed_child)){
-			this.setState({ error_child_list: `Essa criança já está na lista.` })
+		if (this.state.childrenList.includes(this.state.typedChild)){
+			this.setState({ errorChildList: `Essa criança já está na lista.` })
 			return
 		}
-		if (this.state.children_list.length > rsvpConfig.maxChild) {
-			this.setState({ error_child_list: `Você pode inserir no máximo ${rsvpConfig.maxChild} crianças.` })
+		if (this.state.childrenList.length > rsvpConfig.maxChild) {
+			this.setState({ errorChildList: `Você pode inserir no máximo ${rsvpConfig.maxChild} crianças.` })
 			return
 		}
 		this.setState({
-			typed_child: "",
-			error_child_list: "",
-			children_list: [...this.state.children_list, this.state.typed_child]
+			typedChild: "",
+			errorChildList: "",
+			childrenList: [...this.state.childrenList, this.state.typedChild]
 		})
 	}
 	removeChild = (child) => {
 		this.setState({
-			typed_child: "",
-			error_child_list: "",
-			children_list: this.state.children_list.filter((childItem) => {
+			typedChild: "",
+			errorChildList: "",
+			childrenList: this.state.childrenList.filter((childItem) => {
 				return childItem !== child
 			})
 		})
 	}
 	addPeople = () => {
-		if (!this.state.typed_people) {
-			this.setState({ error_people_list: `Digite um nome para salvar na lista.` })
+		if (!this.state.typesPeople) {
+			this.setState({ errorPeopleList: `Digite um nome para salvar na lista.` })
 			return
 		}
-		if (this.state.people_list.includes(this.state.typed_people)) {
-			this.setState({ error_people_list: `Essa criança já está na lista.` })
+		if (this.state.peopleList.includes(this.state.typesPeople)) {
+			this.setState({ errorPeopleList: `Essa criança já está na lista.` })
 			return
 		}
-		if (this.state.people_list.length > rsvpConfig.maxPeople) {
-			this.setState({ error_people_list: `Você pode inserir no máximo ${rsvpConfig.maxPeople} pessoas.` })
+		if (this.state.peopleList.length > rsvpConfig.maxPeople) {
+			this.setState({ errorPeopleList: `Você pode inserir no máximo ${rsvpConfig.maxPeople} pessoas.` })
 			return
 		}
 		this.setState({
-			typed_people: "",
-			error_people_list: "",
-			people_list: [...this.state.people_list, this.state.typed_people]
+			typesPeople: "",
+			errorPeopleList: "",
+			peopleList: [...this.state.peopleList, this.state.typesPeople]
 		})
 	}
 	removePeople = (people) => {
-		if (this.state.people_list.length === rsvpConfig.minPeople){
-			this.setState({ error_people_list: `Você deve deixar pelo menos ${rsvpConfig.minPeople} pessoa na lista` })
+		if (this.state.peopleList.length === rsvpConfig.minPeople){
+			this.setState({ errorPeopleList: `Você deve deixar pelo menos ${rsvpConfig.minPeople} pessoa na lista` })
 			return
 		}
 		this.setState({
-			people_list: this.state.people_list.filter((peopleItem) => {
+			peopleList: this.state.peopleList.filter((peopleItem) => {
 				return peopleItem !== people
 			})
 		})
 	}
 	handleChange = e => {
+		if (e.target.id === "typedChild" || e.target.id === "typesPeople")
+			e.target.value = e.target.value.toUpperCase()
 		this.setState({
 			[e.target.id]: e.target.value
 		})
 	}
 	handleClick = () => {
+		if (this.state.peopleList.length < rsvpConfig.minPeople){
+			this.setState({ errorMsg: `Você deve ter pelo menos ${rsvpConfig.minPeople} pessoa na lista de confirmação` })
+			return
+		}
+		this.setState({	errorMsg: '' })
 		this.props.startLoadingRsvp()
 		this.props.createRsvp(this.state)
 	}
@@ -121,12 +129,12 @@ class Rsvp extends Component {
 						/>
 					</div>
 					<div className="input-field">
-						<label htmlFor="area_code">
+						<label htmlFor="areaCode">
 							Código de Área do Telefone
 						</label>
 						<input
 							type="text"
-							id="area_code"
+							id="areaCode"
 							onChange={this.handleChange}
 							value="43"
 							disabled={loadingRsvp ? "disabled" : null}
@@ -143,46 +151,46 @@ class Rsvp extends Component {
 						/>
 					</div>
 					<h2>
-						Quantidade de Pessoas: {this.state.people_list.length}
+						Quantidade de Pessoas: {this.state.peopleList.length}
 					</h2>
 					<ul>
-						{this.state.people_list.map((people, index) => (
+						{this.state.peopleList.map((people, index) => (
 							<li key={index}>{people} <button type="button" onClick={() => this.removePeople(people)}>Remover</button></li>
 						))}
 					</ul>
 					<div className="input-field">
-						<label htmlFor="people_list">Lista de Pessoas</label>
+						<label htmlFor="peopleList">Lista de Pessoas</label>
 						<input
 							type="text"
-							id="typed_people"
+							id="typesPeople"
 							onChange={this.handleChange}
-							value={this.state.typed_people}
+							value={this.state.typesPeople}
 						/>
 						<button type="button" onClick={this.addPeople}>
 							Adicionar Pessoa
 						</button>
-						{ this.state.error_people_list && <p>{this.state.error_people_list}</p>}
+						{ this.state.errorPeopleList && <p>{this.state.errorPeopleList}</p>}
 					</div>
 					<h2>
-						Quantidade de Crianças: {this.state.children_list.length}
+						Quantidade de Crianças: {this.state.childrenList.length}
 					</h2>
 					<ul>
-						{this.state.children_list.map((child, index) => (
+						{this.state.childrenList.map((child, index) => (
 							<li key={index}>{child} <button type="button" onClick={() => this.removeChild(child)}>Remover</button></li>
 						))}
 					</ul>
 					<div className="input-field">
-						<label htmlFor="children_list">Lista de Crianças</label>
+						<label htmlFor="childrenList">Lista de Crianças</label>
 						<input
 							type="text"
-							id="typed_child"
+							id="typedChild"
 							onChange={this.handleChange}
-							value={this.state.typed_child}
+							value={this.state.typedChild}
 						/>
 						<button type="button" onClick={this.addChild}>
 							Adicionar Criança
 						</button>
-						{this.state.error_child_list && <p>{this.state.error_child_list}</p>}
+						{this.state.errorChildList && <p>{this.state.errorChildList}</p>}
 					</div>
 					<div className="input-field">
 						<label htmlFor="message">Observação adicional</label>
@@ -212,6 +220,9 @@ class Rsvp extends Component {
 						)}
 						<div className="center red-text">
 							{rsvpMessage ? <p>{rsvpMessage}</p> : null}
+						</div>
+						<div className="center red-text">
+							{this.state.errorMsg ? <p>{this.state.errorMsg}</p> : null}
 						</div>
 					</div>
 				</form>

@@ -42,18 +42,16 @@ class SendMail {
 		this.send(html, res)
 	}
 	sendRsvp(req, res){
-		const peopleList   = req.body.people_list.map((people) => `${people}<br/>`).join('')
-		const childrenList = req.body.people_list.map((child)  => `${child}<br/>`).join('')
+		const peopleList   = (req.body.peopleList.length)   ? req.body.peopleList.map((people)   => `${people}<br/>`).join('') : ''
+		const childrenList = (req.body.childrenList.length) ? req.body.childrenList.map((child)  => `${child}<br/>`).join('')  : ''
 		const data = {
-			name          : req.body.name,
-			email         : req.body.email,
-			area_code     : req.body.area_code,
-			phone         : req.body.phone,
-			people        : req.body.people,
-			children      : req.body.children,
-			people_list   : peopleList,
-			children_list : childrenList,
-			message       : req.body.message
+			name         : req.body.name,
+			email        : req.body.email,
+			areaCode     : req.body.areaCode,
+			phone        : req.body.phone,
+			peopleList   : peopleList,
+			childrenList : childrenList,
+			message      : req.body.message
 		}
 		const html = this.loadTemplate('rsvp', data)
 		this.send(html, res)
