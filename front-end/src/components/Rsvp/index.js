@@ -1,14 +1,7 @@
 import React, { Component, Fragment}    from 'react'
 import { connect }                      from 'react-redux'
 import { createRsvp, startLoadingRsvp } from '../../store/actions/rsvpActions'
-//import { rsvpConfig }                   from '../../configs/rsvpConfig'
-
-const rsvpConfig = {
-	maxPeople: 5,
-	minPeople: 1,
-	maxChild: 5,
-	minChild: 1
-};
+import rsvpConfig                       from '../../configs/rsvpConfig'
 
 class Rsvp extends Component {
 	state = {
@@ -16,7 +9,7 @@ class Rsvp extends Component {
 		errorPeopleList : "",
 		errorChildList: "",
 		typedChild: "",
-		typesPeople: "",
+		typedPeople: "",
 		name: "Mario Sergio",
 		email: "batistamariosergio@gmail.com",
 		areaCode: "45",
@@ -27,15 +20,26 @@ class Rsvp extends Component {
 	}
 	addChild = () => {
 		if (!this.state.typedChild){
-			this.setState({ errorChildList: `Digite um nome para salvar na lista.` })
+			this.setState({
+				typedChild: "",
+				errorChildList: `Digite um nome para salvar na lista.`
+			});
 			return
 		}
 		if (this.state.childrenList.includes(this.state.typedChild)){
-			this.setState({ errorChildList: `Essa criança já está na lista.` })
+			this.setState({
+				typedChild: "",
+				errorChildList: `Essa criança já está na lista.`
+			});
 			return
 		}
-		if (this.state.childrenList.length > rsvpConfig.maxChild) {
-			this.setState({ errorChildList: `Você pode inserir no máximo ${rsvpConfig.maxChild} crianças.` })
+		if (this.state.childrenList.length >= rsvpConfig.maxChild) {
+			this.setState({
+				typedChild: "",
+				errorChildList: `Você pode inserir no máximo ${
+					rsvpConfig.maxChild
+				} crianças.`
+			});
 			return
 		}
 		this.setState({
@@ -54,22 +58,33 @@ class Rsvp extends Component {
 		})
 	}
 	addPeople = () => {
-		if (!this.state.typesPeople) {
-			this.setState({ errorPeopleList: `Digite um nome para salvar na lista.` })
+		if (!this.state.typedPeople) {
+			this.setState({
+				typedPeople: "",
+				errorPeopleList: `Digite um nome para salvar na lista.`
+			});
 			return
 		}
-		if (this.state.peopleList.includes(this.state.typesPeople)) {
-			this.setState({ errorPeopleList: `Essa criança já está na lista.` })
+		if (this.state.peopleList.includes(this.state.typedPeople)) {
+			this.setState({
+				typedPeople: "",
+				errorPeopleList: `Essa pessoa já está na lista.`
+			});
 			return
 		}
-		if (this.state.peopleList.length > rsvpConfig.maxPeople) {
-			this.setState({ errorPeopleList: `Você pode inserir no máximo ${rsvpConfig.maxPeople} pessoas.` })
+		if (this.state.peopleList.length >= rsvpConfig.maxPeople) {
+			this.setState({
+				typedPeople: "",
+				errorPeopleList: `Você pode inserir no máximo ${
+					rsvpConfig.maxPeople
+				} pessoas.`
+			});
 			return
 		}
 		this.setState({
-			typesPeople: "",
+			typedPeople: "",
 			errorPeopleList: "",
-			peopleList: [...this.state.peopleList, this.state.typesPeople]
+			peopleList: [...this.state.peopleList, this.state.typedPeople]
 		})
 	}
 	removePeople = (people) => {
@@ -78,13 +93,15 @@ class Rsvp extends Component {
 			return
 		}
 		this.setState({
-			peopleList: this.state.peopleList.filter((peopleItem) => {
-				return peopleItem !== people
+			typedPeople: "",
+			errorPeopleList: "",
+			peopleList: this.state.peopleList.filter(peopleItem => {
+				return peopleItem !== people;
 			})
-		})
+		});
 	}
 	handleChange = e => {
-		if (e.target.id === "typedChild" || e.target.id === "typesPeople")
+		if (e.target.id === "typedChild" || e.target.id === "typedPeople")
 			e.target.value = e.target.value.toUpperCase()
 		this.setState({
 			[e.target.id]: e.target.value
@@ -162,9 +179,9 @@ class Rsvp extends Component {
 						<label htmlFor="peopleList">Lista de Pessoas</label>
 						<input
 							type="text"
-							id="typesPeople"
+							id="typedPeople"
 							onChange={this.handleChange}
-							value={this.state.typesPeople}
+							value={this.state.typedPeople}
 						/>
 						<button type="button" onClick={this.addPeople}>
 							Adicionar Pessoa
