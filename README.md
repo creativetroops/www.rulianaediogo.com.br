@@ -23,13 +23,24 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Implementar o envio da confirmação de presença; [OK]
 * Enviar email para a pessoa que mandou o presente; [OK]
 * Tratar erros do http do nodejs; [OK]
+* Sistema de adicionar pessoas em uma lista no js; [OK]
+	* Limitar a quantidade máxima de pessoas e crianças;
+	* Transformar todos os nomes para maiúsculas;
+	* Não permitir enfiar o formulário com menos que 1 pessoa na lista;
 
 * Refatorar os outros formulário para o sistema de passos;
-* Sistema de adicionar pessoas em uma lista no js;
+	* Refatorar Rsvp;
+	* Refatorar Gift;
+
 * Refatorar exibição das informações da Dashboard;
 
 * Criar o design das telas;
 * Criar os estilos com styled components;
+* Refatorar html public;
+	* Meta tags;
+	* Título;
+	* Favicon;
+	* OG;
 
 # Template .env
 
