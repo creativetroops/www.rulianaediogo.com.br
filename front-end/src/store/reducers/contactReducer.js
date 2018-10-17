@@ -12,28 +12,28 @@ const contactReducer = (state = initState, action) => {
 			console.log("created contact", action.saveObject)
 			return {
 				...state,
-				loadingContact: false,
-				contactMessage: 'Contato enviado com sucesso!'
+				loadingContact : false,
+				finalMessage   : 'Contato enviado com sucesso!'
 			}
 		case "CREATE_CONTACT_ERROR":
 			console.log("create contact error", action.infos)
 			return {
 				...state,
-				loadingContact: false,
-				contactMessage: 'Houve um erro ao enviar o contato.'
+				loadingContact : false,
+				finalMessage   : 'Houve um erro ao enviar o contato.'
 			}
-		case "CLEAR_CONTACT_MESSAGE":
-			console.log("clear contact message")
+		case "CLEAR_FINAL_MESSAGE":
+			console.log("clear success message")
 			return {
 				...state,
-				loadingContact: false,
-				contactMessage: ''
+				loadingContact : false,
+				finalMessage   : ''
 			}
 		default:
 			return {
 				...state,
-				loadingContact: false,
-				contactMessage: ''
+				loadingContact : false,
+				finalMessage   : ''
 			}
 	}
 }

@@ -23,6 +23,7 @@ class ContactIdentification extends Component {
 		}
 	}
 	componentDidMount(){
+		console.log(this.props)
 		this.props.clearContactMessage()
 	}
 	render(){
@@ -37,7 +38,7 @@ class ContactIdentification extends Component {
 					onChange    = {this.props.handleChange}
 					onBlur      = {this.props.handleBlur}
 					className   = {this.props.errors.name && this.props.touched.name ? "error" : ""} />
-				<div class="error-box">
+				<div className="error-box">
 					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 						{this.props.errors.name && this.props.touched.name &&
 							<div className="error-message">
@@ -54,7 +55,7 @@ class ContactIdentification extends Component {
 					onChange    = {this.props.handleChange}
 					onBlur      = {this.props.handleBlur}
 					className   = {this.props.errors.email && this.props.touched.email ? "error" : ""} />
-				<div class="error-box">
+				<div className="error-box">
 					<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 						{this.props.errors.email && this.props.touched.email &&
 							<div className="error-message">

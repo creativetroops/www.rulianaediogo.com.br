@@ -3,6 +3,8 @@ import { connect }                    from 'react-redux'
 import { Redirect }                   from 'react-router-dom'
 import { compose }                    from 'redux'
 import { firestoreConnect }           from 'react-redux-firebase'
+import moment                         from 'moment'
+import 'moment/locale/pt-br'
 
 class Dashboard extends Component {
 	render () {
@@ -16,6 +18,7 @@ class Dashboard extends Component {
 								<h3>{contact.name}</h3>
 								<p>{contact.email}</p>
 								<p>{contact.message}</p>
+								<p>{moment(contact.createdAt.toDate()).calendar()}</p>
 							</Fragment>;
 					})}
 				<h2>Presentes dos Convidados</h2>
@@ -25,6 +28,7 @@ class Dashboard extends Component {
 								<p>{gift.email}</p>
 								<p>{gift.message}</p>
 								<p>{gift.value}</p>
+								<p>{moment(gift.createdAt.toDate()).calendar()}</p>
 							</Fragment>;
 					})}
 				<h2>Confirmações</h2>
@@ -35,6 +39,7 @@ class Dashboard extends Component {
 								<p>{rsvp.message}</p>
 								<p>Pessoas: {rsvp.people}</p>
 								<p>Crianças: {rsvp.children}</p>
+								<p>{moment(rsvp.createdAt.toDate()).calendar()}</p>
 							</Fragment>;
 					})}
 			</Fragment>;
@@ -49,7 +54,6 @@ const mapStateToProps = (state) => {
 		auth: state.firebase.auth
 	}
 }
-
 
 export default compose(
 	connect(mapStateToProps),

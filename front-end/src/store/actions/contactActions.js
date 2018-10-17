@@ -6,9 +6,9 @@ export const startLoadingContact = () => {
 	}
 }
 
-export const clearContactMessage = () => {
+export const clearFinalMessage = () => {
 	return (dispatch) => {
-		dispatch({ type: "CLEAR_CONTACT_MESSAGE" })
+		dispatch({ type: "CLEAR_FINAL_MESSAGE" })
 	}
 }
 
@@ -16,8 +16,10 @@ export const createContact = (contact) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const firestore  = getFirestore()
 		const saveObject = {
-			...contact,
-			createdAt: new Date()
+			createdAt : new Date(),
+			email     : contact.email,
+			message   : contact.message,
+			name      : contact.name
 		}
 		firestore
 			.collection('contacts')

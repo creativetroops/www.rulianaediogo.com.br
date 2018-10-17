@@ -8,6 +8,10 @@ import Home        from '../pages/Home'
 import LogIn       from '../components/Auth/LogIn'
 import Dashboard   from '../components/Dashboard'
 
+import Settings    from '../styles/settings'
+import Generic     from '../styles/generic'
+import Base        from '../styles/base'
+
 class Router extends Component {
 	render () {
 		return <HashRouter>
@@ -19,6 +23,9 @@ class Router extends Component {
 						<Route path="/login"     component={LogIn} />
 						<Route path="/dashboard" component={Dashboard} />
 					</Switch>
+					<Settings />
+					<Generic />
+					<Base />
 				</Fragment>
 			</HashRouter>;
 	}

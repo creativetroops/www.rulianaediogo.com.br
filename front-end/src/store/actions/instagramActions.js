@@ -15,12 +15,12 @@ export const loadInstagramPhotos = (contact) => {
 					type: 'LOAD_INSTAGRAM_PHOTOS',
 					photos
 				})
+			})
 			.catch((infos) => {
 				dispatch({
 					type: 'LOAD_INSTAGRAM_PHOTOS_ERROR',
 					infos
 				})
 			})
-		})
 	}
 }

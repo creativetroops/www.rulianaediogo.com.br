@@ -30,12 +30,14 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 	* Não permitir entradas duplicadas; [OK]
 	* Transformar todos os nomes para maiúsculas; [OK]
 	* Não permitir enviar o formulário com menos que 1 pessoa na lista; [OK]
+* Alterar regras de segurança do Firebase; [OK]
+* Formatar as datas com o Moment na Dashboard; [OK]
+* Refatorar os nomes dos campos para camelCase;
+	* Contact;
 * Refatorar os outros formulário para o sistema de passos;
 	* Refatorar Rsvp;
 	* Refatorar Gift;
-
 * Refatorar exibição das informações da Dashboard;
-
 * Criar o design das telas;
 * Criar os estilos com styled components;
 * Refatorar html public;
@@ -43,6 +45,8 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 	* Título;
 	* Favicon;
 	* OG;
+* Criar profile para usuários;
+* Criar cadastro de usuários;
 
 # Template .env
 
@@ -134,3 +138,29 @@ https://reacttraining.com/react-router/web/example/animated-transitions
 https://medium.com/onfido-tech/animations-with-react-router-8e97222e25e1
 
 https://blog.logrocket.com/routes-animation-transitions-in-react-router-v4-9f4788deb964
+
+## Regras Firebase
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+		match /contacts/{contact}{
+			allow create
+			allow read, write : if request.auth.uid != null
+		}
+		match /gifts/{gift}{
+			allow create
+			allow read, write : if request.auth.uid != null
+		}
+		match /rsvps/{rsvp}{
+			allow create
+			allow read, write : if request.auth.uid != null
+		}
+		match /users/{userId}{
+			allow create
+			allow read: if request.auth.uid != null
+			allow write: if request.auth.uid == userId
+		}
+	}
+}
+```

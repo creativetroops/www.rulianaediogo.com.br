@@ -81,10 +81,10 @@ class SendMail {
 		transporter.sendMail(this.mailOptions, (err, infos) => {
 			if(res){
 				let status = 200
-				jsonResponse["infos"] = infos
+				jsonResponse['infos'] = infos
 				if (err) {
 					status = 500
-					jsonResponse["success"] = false
+					jsonResponse['success'] = false
 				}
 				res.status(status).json(jsonResponse)
 			}

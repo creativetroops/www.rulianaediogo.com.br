@@ -1,6 +1,6 @@
-import React, { Fragment }      from 'react'
+import React, { Fragment } from 'react'
 import { withRouter, Redirect } from 'react-router-dom'
-import ReactCSSTransitionGroup  from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 const ContactMessage = (props) => {
 	const prevStep = () => {
@@ -25,14 +25,14 @@ const ContactMessage = (props) => {
 			{props.values.name === '' && props.values.email === '' && <Redirect to="/home/" />}
 			<h5 className="center">E qual a sua mensagem?</h5>
 			<textarea
-				id          = "message"
-				placeholder = "Digite a sua mensagem"
-				value       = {props.values.message}
-				onChange    = {props.handleChange}
-				onBlur      = {props.handleBlur}
-				className   = {props.errors.message && props.touched.message ? "error" : ""}></textarea>
+				id="message"
+				placeholder="Digite a sua mensagem"
+				value={props.values.message}
+				onChange={props.handleChange}
+				onBlur={props.handleBlur}
+				className={props.errors.message && props.touched.message ? "error" : ""}></textarea>
 
-			<div className="error-box">
+			<div class="error-box">
 				<ReactCSSTransitionGroup transitionName="example" transitionEnterTimeout={700} transitionLeaveTimeout={700}>
 					{props.errors.message && props.touched.message &&
 						<div className="error-message">
