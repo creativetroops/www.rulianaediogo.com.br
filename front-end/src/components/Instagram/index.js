@@ -14,22 +14,20 @@ class Instagram extends Component {
 		const { loadingInstagram, photos } = this.props
 		return (
 			<Fragment>
-				<div className="container">
-					<div className="row">
-						<h5 className="grey-text text-darken-3">
-							Instagram
-						</h5>
-					</div>
-					{!loadingInstagram ? (
-						photos && photos.map(photo => {
-							return (
-								<img key={photo.id} src={photo.images.standard_resolution.url} alt="" height="520" width="520" />
-							)
-						})
-					) : (
-						<p>Carregando...</p>
-					)}
+				<div className="row">
+					<h5 className="grey-text text-darken-3">
+						Instagram
+					</h5>
 				</div>
+				{!loadingInstagram ? (
+					photos && photos.map(photo => {
+						return (
+							<img key={photo.id} src={photo.images.standard_resolution.url} alt="" height="520" width="520" />
+						)
+					})
+				) : (
+					<p>Carregando...</p>
+				)}
 			</Fragment>
 		)
 	}

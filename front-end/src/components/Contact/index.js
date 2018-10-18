@@ -18,9 +18,9 @@ import StepMessage               from '../Steps/StepMessage'
 import StepFinal                 from '../Steps/StepFinal'
 
 const initialValues = {
-	name     : 'Diogo Cezar',
-	email    : 'diogo@diogocezar.com',
-	message  : 'Teste',
+	name     : '',
+	email    : '',
+	message  : '',
 	step     : 1,
 	steps    : 4,
 	errorMsg : ''
@@ -28,6 +28,12 @@ const initialValues = {
 
 class Contact extends Component {
 	state = initialValues
+	checkPath = () =>{
+		const path = this.props.history.location.pathname
+		if(path === '/home' || path.includes('/home/contact/'))
+			return true
+		return false
+	}
 	changeStep = step => {
 		this.setState({ step })
 	}
@@ -78,10 +84,10 @@ class Contact extends Component {
 						handleBlur,
 						handleReset
 					}) => (
-						<Form className="white">
-							<div className="container">
-								<h1>Entre em Contato</h1>
-								<Fragment>
+						<Fragment>
+							{ this.checkPath() &&
+								<Form>
+									<h1>Entre em Contato</h1>
 									<h4>
 										Passo: {this.state.step} de {this.state.steps}
 									</h4>
@@ -187,9 +193,9 @@ class Contact extends Component {
 											<h1>{finalMessage}</h1>
 										)}
 									</ComponentMessage>
-								</Fragment>
-							</div>
-						</Form>
+								</Form>
+							}
+						</Fragment>
 					)}
 				/>
 			</Fragment>

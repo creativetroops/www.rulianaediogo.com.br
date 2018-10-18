@@ -20,19 +20,25 @@ import StepFinal                     from '../Steps/StepFinal'
 
 const initialValues = {
 	errorMsg        : '',
-	name            : 'Mario Sergio',
-	email           : 'batistamariosergio@gmail.com',
-	areaCode        : '45',
-	phone           : '31322956',
-	peopleList      : ['Diogo Cezar', 'Mayra Cristina'],
-	childrenList    : ['c1', 'c2'],
-	message         : 'Parabéns aos noivos!',
+	name            : '',
+	email           : '',
+	areaCode        : '',
+	phone           : '',
+	peopleList      : [],
+	childrenList    : [],
+	message         : '',
 	step            : 1,
 	steps           : 5
 }
 
 class Rsvp extends Component {
 	state = initialValues
+	checkPath = () => {
+		const path = this.props.history.location.pathname
+		if (path === '/home' || path.includes('/home/rsvp/'))
+			return true
+		return false
+	}
 	changeStep = step => {
 		this.setState({ step })
 	}
@@ -89,10 +95,10 @@ class Rsvp extends Component {
 						handleBlur,
 						handleReset
 					}) => (
-						<Form className="white">
-							<div className="container">
-								<h2>Confirme por Gentileza sua Presença</h2>
-								<Fragment>
+						<Fragment>
+							{ this.checkPath() &&
+								<Form>
+									<h2>Confirme por Gentileza sua Presença</h2>
 									<h4>
 										Passo: {this.state.step} de	{this.state.steps}
 									</h4>
@@ -131,7 +137,7 @@ class Rsvp extends Component {
 													handleBlur        = {handleBlur}
 													errors            = {errors}
 													touched           = {touched}
-													hasPhone          = {true}
+													havePhone         = {true}
 													errorStepMessage  = "Tem certeza que preencheu todas as informações?"
 												/>
 											)}
@@ -225,9 +231,9 @@ class Rsvp extends Component {
 											<h1>{finalMessage}</h1>
 										)}
 									</ComponentMessage>
-								</Fragment>
-							</div>
-						</Form>
+								</Form>
+							}
+						</Fragment>
 					)}
 				/>
 			</Fragment>

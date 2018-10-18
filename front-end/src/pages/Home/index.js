@@ -8,7 +8,8 @@ import Contact   from '../../components/Contact'
 
 class Home extends Component {
 	render() {
-		return <Fragment>
+		return (
+			<Fragment>
 				<div className="container">
 					<h2>Home</h2>
 					<ul>
@@ -49,10 +50,11 @@ class Home extends Component {
 						<li>Link para a Loja Virtual</li>
 					</ul>
 					<Rsvp />
+					<Instagram />
+					<Contact />
 				</div>
-				<Instagram />
-				<Contact />
-			</Fragment>;
+			</Fragment>
+		)
 	}
 }
 

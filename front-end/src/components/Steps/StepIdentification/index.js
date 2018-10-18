@@ -21,7 +21,7 @@ class StepIdentification extends Component {
 			if(this.props.havePhone){
 				auth = false
 				const { areaCode, phone}           = this.props.values
-				const { areaCodeError, phoneError} = this.this.props.errors
+				const { areaCodeError, phoneError} = this.props.errors
 				if (areaCode !== "" && phone !== "" && !areaCodeError && !phoneError)
 					auth = true
 			}
