@@ -10,7 +10,8 @@ class Dashboard extends Component {
 	render () {
 		const { auth, contacts, gifts, rsvps } = this.props;
 		if (!auth.uid) return <Redirect to="/login" />;
-		return <Fragment>
+		return (
+			<div class="container">
 				<h1>Dashboard</h1>
 				<h2>Contatos</h2>
 				{contacts && contacts.map(contact => {
@@ -37,12 +38,23 @@ class Dashboard extends Component {
 								<h3>{rsvp.name}</h3>
 								<p>{rsvp.email}</p>
 								<p>{rsvp.message}</p>
-								<p>Pessoas: {rsvp.people}</p>
-								<p>Crianças: {rsvp.children}</p>
+								<h4>Lista de Pessoas</h4>
+								<ul>
+									{rsvp.peopleList.map((people, index) => (
+										<li key={index}>{people}</li>
+									))}
+								</ul>
+								<h4>Lista de Crianças</h4>
+								<ul>
+									{rsvp.childrenList.map((child, index) => (
+										<li key={index}>{child}</li>
+									))}
+								</ul>
 								<p>{moment(rsvp.createdAt.toDate()).calendar()}</p>
 							</Fragment>;
 					})}
-			</Fragment>;
+			</div>
+		)
 	}
 }
 
