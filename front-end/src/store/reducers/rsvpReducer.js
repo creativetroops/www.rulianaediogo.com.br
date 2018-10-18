@@ -13,20 +13,27 @@ const rsvpReducer = (state = initState, action) => {
 			return {
 				...state,
 				loadingRsvp: false,
-				rsvpMessage: 'Resposta enviada com sucesso!'
+				finalMessage: 'Resposta enviada com sucesso!'
+			}
+		case "CLEAR_FINAL_MESSAGE":
+			console.log("clear success message")
+			return {
+				...state,
+				loadingContact: false,
+				finalMessage: ''
 			}
 		case 'CREATE_RSVP_ERROR':
 			console.log('create rsvp error', action)
 			return {
 				...state,
 				loadingRsvp: false,
-				rsvpMessage: 'Houve um erro ao enviar a resposta.'
+				finalMessage: 'Houve um erro ao enviar a resposta.'
 			}
 		default:
 			return {
 				...state,
 				loadingRsvp: false,
-				rsvpMessage: ''
+				finalMessage: ''
 			}
 	}
 }

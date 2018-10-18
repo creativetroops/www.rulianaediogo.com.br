@@ -83,8 +83,7 @@ class Contact extends Component {
 								<h1>Entre em Contato</h1>
 								<Fragment>
 									<h4>
-										Passo: {this.state.step} de{" "}
-										{this.state.steps}
+										Passo: {this.state.step} de {this.state.steps}
 									</h4>
 									<Animated>
 										<Route

@@ -2,7 +2,13 @@ import Api from '../../api'
 
 export const startLoadingRsvp = () => {
 	return dispatch => {
-		dispatch({ type: "START_LOADING_RSVP" });
+		dispatch({ type: "START_LOADING_RSVP" })
+	}
+}
+
+export const clearFinalMessage = () => {
+	return dispatch => {
+		dispatch({ type: "CLEAR_FINAL_MESSAGE" })
 	}
 }
 

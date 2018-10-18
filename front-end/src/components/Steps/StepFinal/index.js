@@ -28,6 +28,29 @@ class StepFinal extends Component {
 				{this.props.values.message && <p>Mensagem: {this.props.values.message}</p>}
 				{this.props.values.areaCode && <p>DDD: {this.props.values.areaCode}</p>}
 				{this.props.values.phone && <p>Telefone: {this.props.values.phone}</p>}
+				{
+					this.props.values.peopleList &&
+					<Fragment>
+						<h4>Lista de Pessoas</h4>
+						<ul>
+							{this.props.values.peopleList.map((people, index) => (
+								<li key={index}>{people}</li>
+							))}
+						</ul>
+					</Fragment>
+
+				}
+				{
+					this.props.values.childrenList &&
+					<Fragment>
+						<h4>Lista de Crianças</h4>
+						<ul>
+							{this.props.values.childrenList.map((child, index) => (
+								<li key={index}>{child}</li>
+							))}
+						</ul>
+					</Fragment>
+				}
 				<Button onClick={() => { this.prevStep() }}>{this.props.buttonPrev}</Button>
 				<Button onClick={() => { this.nextStep() }}>{this.props.buttonNext}</Button>
 			</Fragment>

@@ -163,4 +163,26 @@ service cloud.firestore {
 		}
 	}
 }
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+		match /contacts/{contact}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /gifts/{gifts}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /rsvps/{rsvp}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /users/{userId}{
+			allow create;
+			allow read: if request.auth.uid != null;
+			allow write: if request.auth.uid == userId;
+		}
+	}
+}
 ```

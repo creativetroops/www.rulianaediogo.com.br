@@ -1,248 +1,235 @@
-import React, { Component, Fragment}    from 'react'
-import { connect }                      from 'react-redux'
-import { createRsvp, startLoadingRsvp } from '../../store/actions/rsvpActions'
-import rsvpConfig                       from '../../configs/rsvpConfig'
+import React, { Component, Fragment} from 'react'
+import { connect }                   from 'react-redux'
+import {
+	createRsvp,
+	startLoadingRsvp,
+	clearFinalMessage
+}                                    from '../../store/actions/rsvpActions'
+import { Route, withRouter }         from 'react-router-dom'
+import { Formik, Form }              from 'formik'
+import * as Yup                      from 'yup'
+
+import ComponentMessage              from '../../objects/ComponentMessage'
+import Animated                      from '../../objects/Animated'
+
+import StepStart                     from '../Steps/StepStart'
+import StepIdentification            from '../Steps/StepIdentification'
+import StepList                      from '../Steps/StepList'
+import StepMessage                   from '../Steps/StepMessage'
+import StepFinal                     from '../Steps/StepFinal'
+
+const initialValues = {
+	errorMsg        : '',
+	name            : 'Mario Sergio',
+	email           : 'batistamariosergio@gmail.com',
+	areaCode        : '45',
+	phone           : '31322956',
+	peopleList      : ['Diogo Cezar', 'Mayra Cristina'],
+	childrenList    : ['c1', 'c2'],
+	message         : 'Parabéns aos noivos!',
+	step            : 1,
+	steps           : 5
+}
 
 class Rsvp extends Component {
-	state = {
-		errorMsg: "",
-		errorPeopleList : "",
-		errorChildList: "",
-		typedChild: "",
-		typedPeople: "",
-		name: "Mario Sergio",
-		email: "batistamariosergio@gmail.com",
-		areaCode: "45",
-		phone: "31322956",
-		peopleList: [],
-		childrenList: [],
-		message: "Parabéns aos noivos!"
+	state = initialValues
+	changeStep = step => {
+		this.setState({ step })
 	}
-	addChild = () => {
-		if (!this.state.typedChild){
-			this.setState({
-				typedChild: "",
-				errorChildList: `Digite um nome para salvar na lista.`
-			});
-			return
-		}
-		if (this.state.childrenList.includes(this.state.typedChild)){
-			this.setState({
-				typedChild: "",
-				errorChildList: `Essa criança já está na lista.`
-			});
-			return
-		}
-		if (this.state.childrenList.length >= rsvpConfig.maxChild) {
-			this.setState({
-				typedChild: "",
-				errorChildList: `Você pode inserir no máximo ${
-					rsvpConfig.maxChild
-				} crianças.`
-			});
-			return
-		}
+	changeError = errorMsg => {
+		this.setState({ errorMsg })
+	}
+	setLists = (peopleList, childrenList) => {
 		this.setState({
-			typedChild: "",
-			errorChildList: "",
-			childrenList: [...this.state.childrenList, this.state.typedChild]
+			peopleList   : peopleList,
+			childrenList : childrenList
 		})
 	}
-	removeChild = (child) => {
-		this.setState({
-			typedChild: "",
-			errorChildList: "",
-			childrenList: this.state.childrenList.filter((childItem) => {
-				return childItem !== child
-			})
-		})
+	getFormValidation = () => {
+		return {
+			name  : Yup.string().required('Precisamos saber o seu nome!'),
+			email : Yup.string()
+					.email('Epa, parece que o email que você digitou não é válido.')
+					.required('Você precisa digitar um e-mail :('),
+			message  : Yup.string().required('E qual é a mensagem que você deseja enviar?'),
+			areaCode : Yup.string().required('Digite o código de área'),
+			phone    : Yup.string().required('Digite o número do telefone')
+		}
 	}
-	addPeople = () => {
-		if (!this.state.typedPeople) {
-			this.setState({
-				typedPeople: "",
-				errorPeopleList: `Digite um nome para salvar na lista.`
-			});
-			return
-		}
-		if (this.state.peopleList.includes(this.state.typedPeople)) {
-			this.setState({
-				typedPeople: "",
-				errorPeopleList: `Essa pessoa já está na lista.`
-			});
-			return
-		}
-		if (this.state.peopleList.length >= rsvpConfig.maxPeople) {
-			this.setState({
-				typedPeople: "",
-				errorPeopleList: `Você pode inserir no máximo ${
-					rsvpConfig.maxPeople
-				} pessoas.`
-			});
-			return
-		}
-		this.setState({
-			typedPeople: "",
-			errorPeopleList: "",
-			peopleList: [...this.state.peopleList, this.state.typedPeople]
-		})
+	validation = () => {
+		return Yup.object().shape(this.getFormValidation())
 	}
-	removePeople = (people) => {
-		if (this.state.peopleList.length === rsvpConfig.minPeople){
-			this.setState({ errorPeopleList: `Você deve deixar pelo menos ${rsvpConfig.minPeople} pessoa na lista` })
-			return
-		}
-		this.setState({
-			typedPeople: "",
-			errorPeopleList: "",
-			peopleList: this.state.peopleList.filter(peopleItem => {
-				return peopleItem !== people;
-			})
-		});
+	clearFinalMessage = () => {
+		this.props.clearFinalMessage()
 	}
-	handleChange = e => {
-		if (e.target.id === "typedChild" || e.target.id === "typedPeople")
-			e.target.value = e.target.value.toUpperCase()
-		this.setState({
-			[e.target.id]: e.target.value
-		})
-	}
-	handleClick = () => {
-		if (this.state.peopleList.length < rsvpConfig.minPeople){
-			this.setState({ errorMsg: `Você deve ter pelo menos ${rsvpConfig.minPeople} pessoa na lista de confirmação` })
-			return
-		}
-		this.setState({	errorMsg: '' })
-		this.props.startLoadingRsvp()
+	handleSubmit = (values, { resetForm }) => {
+		this.setState(values)
+		this.props.startLoadingRsvp();
 		this.props.createRsvp(this.state)
+		resetForm()
 	}
 	render() {
-		const { rsvpMessage, loadingRsvp } = this.props
+		const { finalMessage, loadingRsvp } = this.props
 		return (
 			<Fragment>
-				<form className="white">
-					<div className="row">
-						<h2>Confirme por Gentileza sua Presença</h2>
-						<p>Confirme aqui a sua presença, até o dia xxx</p>
-					</div>
-					<div className="input-field">
-						<label htmlFor="name">Nome</label>
-						<input
-							type="text"
-							id="name"
-							onChange={this.handleChange}
-							value="Mario Sergio"
-							disabled={loadingRsvp ? "disabled" : null}
-						/>
-					</div>
-					<div className="input-field">
-						<label htmlFor="email">Email</label>
-						<input
-							type="email"
-							id="email"
-							onChange={this.handleChange}
-							value="batistamariosergio@gmail.com"
-							disabled={loadingRsvp ? "disabled" : null}
-						/>
-					</div>
-					<div className="input-field">
-						<label htmlFor="areaCode">
-							Código de Área do Telefone
-						</label>
-						<input
-							type="text"
-							id="areaCode"
-							onChange={this.handleChange}
-							value="43"
-							disabled={loadingRsvp ? "disabled" : null}
-						/>
-					</div>
-					<div className="input-field">
-						<label htmlFor="phone">Telefone</label>
-						<input
-							type="text"
-							id="phone"
-							onChange={this.handleChange}
-							value="31322956"
-							disabled={loadingRsvp ? "disabled" : null}
-						/>
-					</div>
-					<h2>
-						Quantidade de Pessoas: {this.state.peopleList.length}
-					</h2>
-					<ul>
-						{this.state.peopleList.map((people, index) => (
-							<li key={index}>{people} <button type="button" onClick={() => this.removePeople(people)}>Remover</button></li>
-						))}
-					</ul>
-					<div className="input-field">
-						<label htmlFor="peopleList">Lista de Pessoas</label>
-						<input
-							type="text"
-							id="typedPeople"
-							onChange={this.handleChange}
-							value={this.state.typedPeople}
-						/>
-						<button type="button" onClick={this.addPeople}>
-							Adicionar Pessoa
-						</button>
-						{ this.state.errorPeopleList && <p>{this.state.errorPeopleList}</p>}
-					</div>
-					<h2>
-						Quantidade de Crianças: {this.state.childrenList.length}
-					</h2>
-					<ul>
-						{this.state.childrenList.map((child, index) => (
-							<li key={index}>{child} <button type="button" onClick={() => this.removeChild(child)}>Remover</button></li>
-						))}
-					</ul>
-					<div className="input-field">
-						<label htmlFor="childrenList">Lista de Crianças</label>
-						<input
-							type="text"
-							id="typedChild"
-							onChange={this.handleChange}
-							value={this.state.typedChild}
-						/>
-						<button type="button" onClick={this.addChild}>
-							Adicionar Criança
-						</button>
-						{this.state.errorChildList && <p>{this.state.errorChildList}</p>}
-					</div>
-					<div className="input-field">
-						<label htmlFor="message">Observação adicional</label>
-						<textarea
-							className="materialize-textarea"
-							id="message"
-							onChange={this.handleChange}
-							defaultValue="Parabéns aos noivos!"
-							disabled={loadingRsvp ? "disabled" : null}
-						/>
-					</div>
-					<div className="input-field">
-						{!loadingRsvp ? (
-							<button
-								className="btn pink lighten-1 z-depth-0"
-								onClick={this.handleClick}
-							>
-								Confirmar Presença
-							</button>
-						) : (
-							<button
-								className="btn pink lighten-1 z-depth-0"
-								disabled="disabled"
-							>
-								Aguarde...
-							</button>
-						)}
-						<div className="center red-text">
-							{rsvpMessage ? <p>{rsvpMessage}</p> : null}
-						</div>
-						<div className="center red-text">
-							{this.state.errorMsg ? <p>{this.state.errorMsg}</p> : null}
-						</div>
-					</div>
-				</form>
+				<Formik
+					initialValues={initialValues}
+					validationSchema={this.validation()}
+					onSubmit={(values, actions) => {
+						this.handleSubmit(values, actions)
+					}}
+					render={({
+						values,
+						touched,
+						errors,
+						dirty,
+						isSubmitting,
+						handleSubmit,
+						handleChange,
+						handleBlur,
+						handleReset
+					}) => (
+						<Form className="white">
+							<div className="container">
+								<h2>Confirme por Gentileza sua Presença</h2>
+								<Fragment>
+									<h4>
+										Passo: {this.state.step} de	{this.state.steps}
+									</h4>
+									<Animated>
+										<Route
+											exact
+											path="/home"
+											render={() => (
+												<StepStart
+													title       = "Confirme aqui a sua presença, até o dia xxx"
+													buttonNext  = "Quero confirmar minha presença"
+													nextPath    = "/home/rsvp/identification"
+													step        = {1}
+													currentStep = {this.state.step}
+													changeStep  = {this.changeStep}
+												/>
+											)}
+										/>
+										<Route
+											exact
+											path="/home/rsvp/identification"
+											render={() => (
+												<StepIdentification
+													title             = "Precisamos saber algumas coisas sobre você!"
+													buttonNext        = "Próximo"
+													buttonPrev        = "Anterior"
+													nextPath          = "/home/rsvp/list"
+													prevPath          = "/home"
+													step              = {2}
+													changeStep        = {this.changeStep}
+													currentStep       = {this.state.step}
+													changeError       = {this.changeError}
+													clearFinalMessage = {this.clearFinalMessage}
+													values            = {values}
+													handleChange      = {handleChange}
+													handleBlur        = {handleBlur}
+													errors            = {errors}
+													touched           = {touched}
+													hasPhone          = {true}
+													errorStepMessage  = "Tem certeza que preencheu todas as informações?"
+												/>
+											)}
+										/>
+										<Route
+											exact
+											path="/home/rsvp/list"
+											render={() => (
+												<StepList
+													title            = "E qual é a sua mensagem?"
+													buttonNext       = "Próximo"
+													buttonPrev       = "Anterior"
+													nextPath         = "/home/rsvp/message"
+													prevPath         = "/home/rsvp/identification"
+													step             = {3}
+													changeStep       = {this.changeStep}
+													currentStep      = {this.state.step}
+													changeError      = {this.changeError}
+													values           = {values}
+													handleChange     = {handleChange}
+													handleBlur       = {handleBlur}
+													errors           = {errors}
+													touched          = {touched}
+													errorStepMessage = "Tem certeza que preencheu todas as informações?"
+													peopleList       = {this.state.peopleList}
+													childrenList     = {this.state.childrenList}
+													setLists         = {(peopleList, childrenList) => {this.setLists(peopleList, childrenList)}}
+												/>
+											)}
+										/>
+										<Route
+											exact
+											path="/home/rsvp/message"
+											render={() => (
+												<StepMessage
+													title            = "E qual é a sua mensagem?"
+													buttonNext       = "Próximo"
+													buttonPrev       = "Anterior"
+													nextPath         = "/home/rsvp/final"
+													prevPath         = "/home/rsvp/list"
+													step             = {4}
+													changeStep       = {this.changeStep}
+													currentStep      = {this.state.step}
+													changeError      = {this.changeError}
+													values           = {values}
+													handleChange     = {handleChange}
+													handleBlur       = {handleBlur}
+													errors           = {errors}
+													touched          = {touched}
+													errorStepMessage = "Tem certeza que preencheu todas as informações?"
+												/>
+											)}
+										/>
+										<Route
+											exact
+											path="/home/rsvp/final"
+											render={() => (
+												<StepFinal
+													title        = "Prontinho..."
+													buttonNext   = "Concluir"
+													buttonPrev   = "Anterior"
+													step         = {5}
+													changeStep   = {this.changeStep}
+													currentStep  = {this.state.step}
+													prevPath     = "/home/contact/message"
+													changeError  = {this.changeError}
+													handleSubmit = {handleSubmit}
+													values       = {values}
+													handleChange = {handleChange}
+													handleBlur   = {handleBlur}
+													errors       = {errors}
+													touched      = {touched}
+												/>
+											)}
+										/>
+									</Animated>
+									<ComponentMessage>
+										{this.state.errorMsg && (
+											<div className="error-message">
+												{this.state.errorMsg}
+											</div>
+										)}
+									</ComponentMessage>
+									<ComponentMessage>
+										{loadingRsvp ? (
+											<h1>Carregando...</h1>
+										) : null}
+									</ComponentMessage>
+									<ComponentMessage>
+										{finalMessage && (
+											<h1>{finalMessage}</h1>
+										)}
+									</ComponentMessage>
+								</Fragment>
+							</div>
+						</Form>
+					)}
+				/>
 			</Fragment>
 		)
 	}
@@ -251,18 +238,16 @@ class Rsvp extends Component {
 const mapStateToProps = (state) => {
 	return {
 		loadingRsvp: state.rsvps.loadingRsvp,
-		rsvpMessage: state.rsvps.rsvpMessage
+		finalMessage: state.rsvps.finalMessage
 	}
 }
 
 const mapDispatchToProps = dispatch => {
 	return {
 		createRsvp: rsvp => dispatch(createRsvp(rsvp)),
-		startLoadingRsvp: () => dispatch(startLoadingRsvp())
+		startLoadingRsvp: () => dispatch(startLoadingRsvp()),
+		clearFinalMessage: () => dispatch(clearFinalMessage())
 	}
 }
 
-export default connect(
-	mapStateToProps,
-	mapDispatchToProps
-)(Rsvp)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Rsvp))
