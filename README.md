@@ -32,12 +32,13 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 	* Não permitir enviar o formulário com menos que 1 pessoa na lista; [OK]
 * Alterar regras de segurança do Firebase; [OK]
 * Formatar as datas com o Moment na Dashboard; [OK]
-* Refatorar os nomes dos campos para camelCase;
-	* Contact;
-* Refatorar os outros formulário para o sistema de passos;
-	* Refatorar Rsvp;
-	* Refatorar Gift;
+* Refatorar os nomes dos campos para camelCase; [OK]
+* Refatorar os outros formulário para o sistema de passos; [OK]
+	* Refatorar Rsvp; [OK]
+	* Refatorar Gift; [OK]
+* Exibir informações de Pagamento após efetuá-lo; [OK]
 * Refatorar exibição das informações da Dashboard;
+* Ajustar Envio de Email para o Pagador;
 * Criar o design das telas;
 * Criar os estilos com styled components;
 * Refatorar html public;

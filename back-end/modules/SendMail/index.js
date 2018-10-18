@@ -60,13 +60,13 @@ class SendMail {
 		const html = this.loadTemplate('payment-reciver', data)
 		this.send(html)
 	}
-	sendPaymentSender(data){
+	sendPaymentSender(data, email){
 		const html = this.loadTemplate('payment-sender', data)
-		this.send(html)
+		this.send(html, null, email)
 	}
 	sendPayment(data){
 		this.sendPaymentReciver(data)
-		this.sendPaymentSender(data, null, data.sender.email)
+		this.sendPaymentSender(data, data.sender.email)
 	}
 	send(html, res, email = '') {
 		this.mailOptions.html = html

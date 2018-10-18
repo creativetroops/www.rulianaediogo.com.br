@@ -10,7 +10,7 @@ class Routes{
             server.SendMail.sendRsvp(req, res)
         })
         app.get('/ping', (req, res) => {
-            res.send('new pong 14-0')
+            res.send('new pong 18-0')
         })
     }
 }

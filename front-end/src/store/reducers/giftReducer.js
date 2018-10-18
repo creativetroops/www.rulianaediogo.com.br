@@ -13,20 +13,28 @@ const giftReducer = (state = initState, action) => {
 			return {
 				...state,
 				loadingGift: false,
-				giftMessage: 'Presente enviado com sucesso!'
+				finalMessage: 'Presente enviado com sucesso!',
+				feedBack: action.saveObject
 			}
 		case 'CREATE_GIFT_ERROR':
 			console.log('create gift error', action.infos)
 			return {
 				...state,
 				loadingGift: false,
-				giftMessage: 'Houve um erro ao enviar o presente.'
+				finalMessage: 'Houve um erro ao enviar o presente.'
+			}
+		case "CLEAR_FINAL_MESSAGE":
+			console.log("clear success message")
+			return {
+				...state,
+				loadingContact : false,
+				finalMessage   : ''
 			}
 		default:
 			return {
 				...state,
 				loadingGift: false,
-				giftMessage: ''
+				finalMessage: ''
 			}
 	}
 }

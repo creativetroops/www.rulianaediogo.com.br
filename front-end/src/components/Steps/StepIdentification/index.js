@@ -103,6 +103,38 @@ class StepIdentification extends Component {
 						/>
 					</Fragment>
 				}
+				{this.props.havePayment &&
+					<Fragment>
+						<Input
+							id="cpfCnpj"
+							placeholder="Digite o CPF/CNPJ"
+							type="text"
+							value={this.props.values.cpfCnpj}
+							onChange={this.props.handleChange}
+							onBlur={this.props.handleBlur}
+							className={this.props.errors.cpfCnpj && this.props.touched.cpfCnpj ? "--error" : ""}
+						/>
+						<FieldMessage
+							error={this.props.errors.cpfCnpj}
+							touched={this.props.touched.cpfCnpj}
+							message={this.props.errors.cpfCnpj}
+						/>
+						<Input
+							id="birthDate"
+							placeholder="Digite a data de nascimento"
+							type="text"
+							value={this.props.values.birthDate}
+							onChange={this.props.handleChange}
+							onBlur={this.props.handleBlur}
+							className={this.props.errors.birthDate && this.props.touched.birthDate ? "--error" : ""}
+						/>
+						<FieldMessage
+							error={this.props.errors.birthDate}
+							touched={this.props.touched.birthDate}
+							message={this.props.errors.birthDate}
+						/>
+					</Fragment>
+				}
 				<Button onClick={() => { this.prevStep() }}>{this.props.buttonPrev}</Button>
 				<Button onClick={() => { this.nextStep() }}>{this.props.buttonNext}</Button>
 			</Fragment>

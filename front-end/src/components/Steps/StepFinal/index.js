@@ -28,6 +28,9 @@ class StepFinal extends Component {
 				{this.props.values.message && <p>Mensagem: {this.props.values.message}</p>}
 				{this.props.values.areaCode && <p>DDD: {this.props.values.areaCode}</p>}
 				{this.props.values.phone && <p>Telefone: {this.props.values.phone}</p>}
+				{this.props.values.cpfCnpj && <p>Cpf/Cnpj: {this.props.values.cpfCnpj}</p>}
+				{this.props.values.birthDate && <p>Data de Aniversário: {this.props.values.birthDate}</p>}
+				{this.props.values.value && <p>Valor: {this.props.values.value}</p>}
 				{
 					this.props.values.peopleList &&
 					<Fragment>

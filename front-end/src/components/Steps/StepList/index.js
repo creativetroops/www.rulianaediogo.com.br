@@ -106,12 +106,6 @@ class StepList extends Component {
 			[e.target.id]: e.target.value
 		})
 	}
-	handleClick = () => {
-
-		this.setState({ errorMsg: '' })
-		this.props.startLoadingRsvp()
-		this.props.createRsvp(this.state)
-	}
 	prevStep = () => {
 		this.props.changeStep(this.props.step-1)
 		this.props.history.push(this.props.prevPath)

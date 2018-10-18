@@ -48,10 +48,10 @@ class PagSeguroGateway {
 		const sender = {
 			name       : req.body.name,
 			email      : req.body.email,
-			cpf_cnpj   : req.body.cpf_cnpj,
-			area_code  : req.body.area_code,
+			cpf_cnpj   : req.body.cpfCnpj,
+			area_code  : req.body.areaCode,
 			phone      : req.body.phone,
-			birth_date : req.body.birth_date
+			birth_date : req.body.birthDate
 		}
 		const senderHash = req.body.senderHash
 		this.setPayment()

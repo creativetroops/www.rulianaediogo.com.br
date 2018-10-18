@@ -6,6 +6,12 @@ export const startLoadingGift = () => {
 	}
 }
 
+export const clearFinalMessage = () => {
+	return (dispatch) => {
+		dispatch({ type: "CLEAR_FINAL_MESSAGE" })
+	}
+}
+
 export const createGift = (gift) => {
 	return (dispatch, getState, { getFirestore }) => {
 		const saveObject = {
