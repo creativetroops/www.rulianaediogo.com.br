@@ -25,7 +25,6 @@ const initialValues = {
 	areaCode   : '43',
 	phone      : '31322956',
 	birthDate  : '24/10/1953',
-	value      : '50',
 	message    : 'Parabéns aos noivos!',
 	senderHash : '',
 	step       : 1,

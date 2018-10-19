@@ -38,8 +38,9 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 	* Refatorar Gift; [OK]
 * Exibir informações de Pagamento após efetuá-lo; [OK]
 * Ajustar Envio de Email para o Pagador; [OK]
-* Criar Arquivo de Configuração para valores de pagamento;
-* Refatorar exibição das informações da Dashboard;
+* Criar Arquivo de Configuração para valores de pagamento; [OK]
+* Refatorar exibição das informações da Dashboard; [OK]
+
 * Criar o design das telas;
 * Criar os estilos com styled components;
 * Refatorar html public;

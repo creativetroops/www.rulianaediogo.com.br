@@ -1,58 +1,77 @@
-import React, { Component, Fragment } from 'react'
-import { connect }                    from 'react-redux'
-import { Redirect }                   from 'react-router-dom'
-import { compose }                    from 'redux'
-import { firestoreConnect }           from 'react-redux-firebase'
-import moment                         from 'moment'
-import 'moment/locale/pt-br'
+import React, { Component }            from 'react'
+import { connect }                     from 'react-redux'
+import { Redirect, Route, withRouter } from 'react-router-dom';
+import { compose }                     from 'redux'
+import { firestoreConnect }            from 'react-redux-firebase'
+
+import Animated    from '../../objects/Animated'
+
+import Summary     from './Summary'
+import ListContact from './Lists/ListContact'
+import ListGift    from './Lists/ListGift'
+import ListRsvp    from './Lists/ListRsvp'
+
+import Button      from '../../objects/Button'
 
 class Dashboard extends Component {
+	state = {
+		path : '/'
+	}
+	changeRoute = (path) => {
+		if(path !== this.state.path){
+			this.props.history.push(`/dashboard/${path}`)
+			this.setState({ path })
+		}
+	}
 	render () {
 		const { auth, contacts, gifts, rsvps } = this.props;
-		if (!auth.uid) return <Redirect to="/login" />;
+		if (!auth.uid) return <Redirect to='/login' />;
 		return (
-			<div class="container">
+			<div className='container'>
 				<h1>Dashboard</h1>
-				<h2>Contatos</h2>
-				{contacts && contacts.map(contact => {
-						return <Fragment key={contact.id}>
-								<h3>{contact.name}</h3>
-								<p>{contact.email}</p>
-								<p>{contact.message}</p>
-								<p>{moment(contact.createdAt.toDate()).calendar()}</p>
-							</Fragment>;
-					})}
-				<h2>Presentes dos Convidados</h2>
-				{gifts && gifts.map(gift => {
-						return <Fragment key={gift.id}>
-								<h3>{gift.name}</h3>
-								<p>{gift.email}</p>
-								<p>{gift.message}</p>
-								<p>{gift.value}</p>
-								<p>{moment(gift.createdAt.toDate()).calendar()}</p>
-							</Fragment>;
-					})}
-				<h2>Confirmações</h2>
-				{rsvps && rsvps.map(rsvp => {
-						return <Fragment key={rsvp.id}>
-								<h3>{rsvp.name}</h3>
-								<p>{rsvp.email}</p>
-								<p>{rsvp.message}</p>
-								<h4>Lista de Pessoas</h4>
-								<ul>
-									{rsvp.peopleList.map((people, index) => (
-										<li key={index}>{people}</li>
-									))}
-								</ul>
-								<h4>Lista de Crianças</h4>
-								<ul>
-									{rsvp.childrenList.map((child, index) => (
-										<li key={index}>{child}</li>
-									))}
-								</ul>
-								<p>{moment(rsvp.createdAt.toDate()).calendar()}</p>
-							</Fragment>;
-					})}
+				{
+					(contacts && gifts && rsvps &&
+					<Summary
+						contacts = {contacts}
+						gifts    = {gifts}
+						rsvps    = {rsvps}
+					/>
+					) || <h2>Carregando</h2>
+				}
+				<h2>Detalhes</h2>
+				<Button onClick={() => this.changeRoute('contacts')}>Contatos</Button>
+				<Button onClick={() => this.changeRoute('gifts')}>Presentes</Button>
+				<Button onClick={() => this.changeRoute('rsvps')}>Confirmações</Button>
+				<Animated>
+					<Route
+						exact
+						path='/dashboard'
+						render={() => (
+							<h1>Selecione uma opção para ver seus detalhes.</h1>
+						)}
+					/>
+					<Route
+						exact
+						path='/dashboard/contacts'
+						render={() => (
+							<ListContact contacts={contacts} />
+						)}
+					/>
+					<Route
+						exact
+						path='/dashboard/gifts'
+						render={() => (
+							<ListGift gifts={gifts} />
+						)}
+					/>
+					<Route
+						exact
+						path='/dashboard/rsvps'
+						render={() => (
+							<ListRsvp rsvps={rsvps} />
+						)}
+					/>
+				</Animated>
 			</div>
 		)
 	}
@@ -60,18 +79,18 @@ class Dashboard extends Component {
 
 const mapStateToProps = (state) => {
 	return {
-		contacts: state.firestore.ordered.contacts,
-		rsvps: state.firestore.ordered.rsvps,
-		gifts: state.firestore.ordered.gifts,
-		auth: state.firebase.auth
+		contacts : state.firestore.ordered.contacts,
+		rsvps    : state.firestore.ordered.rsvps,
+		gifts    : state.firestore.ordered.gifts,
+		auth     : state.firebase.auth
 	}
 }
 
-export default compose(
+export default withRouter(compose(
 	connect(mapStateToProps),
 	firestoreConnect([
-		{ collection: "contacts", orderBy: [["createdAt", "desc"]] },
-		{ collection: "rsvps",    orderBy: [["createdAt", "desc"]] },
-		{ collection: "gifts",    orderBy: [["createdAt", "desc"]] }
+		{ collection: 'contacts', orderBy: [['createdAt', 'desc']] },
+		{ collection: 'rsvps',    orderBy: [['createdAt', 'desc']] },
+		{ collection: 'gifts',    orderBy: [['createdAt', 'desc']] }
 	])
-)(Dashboard)
+)(Dashboard))

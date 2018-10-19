@@ -1,6 +1,8 @@
 import React, { Component, Fragment } from 'react'
 import { withRouter }                 from 'react-router-dom'
 
+import giftConfig       from '../../../configs/giftConfig'
+
 import Title            from '../../../objects/Title'
 import Button           from '../../../objects/Button'
 
@@ -25,7 +27,7 @@ class StepValue extends Component {
 	}
 	componentDidMount() {
 		this.setState({
-			value : this.props.value
+			value : giftConfig.selectedValue
 		})
 		if (this.props.step !== this.props.currentStep) this.props.history.push('/home')
 	}
@@ -35,7 +37,7 @@ class StepValue extends Component {
 				<Title>{this.props.title}</Title>
 				<div className="range-field">
 					<h4>R$ {this.state.value}</h4>
-					<input type="range" id="value" min="30" max="1000" onChange={this.handleChange} />
+					<input type="range" id="value" value={this.state.value} step={giftConfig.step} min={giftConfig.minValue} max={giftConfig.maxValue} onChange={this.handleChange} />
 				</div>
 				<Button onClick={() => { this.prevStep() }}>{this.props.buttonPrev}</Button>
 				<Button onClick={() => { this.nextStep() }}>{this.props.buttonNext}</Button>
