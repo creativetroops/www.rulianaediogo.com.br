@@ -40,7 +40,10 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Ajustar Envio de Email para o Pagador; [OK]
 * Criar Arquivo de Configuração para valores de pagamento; [OK]
 * Refatorar exibição das informações da Dashboard; [OK]
+* Criar cadastro de usuários; [OK]
+* Criar profile para usuários; [OK]
 
+* Formik create users;
 * Criar o design das telas;
 * Criar os estilos com styled components;
 * Refatorar html public;
@@ -48,8 +51,6 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 	* Título;
 	* Favicon;
 	* OG;
-* Criar profile para usuários;
-* Criar cadastro de usuários;
 
 # Template .env
 

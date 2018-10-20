@@ -1,6 +1,6 @@
 import React, { Component }            from 'react'
 import { connect }                     from 'react-redux'
-import { Redirect, Route, withRouter } from 'react-router-dom';
+import { Redirect, Route, withRouter } from 'react-router-dom'
 import { compose }                     from 'redux'
 import { firestoreConnect }            from 'react-redux-firebase'
 
@@ -11,21 +11,27 @@ import ListContact from './Lists/ListContact'
 import ListGift    from './Lists/ListGift'
 import ListRsvp    from './Lists/ListRsvp'
 
+import CreateUser  from './Creates/CreateUser'
+
 import Button      from '../../objects/Button'
 
 class Dashboard extends Component {
 	state = {
-		path : '/'
+		path: ''
 	}
 	changeRoute = (path) => {
-		if(path !== this.state.path){
-			this.props.history.push(`/dashboard/${path}`)
-			this.setState({ path })
+		const pathDash = `/dashboard/${path}`
+		if (pathDash !== this.state.path){
+			this.setState({ path: pathDash })
+			this.props.history.push(pathDash)
 		}
 	}
+	componentDidMount(){
+		this.setState({ path: this.props.history.location.pathname })
+	}
 	render () {
-		const { auth, contacts, gifts, rsvps } = this.props;
-		if (!auth.uid) return <Redirect to='/login' />;
+		const { auth, contacts, gifts, rsvps } = this.props
+		if (!auth.uid) return <Redirect to='/login' />
 		return (
 			<div className='container'>
 				<h1>Dashboard</h1>
@@ -42,6 +48,8 @@ class Dashboard extends Component {
 				<Button onClick={() => this.changeRoute('contacts')}>Contatos</Button>
 				<Button onClick={() => this.changeRoute('gifts')}>Presentes</Button>
 				<Button onClick={() => this.changeRoute('rsvps')}>Confirmações</Button>
+				<h2>Controles</h2>
+				<Button onClick={() => this.changeRoute('createUser')}>Criar Administrador</Button>
 				<Animated>
 					<Route
 						exact
@@ -69,6 +77,13 @@ class Dashboard extends Component {
 						path='/dashboard/rsvps'
 						render={() => (
 							<ListRsvp rsvps={rsvps} />
+						)}
+					/>
+					<Route
+						exact
+						path='/dashboard/createUser'
+						render={() => (
+							<CreateUser />
 						)}
 					/>
 				</Animated>
