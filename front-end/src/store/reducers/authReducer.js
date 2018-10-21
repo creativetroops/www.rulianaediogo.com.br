@@ -4,23 +4,32 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
 	switch (action.type) {
+		case "START_LOADING_USER":
+			console.log("start loading user")
+			return {
+				...state,
+				loadingUser: true
+			}
 		case 'LOGIN_ERROR':
 			console.log('login error')
 			return {
 				...state,
-				authError: 'Login failed'
+				loadingUser: false,
+				logInMsg: 'Houve um erro ao fazer o login.'
 			}
 		case 'LOGIN_SUCCESS':
 			console.log('login success')
 			return {
 				...state,
-				authError: null
+				loadingUser: false,
+				logInMsg: ''
 			}
 		case 'LOGOUT_SUCCESS':
 			console.log('logout success')
 			return {
 				...state,
-				authError: null
+				loadingUser: false,
+				logOutMessage: 'Você saiu do sistema.'
 			}
 		default:
 			return state
@@ -28,13 +37,15 @@ const authReducer = (state = initState, action) => {
 			console.log('create user success')
 			return {
 				...state,
-				authError: null
+				loadingUser: false,
+				createUserMsg : 'O usuário foi criado com sucesso!'
 			}
 		case 'CREATE_USER_ERROR':
 			console.log('create user error')
 			return {
 				...state,
-				authError: action.err.message
+				loadingUser: false,
+				createUserMsg: `Houve um erro ao criar o usuário: ${action.err.message}`
 			}
 	}
 }

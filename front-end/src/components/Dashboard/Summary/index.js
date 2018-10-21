@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const Summary = ({ contacts, gifts, rsvps}) => {
+const Summary = ({ contacts, gifts, rsvps, users}) => {
 	const countPeople = rsvps => {
 		let count = 0
 		rsvps.map((item) => {
@@ -28,6 +28,7 @@ const Summary = ({ contacts, gifts, rsvps}) => {
 			<p>Total de contatos: {contacts.length}</p>
 			<p>Total de presentes: {gifts.length}</p>
 			<p>Total de confirmações: {rsvps.length}</p>
+			<p>Total de Administradores: {users.length}</p>
 			<p>Valor total arrecadado: {gifts.reduce((acc, cur) => ({ value: parseFloat(acc.value) + parseFloat(cur.value) })).value}</p>
 			<p>Quantidade de Pessoas: {countPeople(rsvps)}</p>
 			<p>Quantidade de Crianças: {countChildren(rsvps)}</p>

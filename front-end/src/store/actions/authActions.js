@@ -1,3 +1,10 @@
+export const startLoadingUser = () => {
+	return dispatch => {
+		dispatch({ type: "START_LOADING_USER" });
+	};
+};
+
+
 export const logIn = (credentials) => {
 	return (dispatch, getState, { getFirebase }) => {
 		const firebase = getFirebase();
@@ -32,7 +39,9 @@ export const createUser = (newUser) => {
 			return firestore.collection('users').doc(resp.user.uid).set({
 				firstName : newUser.firstName,
 				lastName  : newUser.lastName,
-				initials  : newUser.firstName[0] + newUser.lastName[0]
+				initials  : newUser.firstName[0] + newUser.lastName[0],
+				email     : newUser.email,
+				createdAt : new Date()
 			});
 		}).then(() => {
 			dispatch({ type: 'CREATE_USER_SUCCESS' });

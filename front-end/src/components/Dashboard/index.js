@@ -10,6 +10,7 @@ import Summary     from './Summary'
 import ListContact from './Lists/ListContact'
 import ListGift    from './Lists/ListGift'
 import ListRsvp    from './Lists/ListRsvp'
+import ListUser    from './Lists/ListUser'
 
 import CreateUser  from './Creates/CreateUser'
 
@@ -30,7 +31,7 @@ class Dashboard extends Component {
 		this.setState({ path: this.props.history.location.pathname })
 	}
 	render () {
-		const { auth, contacts, gifts, rsvps } = this.props
+		const { auth, contacts, gifts, rsvps, users } = this.props
 		if (!auth.uid) return <Redirect to='/login' />
 		return (
 			<div className='container'>
@@ -41,6 +42,7 @@ class Dashboard extends Component {
 						contacts = {contacts}
 						gifts    = {gifts}
 						rsvps    = {rsvps}
+						users    = {users}
 					/>
 					) || <h2>Carregando</h2>
 				}
@@ -48,6 +50,7 @@ class Dashboard extends Component {
 				<Button onClick={() => this.changeRoute('contacts')}>Contatos</Button>
 				<Button onClick={() => this.changeRoute('gifts')}>Presentes</Button>
 				<Button onClick={() => this.changeRoute('rsvps')}>Confirmações</Button>
+				<Button onClick={() => this.changeRoute('users')}>Usuários</Button>
 				<h2>Controles</h2>
 				<Button onClick={() => this.changeRoute('createUser')}>Criar Administrador</Button>
 				<Animated>
@@ -81,6 +84,13 @@ class Dashboard extends Component {
 					/>
 					<Route
 						exact
+						path='/dashboard/users'
+						render={() => (
+							<ListUser users={users} />
+						)}
+					/>
+					<Route
+						exact
 						path='/dashboard/createUser'
 						render={() => (
 							<CreateUser />
@@ -93,10 +103,12 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
+	console.log(state)
 	return {
 		contacts : state.firestore.ordered.contacts,
 		rsvps    : state.firestore.ordered.rsvps,
 		gifts    : state.firestore.ordered.gifts,
+		users    : state.firestore.ordered.users,
 		auth     : state.firebase.auth
 	}
 }
@@ -104,8 +116,9 @@ const mapStateToProps = (state) => {
 export default withRouter(compose(
 	connect(mapStateToProps),
 	firestoreConnect([
+		{ collection: 'users',    orderBy: [['createdAt', 'desc']] },
 		{ collection: 'contacts', orderBy: [['createdAt', 'desc']] },
 		{ collection: 'rsvps',    orderBy: [['createdAt', 'desc']] },
-		{ collection: 'gifts',    orderBy: [['createdAt', 'desc']] }
+		{ collection: 'gifts',    orderBy: [['createdAt', 'desc']] },
 	])
 )(Dashboard))

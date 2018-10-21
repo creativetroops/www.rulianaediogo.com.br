@@ -6,12 +6,12 @@ import LoggedItems    from './LoggedItems'
 import NotLoggedItems from './NotLoggedItems'
 
 const Navbar = (props) => {
-	const { auth } = props
+	const { auth, profile } = props
 	return (
 		<nav className="nav-wrapper grey darken-3">
 			<div className="container">
 				<Link to="/" className="brand-logo">Casamento Ruliana e Diogo</Link>
-				{auth.uid ? <LoggedItems /> : <NotLoggedItems />}
+				{auth.uid ? <LoggedItems profile={profile}/> : <NotLoggedItems />}
 			</div>
 		</nav>
 	)
@@ -19,7 +19,8 @@ const Navbar = (props) => {
 
 const mapStateToProps = (state) => {
 	return {
-		auth: state.firebase.auth
+		auth    : state.firebase.auth,
+		profile : state.firebase.profile
 	}
 }
 

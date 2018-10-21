@@ -29,6 +29,7 @@ class Home extends Component {
 						<li>Site: http://ranchosanfernando.com.br</li>
 						<li>Como chegar - Mapa</li>
 						<li>Dica de Hospedagem - Mapa</li>
+						<li>Cronograma do Casamento</li>
 					</ul>
 					<h2>História do Casal</h2>
 					<ul>

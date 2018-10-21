@@ -50,7 +50,7 @@ class StepIdentification extends Component {
 					value={this.props.values.name}
 					onChange={this.props.handleChange}
 					onBlur={this.props.handleBlur}
-					className={this.props.errors.name && this.props.touched.name ? "--error" : ""}
+					className={this.props.errors.name && this.props.touched.name ? "-error" : ""}
 				/>
 				<FieldMessage
 					error   = {this.props.errors.name}
@@ -64,7 +64,7 @@ class StepIdentification extends Component {
 					value={this.props.values.email}
 					onChange={this.props.handleChange}
 					onBlur={this.props.handleBlur}
-					className={this.props.errors.email && this.props.touched.email ? "--error" : ""}
+					className={this.props.errors.email && this.props.touched.email ? "-error" : ""}
 				/>
 				<FieldMessage
 					error   = {this.props.errors.email}
@@ -75,17 +75,17 @@ class StepIdentification extends Component {
 					<Fragment>
 						<Input
 							id="areaCode"
-							placeholder="Digite o código de área"
-							type="text"
-							value={this.props.values.areaCode}
-							onChange={this.props.handleChange}
-							onBlur={this.props.handleBlur}
-							className={this.props.errors.areaCode && this.props.touched.areaCode ? "--error" : ""}
+							placeholder = "Digite o código de área"
+							type        = "text"
+							value       = {this.props.values.areaCode}
+							onChange    = {this.props.handleChange}
+							onBlur      = {this.props.handleBlur}
+							className   = {this.props.errors.areaCode && this.props.touched.areaCode ? "-error" : ""}
 						/>
 						<FieldMessage
-							error={this.props.errors.areaCode}
-							touched={this.props.touched.areaCode}
-							message={this.props.errors.areaCode}
+							error   = {this.props.errors.areaCode}
+							touched = {this.props.touched.areaCode}
+							message = {this.props.errors.areaCode}
 						/>
 						<Input
 							id="phone"
@@ -94,7 +94,7 @@ class StepIdentification extends Component {
 							value={this.props.values.phone}
 							onChange={this.props.handleChange}
 							onBlur={this.props.handleBlur}
-							className={this.props.errors.phone && this.props.touched.phone ? "--error" : ""}
+							className={this.props.errors.phone && this.props.touched.phone ? "-error" : ""}
 						/>
 						<FieldMessage
 							error={this.props.errors.phone}
@@ -112,7 +112,7 @@ class StepIdentification extends Component {
 							value={this.props.values.cpfCnpj}
 							onChange={this.props.handleChange}
 							onBlur={this.props.handleBlur}
-							className={this.props.errors.cpfCnpj && this.props.touched.cpfCnpj ? "--error" : ""}
+							className={this.props.errors.cpfCnpj && this.props.touched.cpfCnpj ? "-error" : ""}
 						/>
 						<FieldMessage
 							error={this.props.errors.cpfCnpj}
@@ -126,7 +126,7 @@ class StepIdentification extends Component {
 							value={this.props.values.birthDate}
 							onChange={this.props.handleChange}
 							onBlur={this.props.handleBlur}
-							className={this.props.errors.birthDate && this.props.touched.birthDate ? "--error" : ""}
+							className={this.props.errors.birthDate && this.props.touched.birthDate ? "-error" : ""}
 						/>
 						<FieldMessage
 							error={this.props.errors.birthDate}

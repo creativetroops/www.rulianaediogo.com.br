@@ -42,8 +42,9 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Refatorar exibição das informações da Dashboard; [OK]
 * Criar cadastro de usuários; [OK]
 * Criar profile para usuários; [OK]
+* Formik create users; [OK]
+* Nome do usuário no login; [OK]
 
-* Formik create users;
 * Criar o design das telas;
 * Criar os estilos com styled components;
 * Refatorar html public;
