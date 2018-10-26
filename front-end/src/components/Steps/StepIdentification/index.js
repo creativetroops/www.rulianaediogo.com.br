@@ -44,13 +44,13 @@ class StepIdentification extends Component {
 			<Fragment>
 				<Title>{this.props.title}</Title>
 				<Input
-					id="name"
-					placeholder="Digite o seu nome"
-					type="text"
-					value={this.props.values.name}
-					onChange={this.props.handleChange}
-					onBlur={this.props.handleBlur}
-					className={this.props.errors.name && this.props.touched.name ? "-error" : ""}
+					id          = "name"
+					placeholder = "Digite o seu nome"
+					type        = "text"
+					value       = {this.props.values.name}
+					onChange    = {this.props.handleChange}
+					onBlur      = {this.props.handleBlur}
+					className   = {this.props.errors.name && this.props.touched.name ? "-error" : ""}
 				/>
 				<FieldMessage
 					error   = {this.props.errors.name}
@@ -59,12 +59,12 @@ class StepIdentification extends Component {
 				/>
 				<Input
 					id="email"
-					placeholder="Digite o seu e-mail"
-					type="text"
-					value={this.props.values.email}
-					onChange={this.props.handleChange}
-					onBlur={this.props.handleBlur}
-					className={this.props.errors.email && this.props.touched.email ? "-error" : ""}
+					placeholder = "Digite o seu e-mail"
+					type        = "text"
+					value       = {this.props.values.email}
+					onChange    = {this.props.handleChange}
+					onBlur      = {this.props.handleBlur}
+					className   = {this.props.errors.email && this.props.touched.email ? "-error" : ""}
 				/>
 				<FieldMessage
 					error   = {this.props.errors.email}
@@ -88,50 +88,50 @@ class StepIdentification extends Component {
 							message = {this.props.errors.areaCode}
 						/>
 						<Input
-							id="phone"
-							placeholder="Digite o telefone"
-							type="text"
-							value={this.props.values.phone}
-							onChange={this.props.handleChange}
-							onBlur={this.props.handleBlur}
-							className={this.props.errors.phone && this.props.touched.phone ? "-error" : ""}
+							id          = "phone"
+							placeholder = "Digite o telefone"
+							type        = "text"
+							value       = {this.props.values.phone}
+							onChange    = {this.props.handleChange}
+							onBlur      = {this.props.handleBlur}
+							className   = {this.props.errors.phone && this.props.touched.phone ? "-error" : ""}
 						/>
 						<FieldMessage
-							error={this.props.errors.phone}
-							touched={this.props.touched.phone}
-							message={this.props.errors.phone}
+							error   = {this.props.errors.phone}
+							touched = {this.props.touched.phone}
+							message = {this.props.errors.phone}
 						/>
 					</Fragment>
 				}
 				{this.props.havePayment &&
 					<Fragment>
 						<Input
-							id="cpfCnpj"
-							placeholder="Digite o CPF/CNPJ"
-							type="text"
-							value={this.props.values.cpfCnpj}
-							onChange={this.props.handleChange}
-							onBlur={this.props.handleBlur}
-							className={this.props.errors.cpfCnpj && this.props.touched.cpfCnpj ? "-error" : ""}
+							id          = "cpfCnpj"
+							placeholder = "Digite o CPF/CNPJ"
+							type        = "text"
+							value       = {this.props.values.cpfCnpj}
+							onChange    = {this.props.handleChange}
+							onBlur      = {this.props.handleBlur}
+							className   = {this.props.errors.cpfCnpj && this.props.touched.cpfCnpj ? "-error" : ""}
 						/>
 						<FieldMessage
-							error={this.props.errors.cpfCnpj}
-							touched={this.props.touched.cpfCnpj}
-							message={this.props.errors.cpfCnpj}
+							error   = {this.props.errors.cpfCnpj}
+							touched = {this.props.touched.cpfCnpj}
+							message = {this.props.errors.cpfCnpj}
 						/>
 						<Input
 							id="birthDate"
-							placeholder="Digite a data de nascimento"
-							type="text"
-							value={this.props.values.birthDate}
-							onChange={this.props.handleChange}
-							onBlur={this.props.handleBlur}
-							className={this.props.errors.birthDate && this.props.touched.birthDate ? "-error" : ""}
+							placeholder = "Digite a data de nascimento"
+							type        = "text"
+							value       = {this.props.values.birthDate}
+							onChange    = {this.props.handleChange}
+							onBlur      = {this.props.handleBlur}
+							className   = {this.props.errors.birthDate && this.props.touched.birthDate ? "-error" : ""}
 						/>
 						<FieldMessage
-							error={this.props.errors.birthDate}
-							touched={this.props.touched.birthDate}
-							message={this.props.errors.birthDate}
+							error   = {this.props.errors.birthDate}
+							touched = {this.props.touched.birthDate}
+							message = {this.props.errors.birthDate}
 						/>
 					</Fragment>
 				}

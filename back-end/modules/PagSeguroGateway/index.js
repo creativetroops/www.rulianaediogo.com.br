@@ -67,9 +67,10 @@ class PagSeguroGateway {
 		}
 		this.payment.sendTransaction(data,
 			(err, infos) => {
-				const status = 200
+				let status = 200
 				jsonResponse['infos'] = infos
 				if(err){
+					console.log(err)
 					jsonResponse['success'] = false
 					status = 500
 				}

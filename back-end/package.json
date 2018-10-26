@@ -2,9 +2,9 @@
 	"name": "rulianaediogo-back-end",
 	"version": "0.0.1",
 	"description": "",
-	"main": "index.js",
+	"main": "server.js",
 	"scripts": {
-		"start": "node server.js"
+		"start": "nodemon"
 	},
 	"author": "",
 	"license": "ISC",
@@ -16,5 +16,8 @@
 		"lodash.template": "^4.4.0",
 		"node-pagseguro": "^0.1.9",
 		"nodemailer": "^4.6.8"
+	},
+	"devDependencies": {
+		"nodemon": "^1.18.5"
 	}
 }

@@ -1,8 +1,8 @@
 const rsvpConfig = {
-	maxPeople: 5,
+	maxPeople: 3,
 	minPeople: 1,
-	maxChild: 5,
-	minChild: 1
+	maxChild: 2,
+	minChild: 0
 }
 
 export default rsvpConfig

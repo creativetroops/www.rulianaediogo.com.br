@@ -130,14 +130,14 @@ class StepList extends Component {
 		return (
 			<Fragment>
 				<Title>{this.props.title}</Title>
-				<Title>Quantidade de Pessoas: {this.state.peopleList.length}</Title>
+				<Title>Quantidade de Adultos: {this.state.peopleList.length}</Title>
 				<ul>
 					{this.state.peopleList.map((people, index) => (
 						<li key={index}>{people} <Button onClick={() => this.removePeople(people)}>Remover</Button></li>
 					))}
 				</ul>
 				<Input id="typedPeople" onChange={this.handleChange} value={this.state.typedPeople}></Input>
-				<Button onClick={this.addPeople}>Adicionar Pessoa</Button>
+				<Button onClick={this.addPeople}>Adicionar Adulto</Button>
 				<ComponentMessage>
 					{this.state.errorPeopleList && <p>{this.state.errorPeopleList}</p>}
 				</ComponentMessage>
