@@ -44,6 +44,8 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 * Criar profile para usuários; [OK]
 * Formik create users; [OK]
 * Nome do usuário no login; [OK]
+* Refatorar sistema back-end para MVC; [OK]
+* Transformar classe de rotas passando express.Router(); [OK]
 
 * Criar o design das telas;
 * Criar os estilos com styled components;

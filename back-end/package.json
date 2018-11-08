@@ -2,7 +2,7 @@
 	"name": "rulianaediogo-back-end",
 	"version": "0.0.1",
 	"description": "",
-	"main": "server.js",
+	"main": "src/index.js",
 	"scripts": {
 		"start": "nodemon"
 	},

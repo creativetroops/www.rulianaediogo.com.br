@@ -1,8 +1,8 @@
-const PagSeguro = require('node-pagseguro')
-const configs   = require('../../configs')
-const SendMail  = require('../SendMail')
+const PagSeguro          = require('node-pagseguro')
+const configs            = require('../../configs')
+const SendMailController = require('../SendMailController')
 
-class PagSeguroGateway {
+class PagSeguroController {
 	constructor() {
 		this.configs = {
 			email         : configs.pagseguro_email,
@@ -27,7 +27,6 @@ class PagSeguroGateway {
 		this.transaction = {
 			method : configs.pagseguro_default_transaction_method
 		}
-		this.SendMail = new SendMail()
 	}
 	setPayment() {
 		this.payment = new PagSeguro(this.configs)
@@ -79,11 +78,11 @@ class PagSeguroGateway {
 					'infos'    : infos,
 					'message'  : req.body.message
 				}
-				this.SendMail.sendPayment(infosMail)
+				SendMailController.sendPayment(infosMail);
 				res.status(status).json(jsonResponse)
 			}
 		)
 	}
 }
 
-module.exports = PagSeguroGateway
+module.exports = new PagSeguroController()

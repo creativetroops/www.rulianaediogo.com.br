@@ -2,18 +2,15 @@ const cors       = require('cors')
 const express    = require('express')
 const bodyParser = require('body-parser')
 const configs    = require('./configs')
-
-const PagSeguroGateway = require("./modules/PagSeguroGateway");
-const SendMail         = require('./modules/SendMail')
-const Routes           = require('./routes')
+const routes     = require('./routes')
 
 class Server {
 	constructor(){
 		this.configureExpress()
-		this.PagSeguroGateway = new PagSeguroGateway()
-		this.SendMail         = new SendMail()
-		this.Routes           = new Routes()
-		this.Routes.setRoutes(this.app, this)
+		this.configureRoutes()
+	}
+	configureRoutes(){
+		this.app.use(routes)
 	}
 	configureExpress() {
 		this.app = express()

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { HashRouter, Switch, Route }  from 'react-router-dom'
+import { BrowserRouter, Switch, Route }  from 'react-router-dom'
 
 import Navbar      from '../components/Navbar'
 
@@ -14,7 +14,7 @@ import Base        from '../styles/base'
 
 class Router extends Component {
 	render () {
-		return <HashRouter>
+		return <BrowserRouter>
 				<Fragment>
 					<Navbar />
 					<Switch>
@@ -27,7 +27,7 @@ class Router extends Component {
 					<Generic />
 					<Base />
 				</Fragment>
-			</HashRouter>;
+			</BrowserRouter>;
 	}
 }
 

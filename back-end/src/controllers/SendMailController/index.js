@@ -3,7 +3,7 @@ const configs        = require('../../configs')
 const lodashTemplate = require('lodash.template')
 const fs             = require('fs')
 
-class SendMail {
+class SendMailController {
 	constructor() {
 		this.configs = {
 			smtp    : configs.mail_smtp,
@@ -30,7 +30,7 @@ class SendMail {
 		}
 	}
 	loadTemplate(template, data = {}){
-        return lodashTemplate(fs.readFileSync(`./modules/SendMail/templates/${template}.html`))(data);
+        return lodashTemplate(fs.readFileSync(`${__dirname}/templates/${template}.html`))(data);
 	}
 	sendContact(req, res){
 		const data = {
@@ -95,4 +95,4 @@ class SendMail {
 	}
 }
 
-module.exports = SendMail
+module.exports = new SendMailController()

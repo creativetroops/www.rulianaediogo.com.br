@@ -5,7 +5,7 @@ const host     = (window.location.hostname === "localhost") ? `localhost:${port}
 const apiConfig = {
 	baseURL : `${protocol}${host}`,
 	endpoints : {
-		'send-payment': 'pagseguro-gateway/send-payment',
+		'send-payment': 'send-payment',
 		'send-rsvp'   : 'send-rsvp',
 		'send-contact': 'send-contact'
 	},
