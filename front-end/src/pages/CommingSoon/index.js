@@ -28,7 +28,7 @@ class CommingSoon extends Component {
           />
           <CountdownComponent
             className="countDown"
-            date="June 27, 2019 17:00:00"
+            date="July 27, 2019 17:00:00"
             renderer={this.customRender}
           />
         </div>
