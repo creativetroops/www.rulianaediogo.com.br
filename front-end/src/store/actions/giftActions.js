@@ -1,4 +1,4 @@
-import Api from '../../api'
+import Api from '../../services/api'
 
 export const startLoadingGift = () => (dispatch) => {
   dispatch({ type: 'START_LOADING_GIFT' })
