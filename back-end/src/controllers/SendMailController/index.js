@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const lodashTemplate = require('lodash.template')
 const fs = require('fs')
-const configs = require('../../configs')
+const configs = require('../../config')
 
 class SendMailController {
   constructor() {

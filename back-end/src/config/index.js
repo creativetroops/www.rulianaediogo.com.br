@@ -1,7 +1,7 @@
-require('dotenv/config')
+require('dotenv').config()
 
 module.exports = {
-  server_port: process.env.SERVER_PORT,
+  server_port: process.env.PORT,
 
   pagseguro_email: process.env.PAGSEGURO_EMAIL,
   pagseguro_token: process.env.PAGSEGURO_TOKEN,
@@ -16,7 +16,7 @@ module.exports = {
   pagseguro_default_shipping_state: process.env.PAGSEGURO_DEFAULT_SHIPPING_STATE,
   pagseguro_default_shipping_postal_code: process.env.PAGSEGURO_DEFAULT_SHIPPING_POSTAL_CODE,
   pagseguro_default_shipping_same_for_billing:
-		process.env.PAGSEGURO_DEFAULT_SHIPPING_SAME_FOR_BILLING === 'true',
+    process.env.PAGSEGURO_DEFAULT_SHIPPING_SAME_FOR_BILLING === 'true',
   pagseguro_default_shipping_shipping_cost: process.env.PAGSEGURO_DEFAULT_SHIPPING_SHIPPING_COST,
 
   pagseguro_default_item_qtde: process.env.PAGSEGURO_DEFAULT_ITEM_QTDE,
