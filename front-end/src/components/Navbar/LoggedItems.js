@@ -4,15 +4,15 @@ import { NavLink } from 'react-router-dom'
 import { logOut } from '../../store/actions/authActions'
 
 const LoggedItems = ({ logOut, profile }) => (
-    <ul className="right">
-      <li>Olá, {profile.firstName}</li>
-      <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
-      </li>
-      <li>
-        <a onClick={logOut}>Log Out</a>
-      </li>
-    </ul>
+  <ul className="right">
+    <li>Olá, {profile.firstName}</li>
+    <li>
+      <NavLink to="/dashboard">Dashboard</NavLink>
+    </li>
+    <li>
+      <button onClick={logOut}>Log Out</button>
+    </li>
+  </ul>
 )
 
 const mapDispatchToProps = dispatch => ({
