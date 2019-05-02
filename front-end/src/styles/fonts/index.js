@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components'
 
 const Fonts = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+  @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500');
   @font-face {
     font-family: 'Niagara';
     src: url('/assets/fonts/NiagaraSolid-Reg.eot?#iefix') format('embedded-opentype'),

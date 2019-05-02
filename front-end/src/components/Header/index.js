@@ -3,9 +3,11 @@ import Particles from 'react-particles-js'
 import StyledHeader from './styles'
 import Logo from '../../objects/Logo'
 import Countdown from '../../objects/Countdown'
+import Shadow from '../../objects/Shadow'
 
 const Header = () => (
   <StyledHeader>
+    <Shadow />
     <Particles
       className="particles"
       params={{

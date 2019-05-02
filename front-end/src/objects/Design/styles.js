@@ -10,10 +10,11 @@ const StyledContainer = styled.div`
 const StyledSection = styled.section`
   position: relative;
   float: left;
-  padding-top: 60px;
-  padding-bottom: 60px;
+  padding-top: 100px;
+  padding-bottom: 100px;
   min-width: 900px;
   text-align: center;
+  box-shadow: ;
 `
 
 export { StyledContainer, StyledSection }
