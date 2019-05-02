@@ -11,6 +11,12 @@ const StyledHeader = styled.header`
       rgba(12, 8, 15, 0.85)
     ),
     url('/assets/images/red-bg-header.jpg');
+  .particles {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.4;
+  }
 `
 
 export default StyledHeader
