@@ -14,7 +14,7 @@ import ListUser from './Lists/ListUser'
 
 import CreateUser from './Creates/CreateUser'
 
-import {Button} from '../../objects/Button'
+import { Button } from '../../objects/Button'
 
 class Dashboard extends Component {
   state = {
@@ -42,7 +42,12 @@ class Dashboard extends Component {
       <div className="container">
         <h1>Dashboard</h1>
         {(contacts && gifts && rsvps && (
-          <Summary contacts={contacts} gifts={gifts} rsvps={rsvps} users={users} />
+          <Summary
+            contacts={contacts}
+            gifts={gifts}
+            rsvps={rsvps}
+            users={users}
+          />
         )) || <h2>Carregando</h2>}
         <h2>Detalhes</h2>
         <Button onClick={() => this.changeRoute('contacts')}>Contatos</Button>
@@ -50,7 +55,9 @@ class Dashboard extends Component {
         <Button onClick={() => this.changeRoute('rsvps')}>Confirmações</Button>
         <Button onClick={() => this.changeRoute('users')}>Usuários</Button>
         <h2>Controles</h2>
-        <Button onClick={() => this.changeRoute('createUser')}>Criar Administrador</Button>
+        <Button onClick={() => this.changeRoute('createUser')}>
+          Criar Administrador
+        </Button>
         <Animated>
           <Route
             exact
@@ -62,10 +69,26 @@ class Dashboard extends Component {
             path="/dashboard/contacts"
             render={() => <ListContact contacts={contacts} />}
           />
-          <Route exact path="/dashboard/gifts" render={() => <ListGift gifts={gifts} />} />
-          <Route exact path="/dashboard/rsvps" render={() => <ListRsvp rsvps={rsvps} />} />
-          <Route exact path="/dashboard/users" render={() => <ListUser users={users} />} />
-          <Route exact path="/dashboard/createUser" render={() => <CreateUser />} />
+          <Route
+            exact
+            path="/dashboard/gifts"
+            render={() => <ListGift gifts={gifts} />}
+          />
+          <Route
+            exact
+            path="/dashboard/rsvps"
+            render={() => <ListRsvp rsvps={rsvps} />}
+          />
+          <Route
+            exact
+            path="/dashboard/users"
+            render={() => <ListUser users={users} />}
+          />
+          <Route
+            exact
+            path="/dashboard/createUser"
+            render={() => <CreateUser />}
+          />
         </Animated>
       </div>
     )

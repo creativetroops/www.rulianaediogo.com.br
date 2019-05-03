@@ -4,6 +4,7 @@ import {
   StyledTitleMain,
   StyledSubTitleMain,
   StyledTitleInternal,
+  StyledTitleInternalDecoration,
 } from './styles'
 
 const TitleMain = props => <StyledTitleMain>{props.children}</StyledTitleMain>
@@ -13,5 +14,12 @@ const SubTitleMain = props => (
 const TitleInternal = props => (
   <StyledTitleInternal>{props.children}</StyledTitleInternal>
 )
+const TitleInternalDecoration = props => (
+  <StyledTitleInternalDecoration>
+    {props.children}
+  </StyledTitleInternalDecoration>
+)
 
-export { TitleMain, SubTitleMain, TitleInternal }
+export {
+  TitleMain, SubTitleMain, TitleInternal, TitleInternalDecoration,
+}

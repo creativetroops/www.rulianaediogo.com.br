@@ -8,7 +8,7 @@ import Shadow from '../../objects/Shadow'
 import { Button, ContainerButtons } from '../../objects/Button'
 
 const Rsvp = () => (
-  <Container bg="green-darker">
+  <Container bg="green-dark">
     <Shadow />
     <Section>
       <StyledRsvp>

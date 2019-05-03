@@ -17,6 +17,7 @@ const StyledButton = styled.button`
   font-weight: 500;
   line-height: 45px;
   cursor: pointer;
+  color: var(--color-gray);
   border: none;
   margin-right: 30px;
   transition: all 0.15s ease-in-out;

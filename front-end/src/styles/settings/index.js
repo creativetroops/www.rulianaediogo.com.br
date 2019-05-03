@@ -5,7 +5,8 @@ const Settings = createGlobalStyle`
     --color-white: #FFF;
     --color-gray: #4D4D4A;
     --color-green: #93D1BA;
-    --color-green-darker: #73A895;
+    --color-green-dark: #73A895;
+    --color-green-light: #9BC9B9;
 
     --space-s1: 15px;
     --space-s2: 30px;

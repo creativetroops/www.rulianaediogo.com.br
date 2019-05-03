@@ -29,4 +29,27 @@ const StyledTitleInternal = styled.h3`
   letter-spacing: 1px;
 `
 
-export { StyledTitleMain, StyledSubTitleMain, StyledTitleInternal }
+const StyledTitleInternalDecoration = styled(StyledTitleInternal)`
+  position: relative;
+  float: left;
+  width: 100%;
+  margin-bottom: 100px;
+  &:after {
+    content: '';
+    width: 100px;
+    height: 6px;
+    background-color: var(--color-green-light);
+    position: absolute;
+    left: 50%;
+    bottom: -40px;
+    border-radius: 10px;
+    transform: translateX(-50%);
+  }
+`
+
+export {
+  StyledTitleMain,
+  StyledSubTitleMain,
+  StyledTitleInternal,
+  StyledTitleInternalDecoration,
+}
