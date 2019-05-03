@@ -29,7 +29,7 @@ const Infos = () => (
             Padrinhos
           </ItemInfo>
           <ItemInfo src="/assets/images/red-info-schedule-icon.svg">
-            Cronograma
+            Padrinhos
           </ItemInfo>
         </div>
       </StyledInfos>

@@ -9,9 +9,9 @@ const Generic = createGlobalStyle`
 	}
 	html,
 	body {
-		height: 100%;
     text-rendering: optimizeLegibility!important;
     -webkit-font-smoothing: antialiased!important;
+    overflow-x: hidden;
 	}
 	input {
 		font-size: inherit;

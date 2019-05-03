@@ -13,7 +13,7 @@ const Red = () => (
       <StyledRed>
         <hgroup>
           <TitleMain>Ruliana & Diogo</TitleMain>
-          <SubTitleMain>Vão Casar</SubTitleMain>
+          <SubTitleMain>Irão se Casar</SubTitleMain>
         </hgroup>
         <Paragraph>
           É com muita alegria que convidamos vocês para a nossa cerimônia de
