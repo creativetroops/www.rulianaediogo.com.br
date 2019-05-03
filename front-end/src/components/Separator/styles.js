@@ -10,6 +10,11 @@ const StyledSeparator = styled.section`
       rgba(14, 13, 15, 0.64)
     ),
     url(${({ src }) => src});
+  filter: grayscale(100%);
+  transition: all 0.25s linear;
+  &:hover {
+    filter: grayscale(0%);
+  }
 `
 
 export default StyledSeparator

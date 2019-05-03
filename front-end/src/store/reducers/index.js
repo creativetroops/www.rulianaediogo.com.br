@@ -6,6 +6,7 @@ import rsvpReducer from './rsvpReducer'
 import giftReducer from './giftReducer'
 import contactReducer from './contactReducer'
 import instagramReducer from './instagramReducer'
+import modalReducer from './modalReducer'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   instagrams: instagramReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
+  modal: modalReducer,
 })
 
 export default rootReducer

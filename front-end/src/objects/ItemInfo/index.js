@@ -5,8 +5,8 @@ import {
   StyledTitleItemInfo,
 } from './styles'
 
-const ItemInfo = ({ src, children }) => (
-  <StyledWrapperItemInfo>
+const ItemInfo = ({ src, children, onClick }) => (
+  <StyledWrapperItemInfo onClick={onClick}>
     <StyledImageItemInfo src={src} />
     <StyledTitleItemInfo>{children}</StyledTitleItemInfo>
   </StyledWrapperItemInfo>

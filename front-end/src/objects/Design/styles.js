@@ -6,6 +6,7 @@ const StyledContainer = styled.div`
   justify-content: center;
   align-items: center;
   background-color: ${({ bg }) => `var(--color-${bg || 'gray'})`};
+  z-index: 100 !important;
 `
 
 const StyledSection = styled.section`

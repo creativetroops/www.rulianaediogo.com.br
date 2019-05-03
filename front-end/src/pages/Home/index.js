@@ -7,11 +7,29 @@ import Gift from '../../components/Gift'
 import Rsvp from '../../components/Rsvp'
 import Message from '../../components/Message'
 import Infos from '../../components/Infos'
+import {
+  ModalGiftBillet,
+  ModalGiftDeposit,
+  ModalRsvp,
+  ModalMessage,
+  ModalHistory,
+  ModalAccommodation,
+  ModalGodfathers,
+  ModalSchedule,
+} from '../../components/Modals'
 
 class Home extends Component {
   render() {
     return (
       <Fragment>
+        <ModalGiftBillet />
+        <ModalGiftDeposit />
+        <ModalRsvp />
+        <ModalMessage />
+        <ModalHistory />
+        <ModalAccommodation />
+        <ModalGodfathers />
+        <ModalSchedule />
         <Header />
         <Red />
         <Separator src="/assets/images/red-separator-1.jpg" />
