@@ -19,7 +19,7 @@ const StyledSubTitleMain = styled.h2`
   margin-bottom: 100px;
 `
 
-const StyledTitleMainItem = styled.h3`
+const StyledTitleInternal = styled.h3`
   font-family: 'Niagara';
   font-size: 5rem;
   text-transform: uppercase;
@@ -29,4 +29,4 @@ const StyledTitleMainItem = styled.h3`
   letter-spacing: 1px;
 `
 
-export { StyledTitleMain, StyledSubTitleMain, StyledTitleMainItem }
+export { StyledTitleMain, StyledSubTitleMain, StyledTitleInternal }

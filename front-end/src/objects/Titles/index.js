@@ -3,15 +3,15 @@ import React from 'react'
 import {
   StyledTitleMain,
   StyledSubTitleMain,
-  StyledTitleMainItem,
+  StyledTitleInternal,
 } from './styles'
 
 const TitleMain = props => <StyledTitleMain>{props.children}</StyledTitleMain>
 const SubTitleMain = props => (
   <StyledSubTitleMain>{props.children}</StyledSubTitleMain>
 )
-const TitleMainItem = props => (
-  <StyledTitleMainItem>{props.children}</StyledTitleMainItem>
+const TitleInternal = props => (
+  <StyledTitleInternal>{props.children}</StyledTitleInternal>
 )
 
-export { TitleMain, SubTitleMain, TitleMainItem }
+export { TitleMain, SubTitleMain, TitleInternal }

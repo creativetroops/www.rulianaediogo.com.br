@@ -1,12 +1,14 @@
 import React from 'react'
 import StyledRed from './styles'
 import { Container, Section } from '../../objects/Design'
-import { TitleMain, SubTitleMain, TitleMainItem } from '../../objects/Titles'
+import { TitleMain, SubTitleMain, TitleInternal } from '../../objects/Titles'
 import { Paragraph, ParagraphMain } from '../../objects/Paragraphs'
 import { ImageMain } from '../../objects/Images'
+import Shadow from '../../objects/Shadow'
 
 const Red = () => (
   <Container>
+    <Shadow />
     <Section>
       <StyledRed>
         <hgroup>
@@ -18,9 +20,9 @@ const Red = () => (
           casamento!
         </Paragraph>
         <ImageMain src="/assets/images/red-ballon.svg" />
-        <TitleMainItem>Save The Date</TitleMainItem>
+        <TitleInternal>Save The Date</TitleInternal>
         <ParagraphMain>27 de Julho de 2019</ParagraphMain>
-        <TitleMainItem>Rancho San Fernando</TitleMainItem>
+        <TitleInternal>Rancho San Fernando</TitleInternal>
         <address>
           <ParagraphMain>
             <span>Rua São Paulo nº 54</span>

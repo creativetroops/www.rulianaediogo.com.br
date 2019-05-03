@@ -12,6 +12,9 @@ const StyledParagraph = styled.p`
   margin-bottom: 45px;
   padding: 0 15%;
   line-height: 2rem;
+  span {
+    color: var(--color-green);
+  }
 `
 
 const StyledParagraphMain = styled.p`

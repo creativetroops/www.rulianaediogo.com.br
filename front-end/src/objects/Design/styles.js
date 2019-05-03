@@ -5,6 +5,7 @@ const StyledContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${({ bg }) => `var(--color-${bg || 'gray'})`};
 `
 
 const StyledSection = styled.section`
@@ -12,9 +13,9 @@ const StyledSection = styled.section`
   float: left;
   padding-top: 100px;
   padding-bottom: 100px;
-  min-width: 900px;
+  max-width: 1000px;
   text-align: center;
-  box-shadow: ;
+  z-index: 101;
 `
 
 export { StyledContainer, StyledSection }

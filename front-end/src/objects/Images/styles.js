@@ -4,4 +4,9 @@ const StyledImageMain = styled.img`
   margin-bottom: 60px;
 `
 
-export { StyledImageMain }
+const StyledImageInternal = styled.img`
+  margin-top: 60px;
+  margin-bottom: 30px;
+`
+
+export { StyledImageMain, StyledImageInternal }

@@ -2,11 +2,13 @@ import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
-import { createUser, startLoadingUser } from '../../../../store/actions/authActions'
+import {
+  createUser,
+  startLoadingUser,
+} from '../../../../store/actions/authActions'
 
 import ComponentMessage from '../../../../objects/ComponentMessage'
 
-import Title from '../../../../objects/Title'
 import Button from '../../../../objects/Button'
 import Input from '../../../../objects/Input'
 import FieldMessage from '../../../../objects/FieldMessage'
@@ -68,7 +70,7 @@ class CreateUser extends Component {
           <Fragment>
             {JSON.stringify(errors)}
             <Form>
-              <Title>Criar novo Usuário</Title>
+              <h1>Criar novo Usuário</h1>
               <Input
                 id="firstName"
                 placeholder="Digite o primeiro nome"
@@ -76,7 +78,9 @@ class CreateUser extends Component {
                 value={values.firstName}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                className={errors.firstName && touched.firstName ? '-error' : ''}
+                className={
+                  errors.firstName && touched.firstName ? '-error' : ''
+                }
               />
               <FieldMessage
                 error={errors.firstName}
@@ -106,7 +110,11 @@ class CreateUser extends Component {
                 onBlur={handleBlur}
                 className={errors.email && touched.email ? '-error' : ''}
               />
-              <FieldMessage error={errors.email} touched={touched.email} message={errors.email} />
+              <FieldMessage
+                error={errors.email}
+                touched={touched.email}
+                message={errors.email}
+              />
               <Input
                 id="password"
                 placeholder="Digite a senha"
@@ -122,8 +130,12 @@ class CreateUser extends Component {
                 message={errors.password}
               />
               <Button onClick={handleSubmit}>Cadastrar</Button>
-              <ComponentMessage>{loadingUser ? <h1>Carregando...</h1> : null}</ComponentMessage>
-              <ComponentMessage>{createUserMsg ? <p>{createUserMsg}</p> : null}</ComponentMessage>
+              <ComponentMessage>
+                {loadingUser ? <h1>Carregando...</h1> : null}
+              </ComponentMessage>
+              <ComponentMessage>
+                {createUserMsg ? <p>{createUserMsg}</p> : null}
+              </ComponentMessage>
             </Form>
           </Fragment>
         )}
