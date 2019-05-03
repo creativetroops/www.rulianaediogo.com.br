@@ -5,6 +5,7 @@ import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
 import Shadow from '../../objects/Shadow'
+import { Button, ContainerButtons } from '../../objects/Button'
 
 const Rsvp = () => (
   <Container bg="green-darker">
@@ -18,6 +19,9 @@ const Rsvp = () => (
           dia <strong>27/06/2019</strong>, para isso, basta clicar no botão e
           preencher as informações solicitadas.
         </Paragraph>
+        <ContainerButtons>
+          <Button>Confirmar Presença</Button>
+        </ContainerButtons>
       </StyledRsvp>
     </Section>
   </Container>

@@ -14,7 +14,7 @@ import ListUser from './Lists/ListUser'
 
 import CreateUser from './Creates/CreateUser'
 
-import Button from '../../objects/Button'
+import {Button} from '../../objects/Button'
 
 class Dashboard extends Component {
   state = {

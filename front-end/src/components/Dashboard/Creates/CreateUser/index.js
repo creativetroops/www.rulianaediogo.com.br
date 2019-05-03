@@ -9,7 +9,7 @@ import {
 
 import ComponentMessage from '../../../../objects/ComponentMessage'
 
-import Button from '../../../../objects/Button'
+import { Button } from '../../../../objects/Button'
 import Input from '../../../../objects/Input'
 import FieldMessage from '../../../../objects/FieldMessage'
 

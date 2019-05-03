@@ -1,17 +1,10 @@
-import styled from 'styled-components'
 import React from 'react'
 
-const ButtonStructure = ({ className, onClick, children }) => (
-  <button type="button" className={className} onClick={onClick}>
-    {children}
-  </button>
+import { StyledButton, StyledContainerButtons } from './styles'
+
+const Button = props => <StyledButton {...props}>{props.children}</StyledButton>
+const ContainerButtons = props => (
+  <StyledContainerButtons {...props}>{props.children}</StyledContainerButtons>
 )
 
-const Button = styled(ButtonStructure)`
-  background-color: gray;
-  padding: 15px;
-  margin: 10px;
-  cursor: pointer;
-`
-
-export default Button
+export { Button, ContainerButtons }

@@ -5,6 +5,7 @@ import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
 import Shadow from '../../objects/Shadow'
+import { Button, ContainerButtons } from '../../objects/Button'
 
 const Gift = () => (
   <Container>
@@ -23,6 +24,10 @@ const Gift = () => (
           Você pode gerar um boleto no sistema abaixo, ou fazer uma
           transferência diretamente para nosso conta conjunta.
         </Paragraph>
+        <ContainerButtons>
+          <Button>Boleto</Button>
+          <Button>Depósito</Button>
+        </ContainerButtons>
       </StyledGift>
     </Section>
   </Container>

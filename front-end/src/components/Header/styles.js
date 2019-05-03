@@ -6,6 +6,8 @@ const StyledHeader = styled.header`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  background-size: cover;
+  background-position: center center;
   background-image: linear-gradient(
       rgba(80, 116, 104, 0.43),
       rgba(12, 8, 15, 0.85)
