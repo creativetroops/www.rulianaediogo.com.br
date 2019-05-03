@@ -8,6 +8,6 @@
   "scripts": {
     "front-end": "cd front-end && npm start",
     "back-end": "cd back-end && npm start",
-    "start": "concurrently \"npm run front-end --scripts-prepend-node-path\" \"npm run back-end --scripts-prepend-node-path\""
+    "start": "concurrently \"npm run front-end\" \"npm run back-end\""
   }
 }
