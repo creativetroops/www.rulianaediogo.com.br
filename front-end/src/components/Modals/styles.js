@@ -17,11 +17,43 @@ const StyledModal = styled.div`
 `
 
 const StyledModalMain = styled.div`
+  position: relative;
+  float: left;
   min-width: 80%;
-  border-radius: 15px;
+  border-radius: 10px;
   padding: 20px;
   background-color: var(--color-white);
+  box-shadow: -15px 20px 50px 0 rgba(0, 0, 0, 0.2);
   z-index: 99999 !important;
 `
 
-export { StyledModal, StyledModalMain }
+const StyledButtonClose = styled.div`
+  cursor: pointer;
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 32px;
+  height: 32px;
+  opacity: 0.3;
+  transition: all 0.25s ease-in-out;
+  &:before,
+  &:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 33px;
+    width: 2px;
+    background-color: #333;
+  }
+  &:before {
+    transform: rotate(45deg);
+  }
+  &:after {
+    transform: rotate(-45deg);
+  }
+  &:hover {
+    opacity: 1;
+  }
+`
+
+export { StyledModal, StyledModalMain, StyledButtonClose }

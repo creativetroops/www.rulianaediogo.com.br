@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { toggleModal } from '../../store/actions/modalActions'
-import { StyledModal, StyledModalMain } from './styles'
+import { StyledModal, StyledModalMain, StyledButtonClose } from './styles'
 
 const Modal = props => (
   <StyledModal className={props.show && 'show'}>
-    <button onClick={props.onClose}>Fechar</button>
-    <StyledModalMain>{props.children}</StyledModalMain>
+    <StyledModalMain>
+      <StyledButtonClose onClick={props.onClose} />
+      {props.children}
+    </StyledModalMain>
   </StyledModal>
 )
 
@@ -29,7 +31,7 @@ const ModalGiftDebitStructure = props => (
       props.toggleModal('MODAL_GIFT_DEPOSIT', false)
     }}
   >
-    <h1>Rsvp</h1>
+    <h1>Depósito</h1>
     <p>Testando uma mensagem</p>
   </Modal>
 )

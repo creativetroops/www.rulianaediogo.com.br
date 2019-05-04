@@ -4,13 +4,11 @@ import StyledInfos from './styles'
 import { Container, Section } from '../../objects/Design'
 import { TitleInternalDecoration } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
-import Shadow from '../../objects/Shadow'
 import ItemInfo from '../../objects/ItemInfo'
 import { toggleModal } from '../../store/actions/modalActions'
 
 const Infos = props => (
   <Container bg="green-dark">
-    <Shadow />
     <Section>
       <StyledInfos>
         <TitleInternalDecoration>

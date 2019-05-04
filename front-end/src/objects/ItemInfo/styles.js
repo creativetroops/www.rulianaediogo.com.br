@@ -1,7 +1,11 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledWrapperItemInfo = styled.div`
   margin-top: 30px;
+  @media ${devices.laptop} {
+    flex: 1 0 50%;
+  }
 `
 
 const StyledImageItemInfo = styled.img`

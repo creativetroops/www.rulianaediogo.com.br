@@ -1,11 +1,11 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledParagraph = styled.p`
   font-family: 'Montserrat', sans-serif;
   font-size: 1.2rem;
   color: ${({ color }) => `var(--color-${color || 'white'})`};
   margin-bottom: 0;
-  line-height: 120px;
   line-height: 1.2rem;
   text-align: center;
   margin-top: 30px;
@@ -15,6 +15,13 @@ const StyledParagraph = styled.p`
   span {
     color: var(--color-green);
   }
+  @media ${devices.laptop} {
+    font-size: 1rem;
+    padding: 0 15px !important;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 0.9rem;
+  }
 `
 
 const StyledParagraphMain = styled.p`
@@ -23,7 +30,6 @@ const StyledParagraphMain = styled.p`
   color: ${({ color }) => `var(--color-${color || 'green'})`};
   text-transform: uppercase;
   margin-bottom: 0;
-  line-height: 120px;
   line-height: 1.2rem;
   text-align: center;
   margin-top: 30px;
@@ -31,6 +37,13 @@ const StyledParagraphMain = styled.p`
   padding: 0 15%;
   line-height: 2rem;
   font-weight: 500;
+  @media ${devices.laptop} {
+    font-size: 1.2rem;
+    padding: 0 15px !important;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 1rem;
+  }
   span,
   a {
     width: 100%;
@@ -38,6 +51,12 @@ const StyledParagraphMain = styled.p`
     font-size: 1rem;
     line-height: 0.9rem;
     font-style: normal !important;
+    @media ${devices.laptop} {
+      font-size: 0.9rem;
+    }
+    @media ${devices.mobileLarge} {
+      font-size: 0.8rem;
+    }
   }
   a {
     text-decoration: none;
@@ -47,7 +66,7 @@ const StyledParagraphMain = styled.p`
     margin-bottom: 0 !important;
     a {
       font-size: 0.8rem;
-      color: var(--color-green);
+      color: var(--color-white);
     }
   }
 `

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledDecoration = styled.div`
   background-image: url('/assets/images/red-decoration.svg');
@@ -16,7 +17,7 @@ const StyledDecoration = styled.div`
   background-position-x: ${({ positionX }) => positionX || '-1200px'};
   background-position-y: ${({ positionY }) => positionY || '-600px'};
   background-repeat: no-repeat;
-  @media screen and (max-width: 992px){
+  @media ${devices.laptopLarge} {
     display:none;
   }
 `

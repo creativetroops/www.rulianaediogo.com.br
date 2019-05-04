@@ -5,13 +5,11 @@ import { Container, Section } from '../../objects/Design'
 import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
-import Shadow from '../../objects/Shadow'
 import { Button, ContainerButtons } from '../../objects/Button'
 import { toggleModal } from '../../store/actions/modalActions'
 
 const Rsvp = props => (
   <Container bg="green-dark">
-    <Shadow />
     <Section>
       <StyledRsvp>
         <TitleInternal>Confirmação de Presença</TitleInternal>

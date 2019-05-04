@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledTitleMain = styled.h1`
   font-family: 'Niagara';
@@ -7,6 +8,14 @@ const StyledTitleMain = styled.h1`
   color: var(--color-white);
   margin-bottom: 0;
   line-height: 120px;
+  @media ${devices.laptop} {
+    font-size: 7rem;
+    line-height: 100px;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 4rem;
+    line-height: 80px;
+  }
 `
 
 const StyledSubTitleMain = styled.h2`
@@ -17,6 +26,14 @@ const StyledSubTitleMain = styled.h2`
   font-weight: normal;
   line-height: 1rem;
   margin-bottom: 100px;
+  @media ${devices.laptop} {
+    font-size: 5rem;
+    line-height: 0.5rem;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 4rem;
+    line-height: 0rem;
+  }
 `
 
 const StyledTitleInternal = styled.h3`
@@ -27,6 +44,12 @@ const StyledTitleInternal = styled.h3`
   margin-bottom: 0;
   line-height: 60px;
   letter-spacing: 1px;
+  @media ${devices.laptop} {
+    font-size: 4rem;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 3rem;
+  }
 `
 
 const StyledTitleInternalDecoration = styled(StyledTitleInternal)`

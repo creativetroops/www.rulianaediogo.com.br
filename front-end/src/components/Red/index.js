@@ -4,11 +4,10 @@ import { Container, Section } from '../../objects/Design'
 import { TitleMain, SubTitleMain, TitleInternal } from '../../objects/Titles'
 import { Paragraph, ParagraphMain } from '../../objects/Paragraphs'
 import { ImageMain } from '../../objects/Images'
-import Shadow from '../../objects/Shadow'
+import { ContainerButtons, ButtonTransparent } from '../../objects/Button'
 
 const Red = () => (
   <Container>
-    <Shadow />
     <Section>
       <StyledRed>
         <hgroup>
@@ -30,12 +29,21 @@ const Red = () => (
             <span>Londrina - Paraná</span>
           </ParagraphMain>
         </address>
-        <ParagraphMain>
-          <a href="tel:(43) 3337-7007">(43) 3337-7007</a>
-          <a href="tel:(43) 9106-3438">(43) 9106-3438</a>
-        </ParagraphMain>
+
+        <ContainerButtons>
+          <a href="tel:(43) 3337-7007">
+            <ButtonTransparent>(43) 3337-7007</ButtonTransparent>
+          </a>
+          <a href="tel:(43) 9106-3438">
+            <ButtonTransparent>(43) 9106-3438</ButtonTransparent>
+          </a>
+        </ContainerButtons>
         <ParagraphMain className="link">
-          <a href="http://www.ranchosanfernando.com.br">
+          <a
+            href="http://www.ranchosanfernando.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             http://www.ranchosanfernando.com.br
           </a>
         </ParagraphMain>
