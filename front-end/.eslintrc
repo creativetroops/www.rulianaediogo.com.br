@@ -7,15 +7,12 @@
   "plugins": ["react", "jsx-a11y", "import"],
   "extends": "airbnb-base",
   "rules": {
-    "no-console": "off",
-    "no-shadow": "off",
     "react/jsx-filename-extension": [
       "error",
       {
         "extensions": [".js", ".jsx"]
       }
     ],
-    "max-len": 0,
     "semi": [2, "never"],
     "no-tabs": 0,
     "quotes": [2, "single", "avoid-escape"],

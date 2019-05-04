@@ -15,6 +15,8 @@ const StyledCol4 = Col => styled(Col)`
   }
 `
 
+const StyledCol3 = Col => styled(Col)``
+
 const StyledCol2 = Col => styled(Col)``
 
 const StyledCol1 = Col => styled(Col)``
@@ -37,5 +39,5 @@ const StyledWrapperCol = styled.div`
 `
 
 export {
-  StyledCol4, StyledCol2, StyledCol1, StyledRow, StyledWrapperCol,
+  StyledCol4, StyledCol3, StyledCol2, StyledCol1, StyledRow, StyledWrapperCol,
 }

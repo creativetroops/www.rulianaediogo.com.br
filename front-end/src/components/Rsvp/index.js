@@ -17,12 +17,12 @@ const Rsvp = props => (
         <TitleInternal>Confirmação de Presença</TitleInternal>
         <ImageInternal src="/assets/images/red-rsvp-icon.svg" />
         <Paragraph>
-          Pedimos por favor para realizar a sua confirmação de presença até o
-          dia <strong>27/06/2019</strong>, para isso, basta clicar no botão e
-          preencher as informações solicitadas.
+          Pedimos por favor para realizar a sua confirmação de presença até o dia{' '}
+          <strong>27/06/2019</strong>, para isso, basta clicar no botão e preencher as informações
+          solicitadas.
         </Paragraph>
         <ContainerButtons>
-          <Button onClick={() => props.toggleModal('MODAL_RSVP', true)}>
+          <Button onClick={() => props.modalActions.toggleModal('MODAL_RSVP', true)}>
             Confirmar Presença
           </Button>
         </ContainerButtons>

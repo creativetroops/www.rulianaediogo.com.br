@@ -1,10 +1,11 @@
 {
-  "name": "rulianaediogo-back-end",
+  "name": "api-ruliana-diogo",
   "version": "0.0.2",
   "description": "Just a simple back-end for ruliana and diogo website.",
   "scripts": {
     "start": "node src/server.js",
-    "dev": "nodemon src/server.js"
+    "dev": "nodemon src/server.js",
+    "pm2": "pm2 start yarn --name api-ruliana-diogo -- start"
   },
   "author": "Diogo Cezar <diogo@diogocezar.com>",
   "license": "MIT",

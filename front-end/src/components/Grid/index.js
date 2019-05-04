@@ -2,10 +2,16 @@ import React from 'react'
 import { Col as ColAntd, Row as RowAntd } from 'antd'
 
 import {
-  StyledCol4, StyledCol2, StyledCol1, StyledRow, StyledWrapperCol,
+  StyledCol4,
+  StyledCol3,
+  StyledCol2,
+  StyledCol1,
+  StyledRow,
+  StyledWrapperCol,
 } from './styles'
 
 const Col4Styled = StyledCol4(ColAntd)
+const Col3Styled = StyledCol3(ColAntd)
 const Col2Styled = StyledCol2(ColAntd)
 const Col1Styled = StyledCol1(ColAntd)
 const RowStyled = StyledRow(RowAntd)
@@ -36,6 +42,18 @@ const defaultCol2 = {
   },
 }
 
+const defaultCol3 = {
+  xs: {
+    span: 24,
+  },
+  md: {
+    span: 8,
+  },
+  lg: {
+    span: 8,
+  },
+}
+
 const defaultCol4 = {
   xs: {
     span: 24,
@@ -59,6 +77,7 @@ const Row = props => (
 
 const Col4 = ({ children }) => <Col4Styled {...defaultCol4}>{children}</Col4Styled>
 const Col2 = ({ children }) => <Col2Styled {...defaultCol2}>{children}</Col2Styled>
+const Col3 = ({ children }) => <Col3Styled {...defaultCol3}>{children}</Col3Styled>
 const Col1 = ({ children }) => <Col1Styled {...defaultCol1}>{children}</Col1Styled>
 
 const WrapperCol = ({ children }) => (
@@ -66,5 +85,5 @@ const WrapperCol = ({ children }) => (
 )
 
 export {
-  Row, Col4, Col2, Col1, WrapperCol,
+  Row, Col4, Col3, Col2, Col1, WrapperCol,
 }

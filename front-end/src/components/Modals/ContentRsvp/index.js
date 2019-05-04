@@ -1,24 +1,33 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
-import { Col2, Col1, Row } from '../../Grid'
+import { Col3, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
 import StyledContentRsvp from './styles'
 import { FormItem, Input, TextArea } from '../../../objects/Form'
+import { Creators as RsvpCreators } from '../../../store/ducks/rsvp'
 import { CenterContent } from '../../AlignContent'
-import { validateEmail, validateName, validateMessage } from '../../../helpers'
+import {
+  validateEmail,
+  validateName,
+  validateMessage,
+  validatePhone,
+  phoneMask,
+} from '../../../helpers'
 import { Button } from '../../../objects/Button'
 
 class ContentRsvp extends Component {
-  sendForm = () => {
+  handlePhoneChange = e => phoneMask(e.target.value)
+
+  sendForm = async () => {
     const { validateFields, resetFields } = this.props.form
-    validateFields((errors, values) => {
-      if (errors) {
-        global.console.log('Houveram erros')
-        global.console.log(errors)
-        return
+    validateFields(async (errors, values) => {
+      if (!errors) {
+        await this.props.rsvpActions.startRsvp()
+        await this.props.rsvpActions.createRsvp(values)
+        resetFields()
       }
-      global.console.log(values)
-      resetFields()
     })
   }
 
@@ -27,8 +36,9 @@ class ContentRsvp extends Component {
     return (
       <StyledContentRsvp>
         <TitleModal>Confirmação de Presença</TitleModal>
+        <p>{this.props.rsvp.message}</p>
         <Row bottom="1.3rem">
-          <Col2>
+          <Col3>
             <FormItem label="Nome" colon={false}>
               {getFieldDecorator('name', {
                 rules: [
@@ -38,10 +48,11 @@ class ContentRsvp extends Component {
                     validator: validateName,
                   },
                 ],
+                initialValue: 'Diogo Cezar',
               })(<Input />)}
             </FormItem>
-          </Col2>
-          <Col2>
+          </Col3>
+          <Col3>
             <FormItem label="E-mail" colon={false}>
               {getFieldDecorator('email', {
                 rules: [
@@ -51,9 +62,25 @@ class ContentRsvp extends Component {
                     validator: validateEmail,
                   },
                 ],
+                initialValue: 'diogo@diogocezar.com',
               })(<Input />)}
             </FormItem>
-          </Col2>
+          </Col3>
+          <Col3>
+            <FormItem label="Telefone" colon={false}>
+              {getFieldDecorator('phone', {
+                rules: [
+                  {
+                    required: true,
+                    message: 'Por favor, insira o seu telefone',
+                    validator: validatePhone,
+                  },
+                ],
+                initialValue: '(43) 93300-0663',
+                getValueFromEvent: this.handlePhoneChange,
+              })(<Input />)}
+            </FormItem>
+          </Col3>
         </Row>
         <Row bottom="1.3rem">
           <Col1>
@@ -66,6 +93,7 @@ class ContentRsvp extends Component {
                     validator: validateMessage,
                   },
                 ],
+                initialValue: 'Testando uma mensagem!',
               })(<TextArea />)}
             </FormItem>
           </Col1>
@@ -82,6 +110,17 @@ class ContentRsvp extends Component {
   }
 }
 
+const mapStateToProps = state => ({
+  rsvp: state.rsvp,
+})
+
+const mapDispatchToProps = dispatch => ({
+  rsvpActions: bindActionCreators(RsvpCreators, dispatch),
+})
+
 const ContentRsvpWithForm = Form.create()(ContentRsvp)
 
-export default ContentRsvpWithForm
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ContentRsvpWithForm)

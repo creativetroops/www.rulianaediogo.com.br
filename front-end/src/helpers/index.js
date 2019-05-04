@@ -9,6 +9,35 @@ const isValidName = (str) => {
 
 const isValidMessage = str => str.length < 10
 
+const isValidPhone = str => !str.match(
+  /^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/,
+)
+
+const phoneMask = (str) => {
+  let phone = str.replace(/\D/g, '')
+  phone = phone.replace(/^(\d\d)(\d)/g, '($1) $2')
+
+  if (phone.length < 14) {
+    phone = phone.replace(/(\d{4})(\d)/, '$1-$2')
+  } else {
+    phone = phone.replace(/(\d{5})(\d)/, '$1-$2')
+  }
+  phone = phone.substring(0, 15)
+  return phone
+}
+
+const validatePhone = (rule, value, callback) => {
+  if (!value) {
+    callback('Número vazio')
+    return
+  }
+  const err = []
+  if (isValidPhone(value)) {
+    err.push('Número errado')
+  }
+  callback(err)
+}
+
 const validateEmail = (rule, value, callback) => {
   if (!value) {
     callback('Email is empty')
@@ -45,4 +74,10 @@ const validateMessage = (rule, value, callback) => {
   callback(err)
 }
 
-export { validateEmail, validateName, validateMessage }
+export {
+  validateEmail,
+  validateName,
+  validateMessage,
+  validatePhone,
+  phoneMask,
+}

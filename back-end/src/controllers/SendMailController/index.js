@@ -1,7 +1,7 @@
-const nodemailer = require('nodemailer')
-const lodashTemplate = require('lodash.template')
-const fs = require('fs')
-const configs = require('../../config')
+const nodemailer = require("nodemailer");
+const lodashTemplate = require("lodash.template");
+const fs = require("fs");
+const configs = require("../../config");
 
 class SendMailController {
   constructor() {
@@ -12,93 +12,80 @@ class SendMailController {
       pass: configs.mail_pass,
       to: configs.mail_to,
       from: configs.mail_from,
-      subject: configs.mail_subject,
-    }
+      subject: configs.mail_subject
+    };
     this.smtpConfig = {
       host: this.configs.smtp,
       port: this.configs.port,
       auth: {
         user: this.configs.user,
-        pass: this.configs.pass,
-      },
-    }
+        pass: this.configs.pass
+      }
+    };
     this.mailOptions = {
       from: this.configs.from,
       to: this.configs.to,
       subject: this.configs.subject,
-      html: '',
-    }
+      html: ""
+    };
   }
 
   loadTemplate(template, data = {}) {
-    return lodashTemplate(fs.readFileSync(`${__dirname}/templates/${template}.html`))(data)
+    return lodashTemplate(
+      fs.readFileSync(`${__dirname}/templates/${template}.html`)
+    )(data);
   }
 
   sendMessage(req, res) {
-    const html = this.loadTemplate('message', req.body)
-    this.send(html, res)
+    const html = this.loadTemplate("message", req.body);
+    this.send(html, res);
   }
 
   sendRsvp(req, res) {
-    const peopleList = req.body.peopleList.length
-      ? req.body.peopleList.map(people => `${people}<br/>`).join('')
-      : ''
-    const childrenList = req.body.childrenList.length
-      ? req.body.childrenList.map(child => `${child}<br/>`).join('')
-      : ''
-    const data = {
-      name: req.body.name,
-      email: req.body.email,
-      areaCode: req.body.areaCode,
-      phone: req.body.phone,
-      peopleList,
-      childrenList,
-      message: req.body.message,
-    }
-    const html = this.loadTemplate('rsvp', data)
-    this.send(html, res)
+    const html = this.loadTemplate("rsvp", req.body);
+    this.send(html, res);
   }
 
   sendPaymentReciver(data) {
-    const html = this.loadTemplate('payment-reciver', data)
-    this.send(html)
+    const html = this.loadTemplate("payment-reciver", data);
+    this.send(html);
   }
 
   sendPaymentSender(data, email) {
-    const html = this.loadTemplate('payment-sender', data)
-    this.send(html, null, email)
+    const html = this.loadTemplate("payment-sender", data);
+    this.send(html, null, email);
   }
 
   sendPayment(data) {
-    this.sendPaymentReciver(data)
-    this.sendPaymentSender(data, data.sender.email)
+    this.sendPaymentReciver(data);
+    this.sendPaymentSender(data, data.sender.email);
   }
 
-  send(html, res, email = '') {
-    this.mailOptions.html = html
+  send(html, res, email = "") {
+    this.mailOptions.html = html;
     const jsonResponse = {
       success: true,
-      infos: '',
-    }
-    const transporter = nodemailer.createTransport(this.smtpConfig)
+      infos: ""
+    };
+    const transporter = nodemailer.createTransport(this.smtpConfig);
     if (email) {
-      this.mailOptions.to = email
+      this.mailOptions.to = email;
     }
     transporter.sendMail(this.mailOptions, (err, infos) => {
       if (res) {
-        let status = 200
-        jsonResponse.infos = infos
+        let status = 200;
+        jsonResponse.infos = infos;
         if (err) {
-          status = 500
-          jsonResponse.success = false
+          status = 500;
+          jsonResponse.success = false;
         }
-        res.status(status).json(jsonResponse)
+        res.status(status).json(jsonResponse);
       } else {
-        return err === true
+        return err === true;
       }
-      return false
-    })
+      return false;
+    });
   }
 }
 
-module.exports = new SendMailController()
+module.exports = new SendMailController();

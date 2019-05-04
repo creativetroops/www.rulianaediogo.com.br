@@ -21,7 +21,6 @@ export default function MessageReducer(state = initState, action) {
         message: action.payload.message,
       }
     case Types.END_MESSAGE:
-      console.log(action)
       return {
         ...state,
         loading: false,
@@ -41,9 +40,7 @@ export const Creators = {
     const firestore = getFirestore()
     const obj = {
       createdAt: new Date(),
-      email: message.email,
-      message: message.message,
-      name: message.name,
+      ...message,
     }
     firestore
       .collection('messages')
