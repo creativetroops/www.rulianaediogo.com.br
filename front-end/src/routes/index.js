@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react'
-import { HashRouter, Switch, Route } from 'react-router-dom'
+import { HashRouter as MainRouter, Switch, Route } from 'react-router-dom'
 
 import Home from '../pages/Home'
 import LogIn from '../components/Auth/LogIn'
@@ -10,10 +10,12 @@ import Generic from '../styles/generic'
 import Fonts from '../styles/fonts'
 import Base from '../styles/base'
 
+import 'antd/dist/antd.css'
+
 class Router extends Component {
   render() {
     return (
-      <HashRouter>
+      <MainRouter>
         <Fragment>
           <Switch>
             <Route path="/" component={Home} />
@@ -25,7 +27,7 @@ class Router extends Component {
           <Fonts />
           <Base />
         </Fragment>
-      </HashRouter>
+      </MainRouter>
     )
   }
 }

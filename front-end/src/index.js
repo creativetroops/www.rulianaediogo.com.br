@@ -1,14 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import Router from './router'
+import Routes from './routes'
 import store from './store'
-import * as serviceWorker from './serviceWorker'
+import * as serviceWorker from './service-worker'
 
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
     <Provider store={store}>
-      <Router />
+      <Routes />
     </Provider>,
     document.getElementById('root'),
   )

@@ -7,19 +7,21 @@ const Generic = createGlobalStyle`
     outline: 0!important;
     box-sizing: border-box!important;
 	}
-	html,
-	body {
+  ::selection {
+    background-color: var(--color-green)!important;
+    color: var(--color-white)!important;
+  }
+  :root{
+    font-size: 14px!important;
+    height: 100%;
+  }
+	body{
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--color-gray);
+    height: 100%;
     text-rendering: optimizeLegibility!important;
     -webkit-font-smoothing: antialiased!important;
     overflow-x: hidden;
-	}
-	input {
-		font-size: inherit;
-		font-family: inherit;
-		color: inherit;
-	}
-	input:focus {
-		outline: none;
 	}
 `
 

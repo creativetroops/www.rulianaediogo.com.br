@@ -3,6 +3,12 @@ import { connect } from 'react-redux'
 import { toggleModal } from '../../store/actions/modalActions'
 import { StyledModal, StyledModalMain, StyledButtonClose } from './styles'
 
+import ContentMessage from './ContentMessage'
+import ContentRsvp from './ContentRsvp'
+import ContentBillet from './ContentBillet'
+import ContentDeposit from './ContentDeposit'
+import ContentHistory from './ContentHistory'
+
 const Modal = props => (
   <StyledModal className={props.show && 'show'}>
     <StyledModalMain>
@@ -19,8 +25,7 @@ const ModalGiftBilletStructure = props => (
       props.toggleModal('MODAL_GIFT_BILLET', false)
     }}
   >
-    <h1>Boleto</h1>
-    <p>Testando uma mensagem</p>
+    <ContentBillet />
   </Modal>
 )
 
@@ -31,8 +36,7 @@ const ModalGiftDebitStructure = props => (
       props.toggleModal('MODAL_GIFT_DEPOSIT', false)
     }}
   >
-    <h1>Depósito</h1>
-    <p>Testando uma mensagem</p>
+    <ContentDeposit />
   </Modal>
 )
 
@@ -43,8 +47,7 @@ const ModalRsvpStructure = props => (
       props.toggleModal('MODAL_RSVP', false)
     }}
   >
-    <h1>Rsvp</h1>
-    <p>Testando uma mensagem</p>
+    <ContentRsvp />
   </Modal>
 )
 
@@ -55,8 +58,7 @@ const ModalMessageStructure = props => (
       props.toggleModal('MODAL_MESSAGE', false)
     }}
   >
-    <h1>Mensagem</h1>
-    <p>Testando uma mensagem</p>
+    <ContentMessage />
   </Modal>
 )
 
@@ -67,8 +69,7 @@ const ModalHistoryStructure = props => (
       props.toggleModal('MODAL_HISTORY', false)
     }}
   >
-    <h1>História</h1>
-    <p>Testando uma mensagem</p>
+    <ContentHistory />
   </Modal>
 )
 
