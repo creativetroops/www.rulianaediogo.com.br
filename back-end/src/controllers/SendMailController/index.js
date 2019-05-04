@@ -34,13 +34,8 @@ class SendMailController {
     return lodashTemplate(fs.readFileSync(`${__dirname}/templates/${template}.html`))(data)
   }
 
-  sendContact(req, res) {
-    const data = {
-      name: req.body.name,
-      email: req.body.email,
-      message: req.body.message,
-    }
-    const html = this.loadTemplate('contact', data)
+  sendMessage(req, res) {
+    const html = this.loadTemplate('message', req.body)
     this.send(html, res)
   }
 

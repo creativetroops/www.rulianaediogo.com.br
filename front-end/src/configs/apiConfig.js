@@ -5,9 +5,9 @@ const host = window.location.hostname === 'localhost' ? `localhost:${port}` : 'r
 const apiConfig = {
   baseURL: `${protocol}${host}`,
   endpoints: {
+    'send-message': 'send-message',
     'send-payment': 'send-payment',
     'send-rsvp': 'send-rsvp',
-    'send-contact': 'send-contact',
   },
   headers: {
     'Access-Control-Allow-Origin': '*',

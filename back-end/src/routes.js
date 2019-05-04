@@ -5,9 +5,9 @@ const routes = express.Router()
 const PagSeguroController = require('./controllers/PagSeguroController')
 const SendMailController = require('./controllers/SendMailController')
 
-routes.post('/send-payment', PagSeguroController.send)
-routes.post('/send-contact', SendMailController.sendContact)
-routes.post('/send-rsvp', SendMailController.sendRsvp)
+routes.post('/send-payment', (req, res) => PagSeguroController.send(req, res))
+routes.post('/send-message', (req, res) => SendMailController.sendMessage(req, res))
+routes.post('/send-rsvp', (req, res) => SendMailController.sendRsvp(req, res))
 routes.use((req, res) => {
   res.json({ message: 'There is nothing here!' })
 })

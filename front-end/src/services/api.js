@@ -8,8 +8,8 @@ class Api {
       baseURL: this.url,
     })
     this.urls = {
+      'send-message': `${apiConfig.baseURL}/${apiConfig.endpoints['send-message']}`,
       'send-payment': `${apiConfig.baseURL}/${apiConfig.endpoints['send-payment']}`,
-      'send-contact': `${apiConfig.baseURL}/${apiConfig.endpoints['send-contact']}`,
       'send-rsvp': `${apiConfig.baseURL}/${apiConfig.endpoints['send-rsvp']}`,
       'get-photos': `${instagramConfig.baseURL}/${
         instagramConfig.hashTag
@@ -20,7 +20,7 @@ class Api {
 
   loadApis = () => ({
     sendPayment: data => this.axios.post(this.urls['send-payment'], data, apiConfig.headers),
-    sendContact: data => this.axios.post(this.urls['send-contact'], data, apiConfig.headers),
+    sendMessage: data => this.axios.post(this.urls['send-message'], data, apiConfig.headers),
     sendRsvp: data => this.axios.post(this.urls['send-rsvp'], data, apiConfig.headers),
     getPhotos: () => this.axios.get(this.urls['get-photos'], apiConfig.headers),
   })

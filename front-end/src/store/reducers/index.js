@@ -6,7 +6,9 @@ import rsvpReducer from './rsvpReducer'
 import giftReducer from './giftReducer'
 import contactReducer from './contactReducer'
 import instagramReducer from './instagramReducer'
-import modalReducer from '../ducks/modal'
+
+import duckModal from '../ducks/modal'
+import duckMessage from '../ducks/message'
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -16,7 +18,8 @@ const rootReducer = combineReducers({
   instagrams: instagramReducer,
   firestore: firestoreReducer,
   firebase: firebaseReducer,
-  modal: modalReducer,
+  modal: duckModal,
+  message: duckMessage,
 })
 
 export default rootReducer
