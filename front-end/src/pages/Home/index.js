@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 
 import Header from '../../components/Header'
 import Red from '../../components/Red'
-import Separator from '../../components/Separator'
+import Separator from '../../objects/Separator'
 import Gift from '../../components/Gift'
 import Rsvp from '../../components/Rsvp'
 import Message from '../../components/Message'

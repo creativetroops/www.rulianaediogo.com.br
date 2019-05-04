@@ -1,6 +1,6 @@
 import React from 'react'
 import StyledRed from './styles'
-import { Container, Section } from '../../objects/Design'
+import { Container, Section } from '../../objects/Containers'
 import { TitleMain, SubTitleMain, TitleInternal } from '../../objects/Titles'
 import { Paragraph, ParagraphMain } from '../../objects/Paragraphs'
 import { ImageMain } from '../../objects/Images'

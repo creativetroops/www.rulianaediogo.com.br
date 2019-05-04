@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import StyledInfos from './styles'
-import { Container, Section } from '../../objects/Design'
+import { Container, Section } from '../../objects/Containers'
 import { TitleInternalDecoration } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import ItemInfo from '../../objects/ItemInfo'
