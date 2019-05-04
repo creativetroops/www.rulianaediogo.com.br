@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import StyledMessage from './styles'
+import { bindActionCreators } from 'redux'
 import { Container, Section } from '../../objects/Containers'
 import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
 import { Button, ContainerButtons } from '../../objects/Button'
-import { toggleModal } from '../../store/actions/modalActions'
+import { Creators as ModalCreators } from '../../store/ducks/modal'
+
+import StyledMessage from './styles'
 
 const Message = props => (
   <Container>
@@ -20,7 +22,9 @@ const Message = props => (
         </Paragraph>
       </StyledMessage>
       <ContainerButtons>
-        <Button onClick={() => props.toggleModal('MODAL_MESSAGE', true)}>
+        <Button
+          onClick={() => props.modalActions.toggleModal('MODAL_MESSAGE', true)}
+        >
           Enviar Mensagem
         </Button>
       </ContainerButtons>
@@ -33,7 +37,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (id, open) => dispatch(toggleModal(id, open)),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 export default connect(

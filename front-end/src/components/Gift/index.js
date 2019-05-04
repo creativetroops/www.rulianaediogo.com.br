@@ -1,12 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 import StyledGift from './styles'
 import { Container, Section } from '../../objects/Containers'
 import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
 import { Button, ContainerButtons } from '../../objects/Button'
-import { toggleModal } from '../../store/actions/modalActions'
+import { Creators as ModalCreators } from '../../store/ducks/modal'
 
 const Gift = props => (
   <Container>
@@ -25,10 +26,16 @@ const Gift = props => (
           transferência diretamente para nosso conta conjunta.
         </Paragraph>
         <ContainerButtons>
-          <Button onClick={() => props.toggleModal('MODAL_GIFT_BILLET', true)}>
+          <Button
+            onClick={() => props.modalActions.toggleModal('MODAL_GIFT_BILLET', true)
+            }
+          >
             Boleto
           </Button>
-          <Button onClick={() => props.toggleModal('MODAL_GIFT_DEPOSIT', true)}>
+          <Button
+            onClick={() => props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', true)
+            }
+          >
             Depósito
           </Button>
         </ContainerButtons>
@@ -42,7 +49,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (id, open) => dispatch(toggleModal(id, open)),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 export default connect(

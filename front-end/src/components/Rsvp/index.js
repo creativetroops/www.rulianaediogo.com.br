@@ -1,12 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import StyledRsvp from './styles'
+import { bindActionCreators } from 'redux'
 import { Container, Section } from '../../objects/Containers'
 import { TitleInternal } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
 import { ImageInternal } from '../../objects/Images'
 import { Button, ContainerButtons } from '../../objects/Button'
-import { toggleModal } from '../../store/actions/modalActions'
+import { Creators as ModalCreators } from '../../store/ducks/modal'
+
+import StyledRsvp from './styles'
 
 const Rsvp = props => (
   <Container bg="green-dark">
@@ -34,7 +36,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (id, open) => dispatch(toggleModal(id, open)),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 export default connect(

@@ -6,7 +6,7 @@ import rsvpReducer from './rsvpReducer'
 import giftReducer from './giftReducer'
 import contactReducer from './contactReducer'
 import instagramReducer from './instagramReducer'
-import modalReducer from './modalReducer'
+import modalReducer from '../ducks/modal'
 
 const rootReducer = combineReducers({
   auth: authReducer,

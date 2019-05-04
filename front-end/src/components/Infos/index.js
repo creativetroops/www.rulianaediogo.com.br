@@ -1,11 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import StyledInfos from './styles'
+import { bindActionCreators } from 'redux'
 import { Container, Section } from '../../objects/Containers'
 import { TitleInternalDecoration } from '../../objects/Titles'
 import { Paragraph } from '../../objects/Paragraphs'
+import { Creators as ModalCreators } from '../../store/ducks/modal'
+
 import ItemInfo from '../../objects/ItemInfo'
-import { toggleModal } from '../../store/actions/modalActions'
+
+import StyledInfos from './styles'
 
 const Infos = props => (
   <Container bg="green-dark">
@@ -21,25 +24,29 @@ const Infos = props => (
         <div className="icons">
           <ItemInfo
             src="/assets/images/red-info-history-icon.svg"
-            onClick={() => props.toggleModal('MODAL_HISTORY', true)}
+            onClick={() => props.modalActions.toggleModal('MODAL_HISTORY', true)
+            }
           >
             História
           </ItemInfo>
           <ItemInfo
             src="/assets/images/red-info-accommodation-icon.svg"
-            onClick={() => props.toggleModal('MODAL_ACCOMMODATION', true)}
+            onClick={() => props.modalActions.toggleModal('MODAL_ACCOMMODATION', true)
+            }
           >
             Hospedagem
           </ItemInfo>
           <ItemInfo
             src="/assets/images/red-info-godfathers-icon.svg"
-            onClick={() => props.toggleModal('MODAL_GODFATHERS', true)}
+            onClick={() => props.modalActions.toggleModal('MODAL_GODFATHERS', true)
+            }
           >
             Padrinhos
           </ItemInfo>
           <ItemInfo
             src="/assets/images/red-info-schedule-icon.svg"
-            onClick={() => props.toggleModal('MODAL_SCHEDULE', true)}
+            onClick={() => props.modalActions.toggleModal('MODAL_SCHEDULE', true)
+            }
           >
             Cronograma
           </ItemInfo>
@@ -54,7 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (id, open) => dispatch(toggleModal(id, open)),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 export default connect(

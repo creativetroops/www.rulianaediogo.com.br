@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { toggleModal } from '../../store/actions/modalActions'
+import { bindActionCreators } from 'redux'
+import { Creators as ModalCreators } from '../../store/ducks/modal'
 import { StyledModal, StyledModalMain, StyledButtonClose } from './styles'
 
 import ContentMessage from './ContentMessage'
@@ -22,7 +23,7 @@ const ModalGiftBilletStructure = props => (
   <Modal
     show={props.modal.MODAL_GIFT_BILLET || false}
     onClose={() => {
-      props.toggleModal('MODAL_GIFT_BILLET', false)
+      props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
     }}
   >
     <ContentBillet />
@@ -33,7 +34,7 @@ const ModalGiftDebitStructure = props => (
   <Modal
     show={props.modal.MODAL_GIFT_DEPOSIT || false}
     onClose={() => {
-      props.toggleModal('MODAL_GIFT_DEPOSIT', false)
+      props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', false)
     }}
   >
     <ContentDeposit />
@@ -44,7 +45,7 @@ const ModalRsvpStructure = props => (
   <Modal
     show={props.modal.MODAL_RSVP || false}
     onClose={() => {
-      props.toggleModal('MODAL_RSVP', false)
+      props.modalActions.toggleModal('MODAL_RSVP', false)
     }}
   >
     <ContentRsvp />
@@ -55,7 +56,7 @@ const ModalMessageStructure = props => (
   <Modal
     show={props.modal.MODAL_MESSAGE || false}
     onClose={() => {
-      props.toggleModal('MODAL_MESSAGE', false)
+      props.modalActions.toggleModal('MODAL_MESSAGE', false)
     }}
   >
     <ContentMessage />
@@ -66,7 +67,7 @@ const ModalHistoryStructure = props => (
   <Modal
     show={props.modal.MODAL_HISTORY || false}
     onClose={() => {
-      props.toggleModal('MODAL_HISTORY', false)
+      props.modalActions.toggleModal('MODAL_HISTORY', false)
     }}
   >
     <ContentHistory />
@@ -77,7 +78,7 @@ const ModalAccommodationStructure = props => (
   <Modal
     show={props.modal.MODAL_ACCOMMODATION || false}
     onClose={() => {
-      props.toggleModal('MODAL_ACCOMMODATION', false)
+      props.modalActions.toggleModal('MODAL_ACCOMMODATION', false)
     }}
   >
     <h1>Hospedagem</h1>
@@ -89,7 +90,7 @@ const ModalGodfathersStructure = props => (
   <Modal
     show={props.modal.MODAL_GODFATHERS || false}
     onClose={() => {
-      props.toggleModal('MODAL_GODFATHERS', false)
+      props.modalActions.toggleModal('MODAL_GODFATHERS', false)
     }}
   >
     <h1>Padrinhos</h1>
@@ -101,7 +102,7 @@ const ModalScheduleStructure = props => (
   <Modal
     show={props.modal.MODAL_SCHEDULE || false}
     onClose={() => {
-      props.toggleModal('MODAL_SCHEDULE', false)
+      props.modalActions.toggleModal('MODAL_SCHEDULE', false)
     }}
   >
     <h1>Cronograma</h1>
@@ -109,15 +110,12 @@ const ModalScheduleStructure = props => (
   </Modal>
 )
 
-const mapStateToProps = (state) => {
-  console.log(state)
-  return {
-    modal: state.modal,
-  }
-}
+const mapStateToProps = state => ({
+  modal: state.modal,
+})
 
 const mapDispatchToProps = dispatch => ({
-  toggleModal: (id, open) => dispatch(toggleModal(id, open)),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 const ModalGiftBillet = connect(

@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { Form } from 'antd'
 import { Col2, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
-import StyledContentBillet from './styles'
 import { FormItem, Input, TextArea } from '../../../objects/Form'
 import { CenterContent } from '../../AlignContent'
 import { validateEmail, validateName, validateMessage } from '../../../helpers'
 import { Button } from '../../../objects/Button'
+
+import StyledContentBillet from './styles'
 
 class ContentBillet extends Component {
   sendForm = () => {
