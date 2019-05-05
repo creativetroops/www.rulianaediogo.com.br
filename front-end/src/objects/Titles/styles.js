@@ -57,6 +57,9 @@ const StyledTitleInternalDecoration = styled(StyledTitleInternal)`
   float: left;
   width: 100%;
   margin-bottom: 100px;
+  @media ${devices.mobileLarge} {
+    margin-bottom: 80px;
+  }
   &:after {
     content: '';
     width: 100px;
@@ -67,6 +70,11 @@ const StyledTitleInternalDecoration = styled(StyledTitleInternal)`
     bottom: -40px;
     border-radius: 10px;
     transform: translateX(-50%);
+    @media ${devices.mobileLarge} {
+      width: 40px;
+      bottom: -20px;
+      height: 4px;
+    }
   }
 `
 

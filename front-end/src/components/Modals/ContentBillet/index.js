@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
 import { Creators as ModalCreators } from '../../../store/ducks/modal'
+import { Creators as GiftCreators } from '../../../store/ducks/gift'
 import { Col2, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
 import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
@@ -13,22 +14,31 @@ import {
   validateName,
   validateMessage,
   validatePhone,
+  validateCpf,
+  validateDate,
+  validateValue,
   phoneMask,
+  dateMask,
+  cpfMask,
 } from '../../../helpers'
 
 import StyledContentBillet from './styles'
 
 class ContentBillet extends Component {
-  sendForm = () => {
+  handlePhoneChange = e => phoneMask(e.target.value)
+
+  handleDateChange = e => dateMask(e.target.value)
+
+  handleCpfChange = e => cpfMask(e.target.value)
+
+  sendForm = async () => {
     const { validateFields, resetFields } = this.props.form
-    validateFields((errors, values) => {
-      if (errors) {
-        global.console.log('Houveram erros')
-        global.console.log(errors)
-        return
+    validateFields(async (errors, values) => {
+      if (!errors) {
+        await this.props.giftActions.startGiftBillet()
+        await this.props.giftActions.createGiftBillet(values)
+        resetFields()
       }
-      global.console.log(values)
-      resetFields()
     })
   }
 
@@ -38,7 +48,7 @@ class ContentBillet extends Component {
       <StyledContentBillet>
         <TitleModal>Boleto Bancário</TitleModal>
         <Row bottom="1.3rem">
-          <Col2>
+          <Col2 full={true}>
             <FormItem label="Nome" colon={false}>
               {getFieldDecorator('name', {
                 rules: [
@@ -52,7 +62,7 @@ class ContentBillet extends Component {
               })(<InputModal />)}
             </FormItem>
           </Col2>
-          <Col2>
+          <Col2 full={true}>
             <FormItem label="E-mail" colon={false}>
               {getFieldDecorator('email', {
                 rules: [
@@ -90,9 +100,10 @@ class ContentBillet extends Component {
                   {
                     required: true,
                     message: 'Por favor, insira sua data de nascimento.',
-                    // validator: validateName,
+                    validator: validateDate,
                   },
                 ],
+                getValueFromEvent: this.handleDateChange,
                 initialValue: '19/02/1986',
               })(<InputModal />)}
             </FormItem>
@@ -106,9 +117,10 @@ class ContentBillet extends Component {
                   {
                     required: true,
                     message: 'Por favor, insira o seu cpf',
-                    // validator: validateEmail,
+                    validator: validateCpf,
                   },
                 ],
+                getValueFromEvent: this.handleCpfChange,
                 initialValue: '046.351.449-17',
               })(<InputModal />)}
             </FormItem>
@@ -119,11 +131,11 @@ class ContentBillet extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Por favor, o valor desejado.',
-                    // validator: validatePhone,
+                    message: 'Por favor, um valor válido.',
+                    validator: validateValue,
                   },
                 ],
-                initialValue: '50.00',
+                initialValue: '50,00',
               })(<InputModal />)}
             </FormItem>
           </Col2>
@@ -166,11 +178,13 @@ class ContentBillet extends Component {
 }
 
 const mapStateToProps = state => ({
+  gift: state.gift,
   modal: state.modal,
 })
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(ModalCreators, dispatch),
+  giftActions: bindActionCreators(GiftCreators, dispatch),
 })
 
 const ContentBilletWithForm = Form.create()(

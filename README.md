@@ -4,17 +4,7 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Tamanho da decoração informações adicionais;
-- Tamanho dos ícones informações adicionais;
-- Tamanho dos ícones decorativos mobile;
-- Refatoração dos tamanhos dos botões mobile;
-- Refatoração das modais para cabe no celular;
-- Refatoração dos envios dos emails;
-- Envio do email na criação do boleto para casal e emissor;
-- Envio do email na criação do depósito para o casal e emissor;
-- Validações dos campos das modais;
 - Mensagem de conclusão das modais;
-- Back-End envio do depósito;
 - Mensagem final com o link do boleto;
 - Mensagem final com a conta para depósito;
 - Informações adicionais:
@@ -23,8 +13,30 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 - Admin:
   - Login;
   - Dashboard;
+- Refatorar html public;
+  - Meta tags;
+  - Título;
+  - Favicon;
+  - OG;
 
 ## DONE
+
+- Back-End envio do depósito;
+- Envio do email na criação do boleto para casal e emissor;
+- Envio do email na criação do depósito para o casal e emissor;
+- Refatorar template de emails;
+- Redux para envio das informações: Depósito e Boleto;
+- Validações dos campos das modais;
+  - Telefone
+  - Data
+  - Cpf
+  - Valor
+- Refatoração colunas mobile;
+- Refatoração das modais para caber no celular;
+- Refatoração dos tamanhos dos botões mobile;
+- Tamanho dos ícones informações adicionais;
+- Tamanho da decoração informações adicionais;
+- Tamanho dos ícones decorativos mobile;
 
 - Refatorar instagram com redux; [OK]
 - Colocar Dashboard como opção do menu; [OK]
@@ -69,14 +81,6 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 - Nome do usuário no login; [OK]
 - Refatorar sistema back-end para MVC; [OK]
 - Transformar classe de rotas passando express.Router(); [OK]
-
-- Criar o design das telas;
-- Criar os estilos com styled components;
-- Refatorar html public;
-  _ Meta tags;
-  _ Título;
-  _ Favicon;
-  _ OG;
 
 # Template .env
 

@@ -40,8 +40,10 @@ class SendMailController {
   }
 
   sendDeposit(req, res) {
-    const html = this.loadTemplate('deposit', req.body)
-    this.send(html, res)
+    const htmlReciver = this.loadTemplate('deposit-reciver', req.body)
+    const htmlSender = this.loadTemplate('deposit-sender', req.body)
+    this.send(htmlReciver, res)
+    this.send(htmlSender, res, req.body.email)
   }
 
   sendRsvp(req, res) {

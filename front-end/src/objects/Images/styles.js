@@ -9,14 +9,20 @@ const StyledImageMain = styled.img`
     margin-bottom: 50px;
   }
   @media ${devices.mobileLarge} {
-    width: 80px;
-    height: 80px;
+    width: 65px;
+    height: 65px;
   }
 `
 
 const StyledImageInternal = styled.img`
   margin-top: 60px;
   margin-bottom: 30px;
+  @media ${devices.mobileLarge} {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    width: 80px;
+    height: 80px;
+  }
 `
 
 export { StyledImageMain, StyledImageInternal }

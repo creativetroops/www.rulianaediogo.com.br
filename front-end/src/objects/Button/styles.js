@@ -16,6 +16,9 @@ const StyledContainerButtons = styled.div`
       margin-right: 0px !important;
       margin-bottom: 30px;
     }
+    @media ${devices.mobileLarge} {
+      margin-bottom: 0px;
+    }
   }
   a:last-child {
     margin-right: 0px;
@@ -50,8 +53,14 @@ const StyledButton = styled.button`
     margin-bottom: 30px;
   }
   @media ${devices.tablet} {
-    width: 80% !important;
+    width: 65% !important;
     margin-right: 0px !important;
+  }
+  @media ${devices.mobileLarge} {
+    height: 50px;
+    line-height: 35px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
   }
 `
 
@@ -79,7 +88,18 @@ const StyledTransparentButton = styled.button`
     color: var(--color-gray);
   }
   @media ${devices.laptop} {
-    width: 80%;
+    width: 40% !important;
+    margin-bottom: 30px;
+  }
+  @media ${devices.tablet} {
+    width: 65% !important;
+    margin-right: 0px !important;
+  }
+  @media ${devices.mobileLarge} {
+    height: 50px;
+    line-height: 35px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
   }
 `
 
@@ -105,8 +125,18 @@ const StyledFormButton = styled.button`
     color: var(--color-white);
   }
   @media ${devices.laptop} {
+    width: 40% !important;
+    margin-bottom: 30px;
+  }
+  @media ${devices.tablet} {
+    width: 50% !important;
     margin-right: 0px !important;
-    width: 50%;
+  }
+  @media ${devices.mobileLarge} {
+    height: 50px;
+    line-height: 35px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
   }
 `
 

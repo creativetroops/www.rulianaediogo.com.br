@@ -32,7 +32,7 @@ class ContentMessage extends Component {
         <TitleModal>Mensagem para o Casal</TitleModal>
         <p>{this.props.message.message}</p>
         <Row bottom="1.3rem">
-          <Col2>
+          <Col2 full={true}>
             <FormItem label="Nome" colon={false}>
               {getFieldDecorator('name', {
                 rules: [
@@ -46,7 +46,7 @@ class ContentMessage extends Component {
               })(<InputModal />)}
             </FormItem>
           </Col2>
-          <Col2>
+          <Col2 full={true}>
             <FormItem label="E-mail" colon={false}>
               {getFieldDecorator('email', {
                 rules: [

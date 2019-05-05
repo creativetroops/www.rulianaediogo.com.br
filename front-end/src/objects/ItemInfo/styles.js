@@ -11,11 +11,19 @@ const StyledWrapperItemInfo = styled.div`
 const StyledImageItemInfo = styled.img`
   margin-bottom: 30px;
   cursor: pointer;
+  @media ${devices.mobileLarge} {
+    width: 85px;
+    height: 85px;
+    margin-bottom: 15px;
+  }
 `
 
 const StyledTitleItemInfo = styled.h3`
   text-transform: uppercase;
   color: var(--color-white);
+  @media ${devices.mobileLarge} {
+    font-size: 0.9rem;
+  }
 `
 
 export { StyledWrapperItemInfo, StyledImageItemInfo, StyledTitleItemInfo }

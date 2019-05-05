@@ -42,6 +42,18 @@ const defaultCol2 = {
   },
 }
 
+const defaultCol2Full = {
+  xs: {
+    span: 24,
+  },
+  md: {
+    span: 12,
+  },
+  lg: {
+    span: 12,
+  },
+}
+
 const defaultCol3 = {
   xs: {
     span: 24,
@@ -76,7 +88,10 @@ const Row = props => (
 )
 
 const Col4 = ({ children }) => <Col4Styled {...defaultCol4}>{children}</Col4Styled>
-const Col2 = ({ children }) => <Col2Styled {...defaultCol2}>{children}</Col2Styled>
+const Col2 = ({ children, full = false }) => {
+  const col2 = full === true ? { ...defaultCol2Full } : { ...defaultCol2 }
+  return <Col2Styled {...col2}>{children}</Col2Styled>
+}
 const Col3 = ({ children }) => <Col3Styled {...defaultCol3}>{children}</Col3Styled>
 const Col1 = ({ children }) => <Col1Styled {...defaultCol1}>{children}</Col1Styled>
 

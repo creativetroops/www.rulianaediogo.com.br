@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
 import { Creators as ModalCreators } from '../../../store/ducks/modal'
+import { Creators as GiftCreators } from '../../../store/ducks/gift'
 import { Col3, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
 import StyledContentDeposit from './styles'
@@ -13,21 +14,22 @@ import {
   validateName,
   validateMessage,
   validatePhone,
+  validateValue,
   phoneMask,
 } from '../../../helpers'
 import { ButtonForm } from '../../../objects/Button'
 
 class ContentDeposit extends Component {
-  sendForm = () => {
+  handlePhoneChange = e => phoneMask(e.target.value)
+
+  sendForm = async () => {
     const { validateFields, resetFields } = this.props.form
-    validateFields((errors, values) => {
-      if (errors) {
-        global.console.log('Houveram erros')
-        global.console.log(errors)
-        return
+    validateFields(async (errors, values) => {
+      if (!errors) {
+        await this.props.giftActions.startGiftDeposit()
+        await this.props.giftActions.createGiftDeposit(values)
+        resetFields()
       }
-      global.console.log(values)
-      resetFields()
     })
   }
 
@@ -88,11 +90,11 @@ class ContentDeposit extends Component {
                 rules: [
                   {
                     required: true,
-                    message: 'Por favor, o valor desejado.',
-                    // validator: validatePhone,
+                    message: 'Por favor, um valor válido.',
+                    validator: validateValue,
                   },
                 ],
-                initialValue: '50.00',
+                initialValue: '50,00',
               })(<InputModal />)}
             </FormItem>
           </Col1>
@@ -135,11 +137,13 @@ class ContentDeposit extends Component {
 }
 
 const mapStateToProps = state => ({
+  gift: state.gift,
   modal: state.modal,
 })
 
 const mapDispatchToProps = dispatch => ({
   modalActions: bindActionCreators(ModalCreators, dispatch),
+  giftActions: bindActionCreators(GiftCreators, dispatch),
 })
 
 const ContentDepositWithForm = Form.create()(
