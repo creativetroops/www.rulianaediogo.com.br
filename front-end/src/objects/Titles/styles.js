@@ -72,18 +72,18 @@ const StyledTitleInternalDecoration = styled(StyledTitleInternal)`
 
 const StyledTitleModal = styled.h1`
   font-family: 'Niagara';
-  font-size: 3.5rem;
+  font-size: 5rem;
   text-align: center;
   text-transform: uppercase;
   color: var(--color-gray);
   margin-bottom: 0;
   line-height: 120px;
   @media ${devices.laptop} {
-    font-size: 7rem;
+    font-size: 3rem;
     line-height: 100px;
   }
   @media ${devices.mobileLarge} {
-    font-size: 4rem;
+    font-size: 2rem;
     line-height: 80px;
   }
 `

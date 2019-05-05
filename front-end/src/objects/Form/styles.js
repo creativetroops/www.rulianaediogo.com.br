@@ -6,11 +6,11 @@ const StyledFormItem = FormItem => styled(FormItem)`
   float: left;
   width: 100%;
   label {
-    font-family: 'AkzidenzGroteskBE';
-    font-weight: bold;
-    font-size: 1.2rem;
+    font-family: 'Montserrat' !important;
+    font-size: 1rem;
     font-style: normal;
-    color: var(--color-orange) !important;
+    font-weight: bold;
+    color: var(--color-gray) !important;
     text-transform: uppercase !important;
     margin-right: 10px;
     &:before {
@@ -24,21 +24,43 @@ const StyledInput = Input => styled(Input)`
   border-radius: 0px !important;
   height: 60px !important;
   padding: 5px 10px !important;
-  color: var(--color-purple-dark) !important;
-  font-family: 'AkzidenzGroteskBE' !important;
+  color: var(--color-gray) !important;
+  font-family: 'Montserrat' !important;
   font-weight: bold !important;
   font-size: 1.3rem !important;
+`
+
+const StyledInputModal = Input => styled(Input)`
+  width: 100% !important;
+  border-radius: 0px !important;
+  height: 45px !important;
+  padding: 5px 10px !important;
+  color: var(--color-gray) !important;
+  font-family: 'Montserrat' !important;
+  font-weight: 500 !important;
+  font-size: 1rem !important;
 `
 
 const StyledTextArea = TextArea => styled(TextArea)`
   width: 100% !important;
   border-radius: 0px !important;
-  height: 100px !important;
+  height: 90px !important;
   padding: 5px 10px !important;
-  color: var(--color-purple-dark) !important;
-  font-family: 'AkzidenzGroteskBE' !important;
-  font-weight: bold !important;
+  color: var(--color-gray) !important;
+  font-family: 'Montserrat' !important;
   font-size: 1rem !important;
 `
 
-export { StyledFormItem, StyledInput, StyledTextArea }
+const StyledTextAreaModal = TextArea => styled(TextArea)`
+  width: 100% !important;
+  border-radius: 0px !important;
+  height: 90px !important;
+  padding: 5px 10px !important;
+  color: var(--color-gray) !important;
+  font-family: 'Montserrat' !important;
+  font-size: 1rem !important;
+`
+
+export {
+  StyledFormItem, StyledInput, StyledInputModal, StyledTextArea, StyledTextAreaModal,
+}
