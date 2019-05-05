@@ -16,26 +16,19 @@ const Gift = props => (
         <TitleInternal>Lista de Presentes</TitleInternal>
         <ImageInternal src="/assets/images/red-gift-list-icon.svg" />
         <Paragraph>
-          Pessoal, nós estamos montando o nosso apartamento! Por isso,
-          gostaríamos de pedir os presentes de uma forma{' '}
-          <span>diferenciada</span>, gostaríamos de receber em{' '}
+          Pessoal, nós estamos montando o nosso apartamento! Por isso, gostaríamos de pedir os
+          presentes de uma forma <span>diferenciada</span>, gostaríamos de receber em{' '}
           <span>dinheiro</span>!
         </Paragraph>
         <Paragraph>
-          Você pode gerar um boleto no sistema abaixo, ou fazer uma
-          transferência diretamente para nosso conta conjunta.
+          Você pode gerar um <span>boleto</span> no sistema abaixo, ou fazer um{' '}
+          <span>depósito</span> diretamente para nosso conta conjunta.
         </Paragraph>
         <ContainerButtons>
-          <Button
-            onClick={() => props.modalActions.toggleModal('MODAL_GIFT_BILLET', true)
-            }
-          >
+          <Button onClick={() => props.modalActions.toggleModal('MODAL_GIFT_BILLET', true)}>
             Boleto
           </Button>
-          <Button
-            onClick={() => props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', true)
-            }
-          >
+          <Button onClick={() => props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', true)}>
             Depósito
           </Button>
         </ContainerButtons>

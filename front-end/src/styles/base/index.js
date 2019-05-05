@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components'
+import { devices } from '../devices'
 
 const Base = createGlobalStyle`
   #root{
@@ -13,9 +14,9 @@ const Base = createGlobalStyle`
   textarea{
     resize: none!important;
   }
-  .has-error .ant-form-explain, .has-error .ant-form-split {
-    margin-top: 0.5rem;
-    font-size: 1rem!important;
+  .ant-form-explain {
+    margin-top: 0.2rem!important;
+    font-size: 0.8rem!important;
     color: var(--color-green)!important;
   }
   .has-error .ant-input{
@@ -26,6 +27,12 @@ const Base = createGlobalStyle`
     margin-bottom: 7px !important;
     height: 20px !important;
     line-height: 20px !important;
+    @media ${devices.mobileLarge} {
+      margin-top: 0px !important;
+      margin-bottom: 5px !important;
+      height: 12px !important;
+      line-height: 12px !important;
+    }
   }
 `
 

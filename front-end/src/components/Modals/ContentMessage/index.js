@@ -4,11 +4,12 @@ import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
 import { Col2, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
-import { FormItem, Input, TextArea } from '../../../objects/Form'
+import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
 import { CenterContent } from '../../AlignContent'
 import { validateEmail, validateName, validateMessage } from '../../../helpers'
-import { Button } from '../../../objects/Button'
+import { ButtonForm } from '../../../objects/Button'
 import { Creators as MessageCreators } from '../../../store/ducks/message'
+import { Creators as ModalCreators } from '../../../store/ducks/modal'
 
 import StyledContentMessage from './styles'
 
@@ -42,7 +43,7 @@ class ContentMessage extends Component {
                   },
                 ],
                 initialValue: 'Diogo Cezar',
-              })(<Input />)}
+              })(<InputModal />)}
             </FormItem>
           </Col2>
           <Col2>
@@ -56,7 +57,7 @@ class ContentMessage extends Component {
                   },
                 ],
                 initialValue: 'diogo@diogocezar.com',
-              })(<Input />)}
+              })(<InputModal />)}
             </FormItem>
           </Col2>
         </Row>
@@ -72,15 +73,24 @@ class ContentMessage extends Component {
                   },
                 ],
                 initialValue: 'Olá, testando uma nova mensagem!',
-              })(<TextArea />)}
+              })(<TextAreaModal />)}
             </FormItem>
           </Col1>
         </Row>
         <Row bottom="1.3rem" top="2rem">
           <CenterContent>
-            <Button onClick={this.sendForm} right="0">
-              Send
-            </Button>
+            <ButtonForm onClick={this.sendForm} right="0">
+              Enviar
+            </ButtonForm>
+            <ButtonForm
+              className="closeButton"
+              onClick={() => {
+                this.props.modalActions.toggleModal('MODAL_MESSAGE', false)
+              }}
+              right="0"
+            >
+              Fechar
+            </ButtonForm>
           </CenterContent>
         </Row>
       </StyledContentMessage>
@@ -90,10 +100,12 @@ class ContentMessage extends Component {
 
 const mapStateToProps = state => ({
   message: state.message,
+  modal: state.modal,
 })
 
 const mapDispatchToProps = dispatch => ({
   messageActions: bindActionCreators(MessageCreators, dispatch),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 const ContentMessageWithForm = Form.create()(ContentMessage)

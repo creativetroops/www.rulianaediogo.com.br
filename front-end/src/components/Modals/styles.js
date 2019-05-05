@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledModal = styled.div`
   display: none;
@@ -25,6 +26,12 @@ const StyledModalMain = styled.div`
   background-color: var(--color-white);
   box-shadow: -15px 20px 50px 0 rgba(0, 0, 0, 0.2);
   z-index: 99999 !important;
+  @media ${devices.tablet} {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    padding: 20px;
+  }
 `
 
 const StyledButtonClose = styled.div`

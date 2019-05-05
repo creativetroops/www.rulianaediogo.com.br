@@ -105,7 +105,8 @@ const StyledFormButton = styled.button`
     color: var(--color-white);
   }
   @media ${devices.laptop} {
-    width: 80%;
+    margin-right: 0px !important;
+    width: 50%;
   }
 `
 

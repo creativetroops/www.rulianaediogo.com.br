@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { devices } from '../../styles/devices'
 
 const StyledFormItem = FormItem => styled(FormItem)`
   margin-bottom: 5px !important;
@@ -15,6 +16,9 @@ const StyledFormItem = FormItem => styled(FormItem)`
     margin-right: 10px;
     &:before {
       display: none !important;
+    }
+    @media ${devices.mobileLarge} {
+      font-size: 0.8rem !important;
     }
   }
 `
@@ -39,6 +43,11 @@ const StyledInputModal = Input => styled(Input)`
   font-family: 'Montserrat' !important;
   font-weight: 500 !important;
   font-size: 1rem !important;
+  @media ${devices.mobileLarge} {
+    margin-bottom: 10px !important;
+    height: 40px !important;
+    font-size: 0.8rem !important;
+  }
 `
 
 const StyledTextArea = TextArea => styled(TextArea)`
@@ -59,6 +68,11 @@ const StyledTextAreaModal = TextArea => styled(TextArea)`
   color: var(--color-gray) !important;
   font-family: 'Montserrat' !important;
   font-size: 1rem !important;
+  @media ${devices.mobileLarge} {
+    margin-bottom: 5px !important;
+    height: 46px !important;
+    font-size: 0.8rem !important;
+  }
 `
 
 export {

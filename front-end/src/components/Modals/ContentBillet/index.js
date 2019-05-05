@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
 import { Creators as ModalCreators } from '../../../store/ducks/modal'
-import { Col3, Col1, Row } from '../../Grid'
+import { Col2, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
 import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
 import { CenterContent } from '../../AlignContent'
@@ -38,7 +38,7 @@ class ContentBillet extends Component {
       <StyledContentBillet>
         <TitleModal>Boleto Bancário</TitleModal>
         <Row bottom="1.3rem">
-          <Col3>
+          <Col2>
             <FormItem label="Nome" colon={false}>
               {getFieldDecorator('name', {
                 rules: [
@@ -51,8 +51,8 @@ class ContentBillet extends Component {
                 initialValue: 'Diogo Cezar',
               })(<InputModal />)}
             </FormItem>
-          </Col3>
-          <Col3>
+          </Col2>
+          <Col2>
             <FormItem label="E-mail" colon={false}>
               {getFieldDecorator('email', {
                 rules: [
@@ -65,8 +65,10 @@ class ContentBillet extends Component {
                 initialValue: 'diogo@diogocezar.com',
               })(<InputModal />)}
             </FormItem>
-          </Col3>
-          <Col3>
+          </Col2>
+        </Row>
+        <Row bottom="1.3rem">
+          <Col2>
             <FormItem label="Telefone" colon={false}>
               {getFieldDecorator('phone', {
                 rules: [
@@ -80,10 +82,8 @@ class ContentBillet extends Component {
                 getValueFromEvent: this.handlePhoneChange,
               })(<InputModal />)}
             </FormItem>
-          </Col3>
-        </Row>
-        <Row bottom="1.3rem">
-          <Col3>
+          </Col2>
+          <Col2>
             <FormItem label="Data de Nascimento" colon={false}>
               {getFieldDecorator('birth', {
                 rules: [
@@ -96,8 +96,10 @@ class ContentBillet extends Component {
                 initialValue: '19/02/1986',
               })(<InputModal />)}
             </FormItem>
-          </Col3>
-          <Col3>
+          </Col2>
+        </Row>
+        <Row bottom="1.3rem">
+          <Col2>
             <FormItem label="CPF" colon={false}>
               {getFieldDecorator('cpf', {
                 rules: [
@@ -110,8 +112,8 @@ class ContentBillet extends Component {
                 initialValue: '046.351.449-17',
               })(<InputModal />)}
             </FormItem>
-          </Col3>
-          <Col3>
+          </Col2>
+          <Col2>
             <FormItem label="Valor" colon={false}>
               {getFieldDecorator('value', {
                 rules: [
@@ -124,7 +126,7 @@ class ContentBillet extends Component {
                 initialValue: '50.00',
               })(<InputModal />)}
             </FormItem>
-          </Col3>
+          </Col2>
         </Row>
         <Row bottom="1.3rem">
           <Col1>
@@ -148,6 +150,7 @@ class ContentBillet extends Component {
               Enviar
             </ButtonForm>
             <ButtonForm
+              className="closeButton"
               onClick={() => {
                 this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
               }}

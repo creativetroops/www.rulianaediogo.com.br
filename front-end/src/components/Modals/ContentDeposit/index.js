@@ -108,6 +108,7 @@ class ContentDeposit extends Component {
                     validator: validateMessage,
                   },
                 ],
+                initialValue: 'Testando uma mensagem!',
               })(<TextAreaModal />)}
             </FormItem>
           </Col1>
@@ -118,6 +119,7 @@ class ContentDeposit extends Component {
               Enviar
             </ButtonForm>
             <ButtonForm
+              className="closeButton"
               onClick={() => {
                 this.props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', false)
               }}

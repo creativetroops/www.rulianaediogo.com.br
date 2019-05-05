@@ -1,59 +1,82 @@
 # www.rulianaediogo.com.br
+
 Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-* Refatorar instagram com redux; [OK]
-* Colocar Dashboard como opção do menu; [OK]
-* Refatorar sistema de rotas no back-end; [OK]
-* Colocar informações padrão no env; [OK]
-* Fazer o apache do servidor apontar para uma url sem porta; [OK]
-* Criar sistema de passos para contato; [OK]
-* Validar formulários com Formik e Yup; [OK]
-* Limpar formulário depois de enviar; [OK]
-* Remover mensagem de enviado com sucesso depois de iniciar; [OK]
-* Sistema de transição de rotas no passo a passo; [OK]
-* Animação nas mudanças de estados e mensagems de aviso; [OK]
-* Refatorar modulo de email de forma a ter um método para cada chamada de rota; [OK]
-* Refatorar o sistema de envio de emails com templates HTML; [OK]
-* Sistema de substituição de templates nos htmls dos emails; [OK]
-* Sistema automtico de seleção de endpoint baseado na url; [OK]
-* Implementar envio de emails para pagamento; [OK]
-* Na lista de presentes colocar o valor real (netAmount); [OK]
-* Implementar o envio da confirmação de presença; [OK]
-* Enviar email para a pessoa que mandou o presente; [OK]
-* Tratar erros do http do nodejs; [OK]
-* Sistema de adicionar pessoas em uma lista no js; [OK]
-	* Limitar a quantidade máxima de pessoas e crianças; [OK]
-	* Limitar o mínimo de pessoas; [OK]
-	* Não permitir inserir vazio; [OK]
-	* Não permitir entradas duplicadas; [OK]
-	* Transformar todos os nomes para maiúsculas; [OK]
-	* Não permitir enviar o formulário com menos que 1 pessoa na lista; [OK]
-* Alterar regras de segurança do Firebase; [OK]
-* Formatar as datas com o Moment na Dashboard; [OK]
-* Refatorar os nomes dos campos para camelCase; [OK]
-* Refatorar os outros formulário para o sistema de passos; [OK]
-	* Refatorar Rsvp; [OK]
-	* Refatorar Gift; [OK]
-* Exibir informações de Pagamento após efetuá-lo; [OK]
-* Ajustar Envio de Email para o Pagador; [OK]
-* Criar Arquivo de Configuração para valores de pagamento; [OK]
-* Refatorar exibição das informações da Dashboard; [OK]
-* Criar cadastro de usuários; [OK]
-* Criar profile para usuários; [OK]
-* Formik create users; [OK]
-* Nome do usuário no login; [OK]
-* Refatorar sistema back-end para MVC; [OK]
-* Transformar classe de rotas passando express.Router(); [OK]
+- Tamanho da decoração informações adicionais;
+- Tamanho dos ícones informações adicionais;
+- Tamanho dos ícones decorativos mobile;
+- Refatoração dos tamanhos dos botões mobile;
+- Refatoração das modais para cabe no celular;
+- Refatoração dos envios dos emails;
+- Envio do email na criação do boleto para casal e emissor;
+- Envio do email na criação do depósito para o casal e emissor;
+- Validações dos campos das modais;
+- Mensagem de conclusão das modais;
+- Back-End envio do depósito;
+- Mensagem final com o link do boleto;
+- Mensagem final com a conta para depósito;
+- Informações adicionais:
+  - Link para o mapa;
+  - História;
+- Admin:
+  - Login;
+  - Dashboard;
 
-* Criar o design das telas;
-* Criar os estilos com styled components;
-* Refatorar html public;
-	* Meta tags;
-	* Título;
-	* Favicon;
-	* OG;
+## DONE
+
+- Refatorar instagram com redux; [OK]
+- Colocar Dashboard como opção do menu; [OK]
+- Refatorar sistema de rotas no back-end; [OK]
+- Colocar informações padrão no env; [OK]
+- Fazer o apache do servidor apontar para uma url sem porta; [OK]
+- Criar sistema de passos para contato; [OK]
+- Validar formulários com Formik e Yup; [OK]
+- Limpar formulário depois de enviar; [OK]
+- Remover mensagem de enviado com sucesso depois de iniciar; [OK]
+- Sistema de transição de rotas no passo a passo; [OK]
+- Animação nas mudanças de estados e mensagems de aviso; [OK]
+- Refatorar modulo de email de forma a ter um método para cada chamada de rota; [OK]
+- Refatorar o sistema de envio de emails com templates HTML; [OK]
+- Sistema de substituição de templates nos htmls dos emails; [OK]
+- Sistema automtico de seleção de endpoint baseado na url; [OK]
+- Implementar envio de emails para pagamento; [OK]
+- Na lista de presentes colocar o valor real (netAmount); [OK]
+- Implementar o envio da confirmação de presença; [OK]
+- Enviar email para a pessoa que mandou o presente; [OK]
+- Tratar erros do http do nodejs; [OK]
+- Sistema de adicionar pessoas em uma lista no js; [OK]
+  _ Limitar a quantidade máxima de pessoas e crianças; [OK]
+  _ Limitar o mínimo de pessoas; [OK]
+  _ Não permitir inserir vazio; [OK]
+  _ Não permitir entradas duplicadas; [OK]
+  _ Transformar todos os nomes para maiúsculas; [OK]
+  _ Não permitir enviar o formulário com menos que 1 pessoa na lista; [OK]
+- Alterar regras de segurança do Firebase; [OK]
+- Formatar as datas com o Moment na Dashboard; [OK]
+- Refatorar os nomes dos campos para camelCase; [OK]
+- Refatorar os outros formulário para o sistema de passos; [OK]
+  _ Refatorar Rsvp; [OK]
+  _ Refatorar Gift; [OK]
+- Exibir informações de Pagamento após efetuá-lo; [OK]
+- Ajustar Envio de Email para o Pagador; [OK]
+- Criar Arquivo de Configuração para valores de pagamento; [OK]
+- Refatorar exibição das informações da Dashboard; [OK]
+- Criar cadastro de usuários; [OK]
+- Criar profile para usuários; [OK]
+- Formik create users; [OK]
+- Nome do usuário no login; [OK]
+- Refatorar sistema back-end para MVC; [OK]
+- Transformar classe de rotas passando express.Router(); [OK]
+
+- Criar o design das telas;
+- Criar os estilos com styled components;
+- Refatorar html public;
+  _ Meta tags;
+  _ Título;
+  _ Favicon;
+  _ OG;
 
 # Template .env
 

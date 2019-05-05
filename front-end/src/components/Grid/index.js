@@ -32,7 +32,7 @@ const defaultCol1 = {
 
 const defaultCol2 = {
   xs: {
-    span: 24,
+    span: 12,
   },
   md: {
     span: 12,

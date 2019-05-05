@@ -76,14 +76,14 @@ const StyledTitleModal = styled.h1`
   text-align: center;
   text-transform: uppercase;
   color: var(--color-gray);
-  margin-bottom: 0;
+  margin-bottom: 20px;
   line-height: 120px;
   @media ${devices.laptop} {
-    font-size: 3rem;
+    font-size: 4rem;
     line-height: 100px;
   }
   @media ${devices.mobileLarge} {
-    font-size: 2rem;
+    font-size: 2.8rem;
     line-height: 80px;
   }
 `

@@ -5,8 +5,9 @@ import { Form } from 'antd'
 import { Col3, Col1, Row } from '../../Grid'
 import { TitleModal } from '../../../objects/Titles'
 import StyledContentRsvp from './styles'
-import { FormItem, Input, TextArea } from '../../../objects/Form'
+import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
 import { Creators as RsvpCreators } from '../../../store/ducks/rsvp'
+import { Creators as ModalCreators } from '../../../store/ducks/modal'
 import { CenterContent } from '../../AlignContent'
 import {
   validateEmail,
@@ -15,7 +16,7 @@ import {
   validatePhone,
   phoneMask,
 } from '../../../helpers'
-import { Button } from '../../../objects/Button'
+import { ButtonForm } from '../../../objects/Button'
 
 class ContentRsvp extends Component {
   handlePhoneChange = e => phoneMask(e.target.value)
@@ -49,7 +50,7 @@ class ContentRsvp extends Component {
                   },
                 ],
                 initialValue: 'Diogo Cezar',
-              })(<Input />)}
+              })(<InputModal />)}
             </FormItem>
           </Col3>
           <Col3>
@@ -63,7 +64,7 @@ class ContentRsvp extends Component {
                   },
                 ],
                 initialValue: 'diogo@diogocezar.com',
-              })(<Input />)}
+              })(<InputModal />)}
             </FormItem>
           </Col3>
           <Col3>
@@ -78,7 +79,7 @@ class ContentRsvp extends Component {
                 ],
                 initialValue: '(43) 93300-0663',
                 getValueFromEvent: this.handlePhoneChange,
-              })(<Input />)}
+              })(<InputModal />)}
             </FormItem>
           </Col3>
         </Row>
@@ -94,15 +95,24 @@ class ContentRsvp extends Component {
                   },
                 ],
                 initialValue: 'Testando uma mensagem!',
-              })(<TextArea />)}
+              })(<TextAreaModal />)}
             </FormItem>
           </Col1>
         </Row>
         <Row bottom="1.3rem" top="2rem">
           <CenterContent>
-            <Button onClick={this.sendForm} right="0">
-              Send
-            </Button>
+            <ButtonForm onClick={this.sendForm} right="0">
+              Enviar
+            </ButtonForm>
+            <ButtonForm
+              className="closeButton"
+              onClick={() => {
+                this.props.modalActions.toggleModal('MODAL_RSVP', false)
+              }}
+              right="0"
+            >
+              Fechar
+            </ButtonForm>
           </CenterContent>
         </Row>
       </StyledContentRsvp>
@@ -112,10 +122,12 @@ class ContentRsvp extends Component {
 
 const mapStateToProps = state => ({
   rsvp: state.rsvp,
+  modal: state.modal,
 })
 
 const mapDispatchToProps = dispatch => ({
   rsvpActions: bindActionCreators(RsvpCreators, dispatch),
+  modalActions: bindActionCreators(ModalCreators, dispatch),
 })
 
 const ContentRsvpWithForm = Form.create()(ContentRsvp)
