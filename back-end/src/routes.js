@@ -5,7 +5,8 @@ const routes = express.Router()
 const PagSeguroController = require('./controllers/PagSeguroController')
 const SendMailController = require('./controllers/SendMailController')
 
-routes.post('/send-payment', (req, res) => PagSeguroController.send(req, res))
+routes.post('/send-billet', (req, res) => PagSeguroController.send(req, res))
+routes.post('/send-deposit', (req, res) => SendMailController.sendMessage(req, res))
 routes.post('/send-message', (req, res) => SendMailController.sendMessage(req, res))
 routes.post('/send-rsvp', (req, res) => SendMailController.sendRsvp(req, res))
 routes.use((req, res) => {

@@ -1,6 +1,5 @@
 import axios from 'axios'
 import apiConfig from '../configs/apiConfig'
-import instagramConfig from '../configs/instagramConfig'
 
 class Api {
   constructor() {
@@ -8,28 +7,20 @@ class Api {
       baseURL: this.url,
     })
     this.urls = {
-      'send-message': `${apiConfig.baseURL}/${
-        apiConfig.endpoints['send-message']
-      }`,
-      'send-payment': `${apiConfig.baseURL}/${
-        apiConfig.endpoints['send-payment']
-      }`,
+      'send-message': `${apiConfig.baseURL}/${apiConfig.endpoints['send-message']}`,
+      'send-billet': `${apiConfig.baseURL}/${apiConfig.endpoints['send-billet']}`,
+      'send-deposit': `${apiConfig.baseURL}/${apiConfig.endpoints['send-deposit']}`,
       'send-rsvp': `${apiConfig.baseURL}/${apiConfig.endpoints['send-rsvp']}`,
-      'get-photos': `${instagramConfig.baseURL}/${
-        instagramConfig.hashTag
-      }/media/recent?access_token=${instagramConfig.token}&count=${
-        instagramConfig.count
-      }`,
     }
     this.endpoints = this.loadApis()
   }
 
   loadApis() {
     return {
-      sendPayment: data => this.axios.post(this.urls['send-payment'], data, apiConfig.headers),
+      sendBillet: data => this.axios.post(this.urls['send-billet'], data, apiConfig.headers),
+      sendDeposit: data => this.axios.post(this.urls['send-billet'], data, apiConfig.headers),
       sendMessage: data => this.axios.post(this.urls['send-message'], data, apiConfig.headers),
       sendRsvp: data => this.axios.post(this.urls['send-rsvp'], data, apiConfig.headers),
-      getPhotos: () => this.axios.get(this.urls['get-photos'], apiConfig.headers),
     }
   }
 }
