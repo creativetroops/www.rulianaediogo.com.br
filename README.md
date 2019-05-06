@@ -4,9 +4,9 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Mensagem de conclusão das modais;
 - Mensagem final com o link do boleto;
 - Mensagem final com a conta para depósito;
+- Testar Boleto;
 - Informações adicionais:
   - Link para o mapa;
   - História;
@@ -21,6 +21,9 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## DONE
 
+- Mensagem de conclusão das modais;
+  - Mensagem;
+  - Rsvp;
 - Back-End envio do depósito;
 - Envio do email na criação do boleto para casal e emissor;
 - Envio do email na criação do depósito para o casal e emissor;

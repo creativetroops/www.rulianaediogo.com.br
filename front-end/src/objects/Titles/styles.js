@@ -96,10 +96,30 @@ const StyledTitleModal = styled.h1`
   }
 `
 
+const StyledSubTitleModal = styled.h2`
+  font-family: 'Niagara';
+  font-size: 4rem;
+  text-align: center;
+  color: var(--color-green);
+  font-weight: normal;
+  line-height: 1rem;
+  margin-bottom: 60px;
+  margin-top: 20px;
+  @media ${devices.laptop} {
+    font-size: 3rem;
+    line-height: 0.5rem;
+  }
+  @media ${devices.mobileLarge} {
+    font-size: 2rem;
+    line-height: 0rem;
+  }
+`
+
 export {
   StyledTitleMain,
   StyledSubTitleMain,
   StyledTitleInternal,
   StyledTitleInternalDecoration,
   StyledTitleModal,
+  StyledSubTitleModal,
 }

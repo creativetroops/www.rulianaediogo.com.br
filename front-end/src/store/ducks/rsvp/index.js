@@ -4,11 +4,14 @@ import api from '../../../services/api'
 const Types = {
   START_RSVP: 'rsvp/START_RSVP',
   END_RSVP: 'rsvp/END_RSVP',
+  RESET_RSVP: 'rsvp/RESET_RSVP',
 }
 
 // Init State
 const initState = {
-  rsvp: null,
+  loading: null,
+  message: null,
+  success: null,
 }
 
 // Reducers
@@ -19,12 +22,21 @@ export default function MessageReducer(state = initState, action) {
         ...state,
         loading: true,
         message: action.payload.message,
+        success: action.payload.success,
       }
     case Types.END_RSVP:
       return {
         ...state,
         loading: false,
         message: action.payload.message,
+        success: action.payload.success,
+      }
+    case Types.RESET_RSVP:
+      return {
+        ...state,
+        loading: null,
+        message: null,
+        success: null,
       }
     default:
       return { ...state }
@@ -35,6 +47,9 @@ export default function MessageReducer(state = initState, action) {
 export const Creators = {
   startRsvp: (message = 'Aguarde, carregando...') => (dispatch) => {
     dispatch({ type: Types.START_RSVP, payload: { message } })
+  },
+  reset: () => (dispatch) => {
+    dispatch({ type: Types.RESET_RSVP })
   },
   createRsvp: rsvp => (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
@@ -55,6 +70,7 @@ export const Creators = {
                 type: Types.END_RSVP,
                 payload: {
                   message: 'Confirmação de presença enviada com sucesso!',
+                  success: true,
                   debug: res.data,
                 },
               })
@@ -63,6 +79,7 @@ export const Creators = {
                 type: Types.END_RSVP,
                 payload: {
                   message: 'Houve um erro ao enviar a confirmação de presença.',
+                  success: false,
                   debug: res.data,
                 },
               })
@@ -73,6 +90,7 @@ export const Creators = {
               type: Types.END_RSVP,
               payload: {
                 message: 'Houve um erro ao enviar a confirmação de presença.',
+                success: false,
                 debug: infos,
               },
             })
@@ -83,6 +101,7 @@ export const Creators = {
           type: Types.END_RSVP,
           payload: {
             message: 'Houve um erro ao enviar a confirmação de presença.',
+            success: false,
             debug: infos,
           },
         })

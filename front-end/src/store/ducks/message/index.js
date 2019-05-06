@@ -4,11 +4,14 @@ import api from '../../../services/api'
 const Types = {
   START_MESSAGE: 'message/START_MESSAGE',
   END_MESSAGE: 'message/END_MESSAGE',
+  RESET_MESSAGE: 'message/RESET_MESSAGE',
 }
 
 // Init State
 const initState = {
+  loading: null,
   message: null,
+  success: null,
 }
 
 // Reducers
@@ -19,12 +22,21 @@ export default function MessageReducer(state = initState, action) {
         ...state,
         loading: true,
         message: action.payload.message,
+        success: action.payload.success,
       }
     case Types.END_MESSAGE:
       return {
         ...state,
         loading: false,
         message: action.payload.message,
+        success: action.payload.success,
+      }
+    case Types.RESET_MESSAGE:
+      return {
+        ...state,
+        loading: null,
+        message: null,
+        success: null,
       }
     default:
       return { ...state }
@@ -35,6 +47,9 @@ export default function MessageReducer(state = initState, action) {
 export const Creators = {
   startMessage: (message = 'Aguarde, carregando...') => (dispatch) => {
     dispatch({ type: Types.START_MESSAGE, payload: { message } })
+  },
+  reset: () => (dispatch) => {
+    dispatch({ type: Types.RESET_MESSAGE })
   },
   createMessage: message => (dispatch, getState, { getFirestore }) => {
     const firestore = getFirestore()
@@ -55,6 +70,7 @@ export const Creators = {
                 type: Types.END_MESSAGE,
                 payload: {
                   message: 'Mensagem enviada com sucesso!',
+                  success: true,
                   debug: res.data,
                 },
               })
@@ -63,6 +79,7 @@ export const Creators = {
                 type: Types.END_MESSAGE,
                 payload: {
                   message: 'Houve um erro ao enviar a mensagem.',
+                  success: false,
                   debug: res.data,
                 },
               })
@@ -73,6 +90,7 @@ export const Creators = {
               type: Types.END_MESSAGE,
               payload: {
                 message: 'Houve um erro ao enviar a mensagem.',
+                success: false,
                 debug: infos,
               },
             })

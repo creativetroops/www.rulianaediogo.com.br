@@ -6,23 +6,17 @@ import {
   StyledTitleInternal,
   StyledTitleInternalDecoration,
   StyledTitleModal,
+  StyledSubTitleModal,
 } from './styles'
 
 const TitleMain = props => <StyledTitleMain>{props.children}</StyledTitleMain>
-const SubTitleMain = props => (
-  <StyledSubTitleMain>{props.children}</StyledSubTitleMain>
-)
-const TitleInternal = props => (
-  <StyledTitleInternal>{props.children}</StyledTitleInternal>
-)
+const SubTitleMain = props => <StyledSubTitleMain>{props.children}</StyledSubTitleMain>
+const TitleInternal = props => <StyledTitleInternal>{props.children}</StyledTitleInternal>
 const TitleInternalDecoration = props => (
-  <StyledTitleInternalDecoration>
-    {props.children}
-  </StyledTitleInternalDecoration>
+  <StyledTitleInternalDecoration>{props.children}</StyledTitleInternalDecoration>
 )
-const TitleModal = props => (
-  <StyledTitleModal>{props.children}</StyledTitleModal>
-)
+const TitleModal = props => <StyledTitleModal>{props.children}</StyledTitleModal>
+const SubTitleModal = props => <StyledSubTitleModal>{props.children}</StyledSubTitleModal>
 
 export {
   TitleMain,
@@ -30,4 +24,5 @@ export {
   TitleInternal,
   TitleInternalDecoration,
   TitleModal,
+  SubTitleModal,
 }
