@@ -1,13 +1,15 @@
 import React from 'react'
 
-import { StyledParagraph, StyledParagraphMain } from './styles'
+import { StyledParagraph, StyledParagraphMain, StyledParagraphFeedBack } from './styles'
 
-const Paragraph = props => (
-  <StyledParagraph {...props}>{props.children}</StyledParagraph>
-)
+const Paragraph = props => <StyledParagraph {...props}>{props.children}</StyledParagraph>
 
 const ParagraphMain = props => (
   <StyledParagraphMain {...props}>{props.children}</StyledParagraphMain>
 )
 
-export { Paragraph, ParagraphMain }
+const ParagraphFeedBack = props => (
+  <StyledParagraphFeedBack {...props}>{props.children}</StyledParagraphFeedBack>
+)
+
+export { Paragraph, ParagraphMain, ParagraphFeedBack }

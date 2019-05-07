@@ -42,8 +42,9 @@ class SendMailController {
   sendDeposit(req, res) {
     const htmlReciver = this.loadTemplate('deposit-reciver', req.body)
     const htmlSender = this.loadTemplate('deposit-sender', req.body)
-    this.send(htmlReciver, res)
-    this.send(htmlSender, res, req.body.email)
+    // this.send(htmlReciver, res)
+    // this.send(htmlSender, res, req.body.email)
+    res.status(200).json({ success: true })
   }
 
   sendRsvp(req, res) {

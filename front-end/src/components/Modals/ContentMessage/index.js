@@ -123,8 +123,8 @@ class ContentMessage extends Component {
     const { success, loading, message } = this.props.message
     let content = null
     if (loading) content = this.loading()
-    if (success && !loading && message) content = this.finished('Obrigado!', this.props.message.message)
-    if (!success && !loading && message) content = this.finished('Oops, algo deu errado!', this.props.message.message)
+    if (success && !loading && message) content = this.finished('Obrigado!', message)
+    if (!success && !loading && message) content = this.finished('Oops, algo deu errado!', message)
     if (!loading && !success && !message) content = this.form(getFieldDecorator)
     return (
       <StyledContentMessage>

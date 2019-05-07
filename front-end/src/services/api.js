@@ -18,7 +18,7 @@ class Api {
   loadApis() {
     return {
       sendBillet: data => this.axios.post(this.urls['send-billet'], data, apiConfig.headers),
-      sendDeposit: data => this.axios.post(this.urls['send-billet'], data, apiConfig.headers),
+      sendDeposit: data => this.axios.post(this.urls['send-deposit'], data, apiConfig.headers),
       sendMessage: data => this.axios.post(this.urls['send-message'], data, apiConfig.headers),
       sendRsvp: data => this.axios.post(this.urls['send-rsvp'], data, apiConfig.headers),
     }

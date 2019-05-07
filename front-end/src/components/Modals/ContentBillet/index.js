@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
 import { Creators as ModalCreators } from '../../../store/ducks/modal'
 import { Creators as GiftCreators } from '../../../store/ducks/gift'
 import { Col2, Col1, Row } from '../../Grid'
-import { TitleModal } from '../../../objects/Titles'
+import { TitleModal, SubTitleModal } from '../../../objects/Titles'
 import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
 import { CenterContent } from '../../AlignContent'
 import { ButtonForm } from '../../../objects/Button'
+import { Paragraph } from '../../../objects/Paragraphs'
 import {
   validateEmail,
   validateName,
@@ -42,136 +43,177 @@ class ContentBillet extends Component {
     })
   }
 
+  form = getFieldDecorator => (
+    <Fragment>
+      <Row bottom="1.3rem">
+        <Col2 full={true}>
+          <FormItem label="Nome" colon={false}>
+            {getFieldDecorator('name', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, insira o seu nome completo.',
+                  validator: validateName,
+                },
+              ],
+              initialValue: 'Diogo Cezar',
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+        <Col2 full={true}>
+          <FormItem label="E-mail" colon={false}>
+            {getFieldDecorator('email', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, insira o seu e-mail',
+                  validator: validateEmail,
+                },
+              ],
+              initialValue: 'diogo@diogocezar.com',
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+      </Row>
+      <Row bottom="1.3rem">
+        <Col2>
+          <FormItem label="Telefone" colon={false}>
+            {getFieldDecorator('phone', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, insira o seu telefone',
+                  validator: validatePhone,
+                },
+              ],
+              initialValue: '(43) 93300-0663',
+              getValueFromEvent: this.handlePhoneChange,
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+        <Col2>
+          <FormItem label="Data de Nascimento" colon={false}>
+            {getFieldDecorator('birth', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, insira sua data de nascimento.',
+                  validator: validateDate,
+                },
+              ],
+              getValueFromEvent: this.handleDateChange,
+              initialValue: '19/02/1986',
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+      </Row>
+      <Row bottom="1.3rem">
+        <Col2>
+          <FormItem label="CPF" colon={false}>
+            {getFieldDecorator('cpf', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, insira o seu cpf',
+                  validator: validateCpf,
+                },
+              ],
+              getValueFromEvent: this.handleCpfChange,
+              initialValue: '046.351.449-17',
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+        <Col2>
+          <FormItem label="Valor" colon={false}>
+            {getFieldDecorator('value', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Por favor, um valor válido.',
+                  validator: validateValue,
+                },
+              ],
+              initialValue: '50,00',
+            })(<InputModal />)}
+          </FormItem>
+        </Col2>
+      </Row>
+      <Row bottom="1.3rem">
+        <Col1>
+          <FormItem label="Mensagem" colon={false}>
+            {getFieldDecorator('message', {
+              rules: [
+                {
+                  required: true,
+                  message: 'Qual a sua mensagem?',
+                  validator: validateMessage,
+                },
+              ],
+              initialValue: 'Testando uma mensagem!',
+            })(<TextAreaModal />)}
+          </FormItem>
+        </Col1>
+      </Row>
+      <Row bottom="1.3rem" top="2rem">
+        <CenterContent>
+          <ButtonForm onClick={this.sendForm} right="0">
+            Enviar
+          </ButtonForm>
+          <ButtonForm
+            className="closeButton"
+            onClick={() => {
+              this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
+            }}
+            right="0"
+          >
+            Fechar
+          </ButtonForm>
+        </CenterContent>
+      </Row>
+    </Fragment>
+  )
+
+  loading = () => (
+    <Fragment>
+      <SubTitleModal>Aguarde...</SubTitleModal>
+      <Paragraph color="gray">Enviando as informações!</Paragraph>
+    </Fragment>
+  )
+
+  finished = (title, message) => (
+    <Fragment>
+      <SubTitleModal>{title}</SubTitleModal>
+      <Paragraph color="gray">{message}</Paragraph>
+      <CenterContent>
+        <ButtonForm
+          onClick={() => {
+            this.props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', false)
+            this.props.giftActions.resetDeposit()
+          }}
+          right="0"
+        >
+          Fechar
+        </ButtonForm>
+      </CenterContent>
+    </Fragment>
+  )
+
   render() {
     const { getFieldDecorator } = this.props.form
+    const {
+      successBillet: success,
+      loadingBillet: loading,
+      messageBillet: message,
+    } = this.props.gift
+    let content = null
+    if (loading) content = this.loading()
+    if (success && !loading && message) content = this.finished('Obrigado!', message)
+    if (!success && !loading && message) content = this.finished('Oops, algo deu errado!', message)
+    if (!loading && !success && !message) content = this.form(getFieldDecorator)
     return (
       <StyledContentBillet>
         <TitleModal>Boleto Bancário</TitleModal>
-        <Row bottom="1.3rem">
-          <Col2 full={true}>
-            <FormItem label="Nome" colon={false}>
-              {getFieldDecorator('name', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, insira o seu nome completo.',
-                    validator: validateName,
-                  },
-                ],
-                initialValue: 'Diogo Cezar',
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-          <Col2 full={true}>
-            <FormItem label="E-mail" colon={false}>
-              {getFieldDecorator('email', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, insira o seu e-mail',
-                    validator: validateEmail,
-                  },
-                ],
-                initialValue: 'diogo@diogocezar.com',
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-        </Row>
-        <Row bottom="1.3rem">
-          <Col2>
-            <FormItem label="Telefone" colon={false}>
-              {getFieldDecorator('phone', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, insira o seu telefone',
-                    validator: validatePhone,
-                  },
-                ],
-                initialValue: '(43) 93300-0663',
-                getValueFromEvent: this.handlePhoneChange,
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-          <Col2>
-            <FormItem label="Data de Nascimento" colon={false}>
-              {getFieldDecorator('birth', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, insira sua data de nascimento.',
-                    validator: validateDate,
-                  },
-                ],
-                getValueFromEvent: this.handleDateChange,
-                initialValue: '19/02/1986',
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-        </Row>
-        <Row bottom="1.3rem">
-          <Col2>
-            <FormItem label="CPF" colon={false}>
-              {getFieldDecorator('cpf', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, insira o seu cpf',
-                    validator: validateCpf,
-                  },
-                ],
-                getValueFromEvent: this.handleCpfChange,
-                initialValue: '046.351.449-17',
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-          <Col2>
-            <FormItem label="Valor" colon={false}>
-              {getFieldDecorator('value', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Por favor, um valor válido.',
-                    validator: validateValue,
-                  },
-                ],
-                initialValue: '50,00',
-              })(<InputModal />)}
-            </FormItem>
-          </Col2>
-        </Row>
-        <Row bottom="1.3rem">
-          <Col1>
-            <FormItem label="Mensagem" colon={false}>
-              {getFieldDecorator('message', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Qual a sua mensagem?',
-                    validator: validateMessage,
-                  },
-                ],
-                initialValue: 'Testando uma mensagem!',
-              })(<TextAreaModal />)}
-            </FormItem>
-          </Col1>
-        </Row>
-        <Row bottom="1.3rem" top="2rem">
-          <CenterContent>
-            <ButtonForm onClick={this.sendForm} right="0">
-              Enviar
-            </ButtonForm>
-            <ButtonForm
-              className="closeButton"
-              onClick={() => {
-                this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
-              }}
-              right="0"
-            >
-              Fechar
-            </ButtonForm>
-          </CenterContent>
-        </Row>
+        {content}
       </StyledContentBillet>
     )
   }

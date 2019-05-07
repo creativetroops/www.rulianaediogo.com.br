@@ -116,6 +116,7 @@ const StyledFormButton = styled.button`
   cursor: pointer;
   border: none;
   margin-right: 30px !important;
+  margin-bottom: ${({ bottom }) => bottom || '0px'};
   transition: all 0.15s ease-in-out;
   &:last-child {
     margin-right: 0px !important;

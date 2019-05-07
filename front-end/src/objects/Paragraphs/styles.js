@@ -9,7 +9,7 @@ const StyledParagraph = styled.p`
   line-height: 1.2rem;
   text-align: center;
   margin-top: 30px;
-  margin-bottom: 45px;
+  margin-bottom: ${({ bottom }) => bottom || '45px'};
   padding: 0 15%;
   line-height: 2rem;
   span {
@@ -71,4 +71,17 @@ const StyledParagraphMain = styled.p`
   }
 `
 
-export { StyledParagraph, StyledParagraphMain }
+const StyledParagraphFeedBack = styled.p`
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1.3rem;
+  color: var(--color-gray);
+  line-height: 1.2rem;
+  text-align: center;
+  margin-bottom: ${({ bottom }) => bottom || '10px'};
+  @media ${devices.mobileLarge} {
+    margin-bottom: ${({ bottom }) => bottom || '5px'};
+    font-size: 0.9rem;
+  }
+`
+
+export { StyledParagraph, StyledParagraphMain, StyledParagraphFeedBack }
