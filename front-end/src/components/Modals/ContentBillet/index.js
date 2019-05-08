@@ -9,7 +9,7 @@ import { TitleModal, SubTitleModal } from '../../../objects/Titles'
 import { FormItem, InputModal, TextAreaModal } from '../../../objects/Form'
 import { CenterContent } from '../../AlignContent'
 import { ButtonForm } from '../../../objects/Button'
-import { Paragraph } from '../../../objects/Paragraphs'
+import { Paragraph, ParagraphFeedBack } from '../../../objects/Paragraphs'
 import {
   validateEmail,
   validateName,
@@ -37,7 +37,17 @@ class ContentBillet extends Component {
     validateFields(async (errors, values) => {
       if (!errors) {
         await this.props.giftActions.startGiftBillet()
-        await this.props.giftActions.createGiftBillet(values)
+        window.PagSeguroDirectPayment.onSenderHashReady(async (response) => {
+          const newValues = values
+          if (response.status !== 'error') {
+            this.setState({
+              senderHash: response.senderHash,
+            })
+            newValues.senderHash = response.senderHash
+            await this.props.giftActions.createGiftBillet(newValues)
+          }
+        })
+
         resetFields()
       }
     })
@@ -180,23 +190,51 @@ class ContentBillet extends Component {
     </Fragment>
   )
 
-  finished = (title, message) => (
-    <Fragment>
-      <SubTitleModal>{title}</SubTitleModal>
-      <Paragraph color="gray">{message}</Paragraph>
-      <CenterContent>
-        <ButtonForm
-          onClick={() => {
-            this.props.modalActions.toggleModal('MODAL_GIFT_DEPOSIT', false)
-            this.props.giftActions.resetDeposit()
-          }}
-          right="0"
-        >
-          Fechar
-        </ButtonForm>
-      </CenterContent>
-    </Fragment>
-  )
+  finished = (title, message) => {
+    console.log(this.props.gift)
+    return (
+      <Fragment>
+        <SubTitleModal>{title}</SubTitleModal>
+        {(this.props.gift.successBillet && (
+          <Fragment>
+            <ParagraphFeedBack bottom="2rem">
+              Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
+            </ParagraphFeedBack>
+            <ParagraphFeedBack bottom="2.5rem">Agora é só fazer pagar o boleto</ParagraphFeedBack>
+            <CenterContent>
+              <a
+                href={this.props.gift.informationBillet.infos.paymentLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <ButtonForm bottom="2rem" top="1rem" right="0">
+                  Abrir Boleto
+                </ButtonForm>
+              </a>
+            </CenterContent>
+            <ParagraphFeedBack bottom="2rem">
+              Valor: <strong>R$ {this.props.gift.informationBillet.infos.grossAmount}</strong>
+            </ParagraphFeedBack>
+            <ParagraphFeedBack bottom="3.5rem">
+              Também te enviamos um <strong>e-mail</strong> com o link do boleto!
+            </ParagraphFeedBack>
+          </Fragment>
+        )) || <Paragraph color="gray">Não foi possível criar o boleto.</Paragraph>}
+        <CenterContent>
+          <ButtonForm
+            bottom="2rem"
+            onClick={() => {
+              this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
+              this.props.giftActions.resetBillet()
+            }}
+            right="0"
+          >
+            Fechar
+          </ButtonForm>
+        </CenterContent>
+      </Fragment>
+    )
+  }
 
   render() {
     const { getFieldDecorator } = this.props.form

@@ -142,7 +142,7 @@ class ContentDeposit extends Component {
   finished = (title, message) => (
     <Fragment>
       <SubTitleModal>{title}</SubTitleModal>
-      {this.props.gift.successDeposit && (
+      {(this.props.gift.successDeposit && (
         <Fragment>
           <ParagraphFeedBack>
             Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
@@ -162,7 +162,7 @@ class ContentDeposit extends Component {
             Também te enviamos um <strong>e-mail</strong> para lembrar de efetuar o depósito!
           </ParagraphFeedBack>
         </Fragment>
-      )}
+      )) || <Paragraph color="gray">Não foi possível criar o depósito.</Paragraph>}
       <CenterContent>
         <ButtonForm
           bottom="2rem"

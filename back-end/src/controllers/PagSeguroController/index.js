@@ -47,15 +47,34 @@ class PagSeguroController {
     this.payment.addItem(this.item)
   }
 
+  getPhone(phone) {
+    if (!phone) return ''
+    let newPhone = phone.replace(/\(|\)/g, '')
+    newPhone = newPhone.replace(/-/g, '')
+    return newPhone.substr(3, newPhone.length)
+  }
+
+  getAreaCode(phone) {
+    if (!phone) return ''
+    const newPhone = phone.replace(/\(|\)/g, '')
+    return newPhone.substr(0, 2)
+  }
+
+  getCpf(cpf) {
+    if (!cpf) return ''
+    const newCpf = cpf.replace(/-/g, '')
+    return newCpf.replace(/\./g, '')
+  }
+
   send(req, res) {
     const value = parseFloat(req.body.value)
     const sender = {
       name: req.body.name,
       email: req.body.email,
-      cpf_cnpj: req.body.cpfCnpj,
-      area_code: req.body.areaCode,
-      phone: req.body.phone,
-      birth_date: req.body.birthDate,
+      cpf_cnpj: this.getCpf(req.body.cpf),
+      area_code: this.getAreaCode(req.body.phone),
+      phone: this.getPhone(req.body.phone),
+      birth_date: req.body.birth,
     }
     const { senderHash } = req.body
     this.setPayment()
@@ -72,7 +91,6 @@ class PagSeguroController {
       let status = 200
       jsonResponse.infos = infos
       if (err) {
-        console.log(err)
         jsonResponse.success = false
         status = 500
       }
@@ -81,7 +99,8 @@ class PagSeguroController {
         infos,
         message: req.body.message,
       }
-      SendMailController.sendPayment(infosMail)
+      // console.log(infosMail)
+      // SendMailController.sendPayment(infosMail)
       res.status(status).json(jsonResponse)
     })
   }

@@ -48,7 +48,6 @@ export default function GiftReducer(state = initState, action) {
         successDeposit: action.payload.success,
       }
     case Types.END_GIFT_DEPOSIT:
-      console.log(action)
       return {
         ...state,
         loadingDeposit: false,
@@ -111,7 +110,7 @@ export const Creators = {
                 payload: {
                   message: 'Boleto gerado com sucesso!',
                   debug: res.data,
-                  informationBillet: res.data,
+                  billet: res.data,
                   success: true,
                 },
               })

@@ -4,7 +4,11 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
+- Ajustar back-end para envio do boleto;
+- Criar sender hash;
+- Ajustar os envios dos e-mails do boleto;
 - Colocar link para o boleto quando funcionar (boleto);
+
 - Testar Boleto;
 - Informações adicionais:
   - Link para o mapa;
