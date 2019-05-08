@@ -66,7 +66,7 @@ class ContentBillet extends Component {
                   validator: validateName,
                 },
               ],
-              initialValue: 'Diogo Cezar',
+              // initialValue: 'Diogo Cezar',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -80,7 +80,7 @@ class ContentBillet extends Component {
                   validator: validateEmail,
                 },
               ],
-              initialValue: 'diogo@diogocezar.com',
+              // initialValue: 'diogo@diogocezar.com',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -96,7 +96,7 @@ class ContentBillet extends Component {
                   validator: validatePhone,
                 },
               ],
-              initialValue: '(43) 93300-0663',
+              // initialValue: '(43) 93300-0663',
               getValueFromEvent: this.handlePhoneChange,
             })(<InputModal />)}
           </FormItem>
@@ -112,7 +112,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleDateChange,
-              initialValue: '19/02/1986',
+              // initialValue: '19/02/1986',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -129,7 +129,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleCpfChange,
-              initialValue: '046.351.449-17',
+              // initialValue: '046.351.449-17',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -159,7 +159,7 @@ class ContentBillet extends Component {
                   validator: validateMessage,
                 },
               ],
-              initialValue: 'Testando uma mensagem!',
+              // initialValue: 'Testando uma mensagem!',
             })(<TextAreaModal />)}
           </FormItem>
         </Col1>
@@ -190,9 +190,7 @@ class ContentBillet extends Component {
     </Fragment>
   )
 
-  finished = (title, message) => {
-    console.log(this.props.gift)
-    return (
+  finished = (title, message) => (
       <Fragment>
         <SubTitleModal>{title}</SubTitleModal>
         {(this.props.gift.successBillet && (
@@ -233,8 +231,7 @@ class ContentBillet extends Component {
           </ButtonForm>
         </CenterContent>
       </Fragment>
-    )
-  }
+  )
 
   render() {
     const { getFieldDecorator } = this.props.form

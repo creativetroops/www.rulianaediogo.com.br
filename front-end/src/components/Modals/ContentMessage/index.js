@@ -39,7 +39,7 @@ class ContentMessage extends Component {
                   validator: validateName,
                 },
               ],
-              initialValue: 'Diogo Cezar',
+              // initialValue: 'Diogo Cezar',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -53,7 +53,7 @@ class ContentMessage extends Component {
                   validator: validateEmail,
                 },
               ],
-              initialValue: 'diogo@diogocezar.com',
+              // initialValue: 'diogo@diogocezar.com',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -69,7 +69,7 @@ class ContentMessage extends Component {
                   validator: validateMessage,
                 },
               ],
-              initialValue: 'Olá, testando uma nova mensagem!',
+              // initialValue: 'Olá, testando uma nova mensagem!',
             })(<TextAreaModal />)}
           </FormItem>
         </Col1>

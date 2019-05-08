@@ -47,7 +47,7 @@ class ContentDeposit extends Component {
                   validator: validateName,
                 },
               ],
-              initialValue: 'Diogo Cezar',
+              // initialValue: 'Diogo Cezar',
             })(<InputModal />)}
           </FormItem>
         </Col3>
@@ -61,7 +61,7 @@ class ContentDeposit extends Component {
                   validator: validateEmail,
                 },
               ],
-              initialValue: 'diogo@diogocezar.com',
+              // initialValue: 'diogo@diogocezar.com',
             })(<InputModal />)}
           </FormItem>
         </Col3>
@@ -75,7 +75,7 @@ class ContentDeposit extends Component {
                   validator: validatePhone,
                 },
               ],
-              initialValue: '(43) 93300-0663',
+              // initialValue: '(43) 93300-0663',
               getValueFromEvent: this.handlePhoneChange,
             })(<InputModal />)}
           </FormItem>
@@ -92,7 +92,7 @@ class ContentDeposit extends Component {
                   validator: validateValue,
                 },
               ],
-              initialValue: '50,00',
+              // initialValue: '50,00',
             })(<InputModal />)}
           </FormItem>
         </Col1>
@@ -108,7 +108,7 @@ class ContentDeposit extends Component {
                   validator: validateMessage,
                 },
               ],
-              initialValue: 'Testando uma mensagem!',
+              // initialValue: 'Testando uma mensagem!',
             })(<TextAreaModal />)}
           </FormItem>
         </Col1>
