@@ -99,8 +99,7 @@ class PagSeguroController {
         infos,
         message: req.body.message,
       }
-      // console.log(infosMail)
-      // SendMailController.sendPayment(infosMail)
+      SendMailController.sendPayment(infosMail)
       res.status(status).json(jsonResponse)
     })
   }

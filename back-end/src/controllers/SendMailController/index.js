@@ -52,6 +52,11 @@ class SendMailController {
     this.send(html, res)
   }
 
+  sendChangePayment(req, res) {
+    const html = req
+    this.send(html)
+  }
+
   sendPaymentReciver(data) {
     const html = this.loadTemplate('billet-reciver', data)
     this.send(html)
