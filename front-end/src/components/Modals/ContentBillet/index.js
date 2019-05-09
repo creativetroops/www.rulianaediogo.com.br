@@ -38,6 +38,8 @@ class ContentBillet extends Component {
       if (!errors) {
         await this.props.giftActions.startGiftBillet()
         window.PagSeguroDirectPayment.onSenderHashReady(async (response) => {
+          const newValue = parseFloat(values.value).toFixed(2)
+          values.value = newValue
           const newValues = values
           if (response.status !== 'error' && response.senderHash) {
             this.setState({

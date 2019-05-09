@@ -4,8 +4,6 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Arrumar valor do depósito (R\$ e Vírgula)
-
 - Informações adicionais:
   - Link para o mapa;
   - História;

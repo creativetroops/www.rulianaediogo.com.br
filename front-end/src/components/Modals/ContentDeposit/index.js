@@ -27,7 +27,8 @@ class ContentDeposit extends Component {
     const { validateFields, resetFields } = this.props.form
     validateFields(async (errors, values) => {
       if (!errors) {
-        values.value = values.value.toFixed(2)
+        const newValue = parseFloat(values.value).toFixed(2)
+        values.value = newValue
         await this.props.giftActions.startGiftDeposit()
         await this.props.giftActions.createGiftDeposit(values)
         resetFields()
