@@ -2,6 +2,7 @@ const nodemailer = require('nodemailer')
 const lodashTemplate = require('lodash.template')
 const fs = require('fs')
 const axios = require('axios')
+const xmlParser = require('xml2json')
 const configs = require('../../config')
 
 class SendMailController {
@@ -62,11 +63,13 @@ class SendMailController {
       token = configs.pagseguro_sandbox_token
       isSandBox = '.sandbox'
     }
-    const JSON = require('circular-json')
+    const newJson = require('circular-json')
     const url = `https://ws${isSandBox}.pagseguro.uol.com.br/v2/transactions/notifications/${notificationCode}?email=${email}&token=${token}`
     if (notificationCode) {
       axios.get(url).then((response) => {
-        const html = `<html>${JSON.stringify(response)}</html>`
+        const { data } = response
+        const json = JSON.parse(xmlParser.toJson(data))
+        const html = `<html>${newJson.stringify(json)}</html>`
         this.send(html, res)
       })
     }
