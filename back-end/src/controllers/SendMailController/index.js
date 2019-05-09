@@ -53,8 +53,8 @@ class SendMailController {
   }
 
   sendChangePayment(req, res) {
-    const html = req
-    this.send(html)
+    const html = `<html>${JSON.stringify(req.body)}</html`
+    this.send(html, res)
   }
 
   sendPaymentReciver(data) {
