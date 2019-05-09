@@ -123,15 +123,13 @@ class PagSeguro {
           const json = JSON.parse(xmlParser.toJson(body))
           resolve(json.transaction)
         }
-        if (body) {
-          console.log(body)
-          // const json = JSON.parse(xmlParser.toJson(body))
-          // if (json.errors && json.errors.error) {
-          //  reject(json.errors.error)
-          // }
-          reject('error')
+        if (body.includes('<? xml')) {
+          const json = JSON.parse(xmlParser.toJson(body))
+          if (json.errors && json.errors.error) {
+            reject(json.errors.error)
+          }
         } else {
-          reject('error')
+          reject(body)
         }
       })
     })
@@ -148,9 +146,13 @@ class PagSeguro {
           const json = JSON.parse(xmlParser.toJson(body))
           resolve(json.transaction)
         }
-        const json = JSON.parse(xmlParser.toJson(body))
-        if (json.errors && json.errors.error) {
-          reject(json.errors.error)
+        if (body.includes('<? xml')) {
+          const json = JSON.parse(xmlParser.toJson(body))
+          if (json.errors && json.errors.error) {
+            reject(json.errors.error)
+          }
+        } else {
+          reject(body)
         }
       })
     })
@@ -197,9 +199,13 @@ class PagSeguro {
               transaction: json.transaction,
             })
           }
-          const json = JSON.parse(xmlParser.toJson(body))
-          if (json.errors && json.errors.error) {
-            reject(json.errors.error)
+          if (body.includes('<? xml')) {
+            const json = JSON.parse(xmlParser.toJson(body))
+            if (json.errors && json.errors.error) {
+              reject(json.errors.error)
+            }
+          } else {
+            reject(body)
           }
         },
       )
