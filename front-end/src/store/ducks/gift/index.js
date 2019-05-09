@@ -33,7 +33,6 @@ export default function GiftReducer(state = initState, action) {
         successBillet: action.payload.success,
       }
     case Types.END_GIFT_BILLET:
-      console.log(action)
       return {
         ...state,
         loadingBillet: false,
@@ -105,7 +104,6 @@ export const Creators = {
           .then((res) => {
             const { success } = res.data
             if (success) {
-              global.console.log(res.data)
               dispatch({
                 type: Types.END_GIFT_BILLET,
                 payload: {

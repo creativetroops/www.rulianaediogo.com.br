@@ -57,7 +57,7 @@ class SendMailController {
     const { notificationCode } = req.body
     const pagSeguro = new PagSeguro({
       email: configs.pagseguro_email,
-      token: configs.pagseguro_sandbox_token,
+      token: configs.pagseguro_sandbox ? configs.pagseguro_sandbox_token : configs.pagseguro_token,
       sandbox: configs.pagseguro_sandbox,
       sandbox_email: configs.pagseguro_sandbox_email,
     })

@@ -113,8 +113,6 @@ class PagSeguro {
         form: this.checkoutData,
       }
 
-      console.log(params)
-
       request.post(params, (err, response, body) => {
         if (err) {
           reject(err)
@@ -186,7 +184,11 @@ class PagSeguro {
   transactionStatus(code) {
     return new Promise((resolve, reject) => {
       request.get(
-        { url: `${this.url}/transactions/${code}?token=${this.token}&email=${this.email}` },
+        {
+          url: `${this.url}/transactions/notifications/${code}?token=${this.token}&email=${
+            this.email
+          }`,
+        },
         (err, response, body) => {
           if (err) {
             reject(err)
