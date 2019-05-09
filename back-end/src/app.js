@@ -14,6 +14,7 @@ class App {
 
   configureExpress() {
     this.app = express()
+    this.app.use(express.urlencoded())
     this.app.use(express.json())
     this.app.use(cors({ origin: true }))
   }
