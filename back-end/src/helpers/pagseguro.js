@@ -113,6 +113,8 @@ class PagSeguro {
         form: this.checkoutData,
       }
 
+      console.log(params)
+
       request.post(params, (err, response, body) => {
         if (err) {
           reject(err)
@@ -121,9 +123,13 @@ class PagSeguro {
           const json = JSON.parse(xmlParser.toJson(body))
           resolve(json.transaction)
         }
-        const json = JSON.parse(xmlParser.toJson(body))
-        if (json.errors && json.errors.error) {
-          reject(json.errors.error)
+        if (body) {
+          const json = JSON.parse(xmlParser.toJson(body))
+          if (json.errors && json.errors.error) {
+            reject(json.errors.error)
+          }
+        } else {
+          reject('error')
         }
       })
     })
