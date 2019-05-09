@@ -4,7 +4,8 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Testar Boleto;
+- Arrumar valor do depósito (R\$ e Vírgula)
+
 - Informações adicionais:
   - Link para o mapa;
   - História;
@@ -19,6 +20,7 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## DONE
 
+- Testar Boleto;
 - Enviar para os emails de teste
 - Colocar link para o boleto quando funcionar (boleto);
 - Ajustar os envios dos e-mails do boleto;
