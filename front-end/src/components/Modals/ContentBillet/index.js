@@ -66,7 +66,7 @@ class ContentBillet extends Component {
                   validator: validateName,
                 },
               ],
-              initialValue: 'Mario Sergio Batista',
+              // initialValue: 'Mario Sergio Batista',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -80,7 +80,7 @@ class ContentBillet extends Component {
                   validator: validateEmail,
                 },
               ],
-              initialValue: 'xgordo@gmail.com',
+              // initialValue: 'xgordo@gmail.com',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -96,7 +96,7 @@ class ContentBillet extends Component {
                   validator: validatePhone,
                 },
               ],
-              initialValue: '(43) 93300-0663',
+              // initialValue: '(43) 93300-0663',
               getValueFromEvent: this.handlePhoneChange,
             })(<InputModal />)}
           </FormItem>
@@ -112,7 +112,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleDateChange,
-              initialValue: '19/02/1953',
+              // initialValue: '19/02/1953',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -129,7 +129,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleCpfChange,
-              initialValue: '365.088.110-10',
+              // initialValue: '365.088.110-10',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -143,7 +143,7 @@ class ContentBillet extends Component {
                   validator: validateValue,
                 },
               ],
-              initialValue: '10,00',
+              // initialValue: '10,00',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -159,7 +159,7 @@ class ContentBillet extends Component {
                   validator: validateMessage,
                 },
               ],
-              initialValue: 'Testando uma mensagem!',
+              // initialValue: 'Testando uma mensagem!',
             })(<TextAreaModal />)}
           </FormItem>
         </Col1>
