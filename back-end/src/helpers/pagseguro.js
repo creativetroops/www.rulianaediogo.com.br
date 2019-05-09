@@ -124,10 +124,12 @@ class PagSeguro {
           resolve(json.transaction)
         }
         if (body) {
-          const json = JSON.parse(xmlParser.toJson(body))
-          if (json.errors && json.errors.error) {
-            reject(json.errors.error)
-          }
+          console.log(body)
+          // const json = JSON.parse(xmlParser.toJson(body))
+          // if (json.errors && json.errors.error) {
+          //  reject(json.errors.error)
+          // }
+          reject('error')
         } else {
           reject('error')
         }
