@@ -39,7 +39,8 @@ class ContentBillet extends Component {
         await this.props.giftActions.startGiftBillet()
         window.PagSeguroDirectPayment.onSenderHashReady(async (response) => {
           const newValues = values
-          if (response.status !== 'error') {
+          console.log(response)
+          if (response.status !== 'error' && response.senderHash) {
             this.setState({
               senderHash: response.senderHash,
             })
@@ -66,7 +67,7 @@ class ContentBillet extends Component {
                   validator: validateName,
                 },
               ],
-              initialValue: 'Diogo Cezar',
+              initialValue: 'Mario Sergio Batista',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -80,7 +81,7 @@ class ContentBillet extends Component {
                   validator: validateEmail,
                 },
               ],
-              initialValue: 'diogo@diogocezar.com',
+              initialValue: 'xgordo@gmail.com',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -112,7 +113,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleDateChange,
-              initialValue: '19/02/1986',
+              initialValue: '19/02/1953',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -129,7 +130,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleCpfChange,
-              initialValue: '046.351.449-17',
+              initialValue: '365.088.110-10',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -143,7 +144,7 @@ class ContentBillet extends Component {
                   validator: validateValue,
                 },
               ],
-              initialValue: '50,00',
+              initialValue: '10,00',
             })(<InputModal />)}
           </FormItem>
         </Col2>
