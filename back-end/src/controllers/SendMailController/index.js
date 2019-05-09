@@ -94,13 +94,13 @@ class SendMailController {
         const { data } = response
         const paymentInformation = JSON.parse(xmlParser.toJson(data))
         const toSend = {
-          name: paymentInformation.sender.name,
-          email: paymentInformation.sender.email,
-          phone: `(${paymentInformation.sender.phone.areaCode}) ${
-            paymentInformation.sender.phone.number
+          name: paymentInformation.transaction.sender.name,
+          email: paymentInformation.transaction.sender.email,
+          phone: `(${paymentInformation.transaction.sender.phone.areaCode}) ${
+            paymentInformation.transaction.sender.phone.number
           }`,
-          value: paymentInformation.grossAmount,
-          status: this.getStatus(paymentInformation.status),
+          value: paymentInformation.transaction.grossAmount,
+          status: this.getStatus(paymentInformation.transaction.status),
         }
         const html = this.loadTemplate('change-payment', toSend)
         this.send(html, res)
