@@ -1,6 +1,5 @@
-const protocol = window.location.hostname === 'localhost' ? 'http://' : 'https://'
-const port = 8888
-const host = window.location.hostname === 'localhost' ? `localhost:${port}` : 'rulianaediogo.diogocezar.com'
+const protocol = 'https://'
+const host = 'rulianaediogo.diogocezar.com'
 
 const apiConfig = {
   baseURL: `${protocol}${host}`,

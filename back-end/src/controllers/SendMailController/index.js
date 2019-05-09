@@ -1,9 +1,8 @@
 const nodemailer = require('nodemailer')
 const lodashTemplate = require('lodash.template')
 const fs = require('fs')
-const axios = require('axios')
-const xmlParser = require('xml2json')
 const configs = require('../../config')
+const PagSeguro = require('../../helpers/pagseguro')
 
 class SendMailController {
   constructor() {
@@ -54,58 +53,27 @@ class SendMailController {
     this.send(html, res)
   }
 
-  getStatus(status) {
-    switch (status) {
-      case '1':
-        return 'Aguardando pagamento'
-      case '2':
-        return 'Em análise'
-      case '3':
-        return 'Paga'
-      case '4':
-        return 'Disponível'
-      case '5':
-        return 'Em disputa'
-      case '6':
-        return 'Devolvida'
-      case '7':
-        return 'Cancelada'
-      case '8':
-        return 'Debitado'
-      case '9':
-        return 'Retenção temporária'
-      default:
-        return 'Não informado'
-    }
-  }
-
   sendChangePayment(req, res) {
     const { notificationCode } = req.body
-    const email = configs.pagseguro_email
-    let token = configs.pagseguro_token
-    let isSandBox = ''
-    if (configs.pagseguro_sandbox) {
-      token = configs.pagseguro_sandbox_token
-      isSandBox = '.sandbox'
-    }
-    const url = `https://ws${isSandBox}.pagseguro.uol.com.br/v2/transactions/notifications/${notificationCode}?email=${email}&token=${token}`
-    if (notificationCode) {
-      axios.get(url).then((response) => {
-        const { data } = response
-        const paymentInformation = JSON.parse(xmlParser.toJson(data))
-        const toSend = {
-          name: paymentInformation.transaction.sender.name,
-          email: paymentInformation.transaction.sender.email,
-          phone: `(${paymentInformation.transaction.sender.phone.areaCode}) ${
-            paymentInformation.transaction.sender.phone.number
-          }`,
-          value: paymentInformation.transaction.grossAmount,
-          status: this.getStatus(paymentInformation.transaction.status),
-        }
-        const html = this.loadTemplate('change-payment', toSend)
-        this.send(html, res)
-      })
-    }
+    const pagSeguro = new PagSeguro({
+      email: configs.pagseguro_email,
+      token: configs.pagseguro_sandbox_token,
+      sandbox: configs.pagseguro_sandbox,
+      sandbox_email: configs.pagseguro_sandbox_email,
+    })
+    pagSeguro.transactionStatus(notificationCode).then((response) => {
+      const toSend = {
+        name: response.transaction.sender.name,
+        email: response.transaction.sender.email,
+        phone: `(${response.transaction.sender.phone.areaCode}) ${
+          response.transaction.sender.phone.number
+        }`,
+        value: response.transaction.grossAmount,
+        status: response.status,
+      }
+      const html = this.loadTemplate('change-payment', toSend)
+      this.send(html, res)
+    })
   }
 
   sendPaymentReciver(data) {

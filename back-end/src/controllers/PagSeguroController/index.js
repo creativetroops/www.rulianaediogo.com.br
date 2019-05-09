@@ -1,6 +1,7 @@
-const PagSeguro = require('node-pagseguro')
+// const PagSeguro = require('node-pagseguro')
 const configs = require('../../config')
 const SendMailController = require('../SendMailController')
+const PagSeguro = require('../../helpers/pagseguro')
 
 class PagSeguroController {
   constructor() {
@@ -87,21 +88,22 @@ class PagSeguroController {
       success: true,
       infos: '',
     }
-    this.payment.sendTransaction(data, (err, infos) => {
-      let status = 200
-      jsonResponse.infos = infos
-      if (err) {
+    this.payment
+      .sendTransaction(data)
+      .then((infos) => {
+        jsonResponse.infos = infos
+        const infosMail = {
+          sender,
+          infos,
+          message: req.body.message,
+        }
+        SendMailController.sendPayment(infosMail)
+        res.status(200).json(jsonResponse)
+      })
+      .catch((err) => {
         jsonResponse.success = false
-        status = 500
-      }
-      const infosMail = {
-        sender,
-        infos,
-        message: req.body.message,
-      }
-      SendMailController.sendPayment(infosMail)
-      res.status(status).json(jsonResponse)
-    })
+        res.status(500).json(jsonResponse)
+      })
   }
 }
 

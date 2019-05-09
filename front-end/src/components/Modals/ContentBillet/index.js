@@ -66,7 +66,7 @@ class ContentBillet extends Component {
                   validator: validateName,
                 },
               ],
-              // initialValue: 'Diogo Cezar',
+              initialValue: 'Diogo Cezar',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -80,7 +80,7 @@ class ContentBillet extends Component {
                   validator: validateEmail,
                 },
               ],
-              // initialValue: 'diogo@diogocezar.com',
+              initialValue: 'diogo@diogocezar.com',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -96,7 +96,7 @@ class ContentBillet extends Component {
                   validator: validatePhone,
                 },
               ],
-              // initialValue: '(43) 93300-0663',
+              initialValue: '(43) 93300-0663',
               getValueFromEvent: this.handlePhoneChange,
             })(<InputModal />)}
           </FormItem>
@@ -112,7 +112,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleDateChange,
-              // initialValue: '19/02/1986',
+              initialValue: '19/02/1986',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -129,7 +129,7 @@ class ContentBillet extends Component {
                 },
               ],
               getValueFromEvent: this.handleCpfChange,
-              // initialValue: '046.351.449-17',
+              initialValue: '046.351.449-17',
             })(<InputModal />)}
           </FormItem>
         </Col2>
@@ -159,7 +159,7 @@ class ContentBillet extends Component {
                   validator: validateMessage,
                 },
               ],
-              // initialValue: 'Testando uma mensagem!',
+              initialValue: 'Testando uma mensagem!',
             })(<TextAreaModal />)}
           </FormItem>
         </Col1>
@@ -191,46 +191,46 @@ class ContentBillet extends Component {
   )
 
   finished = (title, message) => (
-      <Fragment>
-        <SubTitleModal>{title}</SubTitleModal>
-        {(this.props.gift.successBillet && (
-          <Fragment>
-            <ParagraphFeedBack bottom="2rem">
-              Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
-            </ParagraphFeedBack>
-            <ParagraphFeedBack bottom="2.5rem">Agora é só fazer pagar o boleto</ParagraphFeedBack>
-            <CenterContent>
-              <a
-                href={this.props.gift.informationBillet.infos.paymentLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <ButtonForm bottom="2rem" top="1rem" right="0">
-                  Abrir Boleto
-                </ButtonForm>
-              </a>
-            </CenterContent>
-            <ParagraphFeedBack bottom="2rem">
-              Valor: <strong>R$ {this.props.gift.informationBillet.infos.grossAmount}</strong>
-            </ParagraphFeedBack>
-            <ParagraphFeedBack bottom="3.5rem">
-              Também te enviamos um <strong>e-mail</strong> com o link do boleto!
-            </ParagraphFeedBack>
-          </Fragment>
-        )) || <Paragraph color="gray">Não foi possível criar o boleto.</Paragraph>}
-        <CenterContent>
-          <ButtonForm
-            bottom="2rem"
-            onClick={() => {
-              this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
-              this.props.giftActions.resetBillet()
-            }}
-            right="0"
-          >
-            Fechar
-          </ButtonForm>
-        </CenterContent>
-      </Fragment>
+    <Fragment>
+      <SubTitleModal>{title}</SubTitleModal>
+      {(this.props.gift.successBillet && (
+        <Fragment>
+          <ParagraphFeedBack bottom="2rem">
+            Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
+          </ParagraphFeedBack>
+          <ParagraphFeedBack bottom="2.5rem">Agora é só fazer pagar o boleto</ParagraphFeedBack>
+          <CenterContent>
+            <a
+              href={this.props.gift.informationBillet.infos.paymentLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <ButtonForm bottom="2rem" top="1rem" right="0">
+                Abrir Boleto
+              </ButtonForm>
+            </a>
+          </CenterContent>
+          <ParagraphFeedBack bottom="2rem">
+            Valor: <strong>R$ {this.props.gift.informationBillet.infos.grossAmount}</strong>
+          </ParagraphFeedBack>
+          <ParagraphFeedBack bottom="3.5rem">
+            Também te enviamos um <strong>e-mail</strong> com o link do boleto!
+          </ParagraphFeedBack>
+        </Fragment>
+      )) || <Paragraph color="gray">Não foi possível criar o boleto.</Paragraph>}
+      <CenterContent>
+        <ButtonForm
+          bottom="2rem"
+          onClick={() => {
+            this.props.modalActions.toggleModal('MODAL_GIFT_BILLET', false)
+            this.props.giftActions.resetBillet()
+          }}
+          right="0"
+        >
+          Fechar
+        </ButtonForm>
+      </CenterContent>
+    </Fragment>
   )
 
   render() {

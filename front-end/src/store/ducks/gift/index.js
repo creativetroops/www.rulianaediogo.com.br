@@ -33,6 +33,7 @@ export default function GiftReducer(state = initState, action) {
         successBillet: action.payload.success,
       }
     case Types.END_GIFT_BILLET:
+      console.log(action)
       return {
         ...state,
         loadingBillet: false,
