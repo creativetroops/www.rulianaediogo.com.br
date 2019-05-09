@@ -54,6 +54,31 @@ class SendMailController {
     this.send(html, res)
   }
 
+  getStatus(status) {
+    switch (status) {
+      case 1:
+        return 'Aguardando pagamento'
+      case 2:
+        return 'Em análise'
+      case 3:
+        return 'Paga'
+      case 4:
+        return 'Disponível'
+      case 5:
+        return 'Em disputa'
+      case 6:
+        return 'Devolvida'
+      case 7:
+        return 'Cancelada'
+      case 8:
+        return 'Debitado'
+      case 9:
+        return 'Retenção temporária'
+      default:
+        return 'Não informado'
+    }
+  }
+
   sendChangePayment(req, res) {
     const { notificationCode } = req.body
     const email = configs.pagseguro_email
@@ -63,22 +88,24 @@ class SendMailController {
       token = configs.pagseguro_sandbox_token
       isSandBox = '.sandbox'
     }
-    const newJson = require('circular-json')
     const url = `https://ws${isSandBox}.pagseguro.uol.com.br/v2/transactions/notifications/${notificationCode}?email=${email}&token=${token}`
     if (notificationCode) {
       axios.get(url).then((response) => {
         const { data } = response
-        const json = JSON.parse(xmlParser.toJson(data))
-        const html = `<html>${newJson.stringify(json)}</html>`
+        const paymentInformation = JSON.parse(xmlParser.toJson(data))
+        const toSend = {
+          name: paymentInformation.sender.name,
+          email: paymentInformation.sender.email,
+          phone: `(${paymentInformation.sender.phone.areaCode}) ${
+            paymentInformation.sender.phone.number
+          }`,
+          value: paymentInformation.grossAmount,
+          status: this.getStatus(paymentInformation.status),
+        }
+        const html = this.loadTemplate('change-payment', toSend)
         this.send(html, res)
       })
     }
-    // console.log(req.parameters)
-    // const { notificationCode } = req.parameters
-    // console.log(notificationCode)
-    // res.status(200).send()
-    // https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/69EE73F4B374B3745D9CC4BA5F9BD00A1555?email=diogo@diogocezar.com&token=9C16049D5E124FF6B818BB75B3BACBF7
-    // const html = `<html>${JSON.stringify(req)}</html>`
   }
 
   sendPaymentReciver(data) {
