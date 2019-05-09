@@ -62,6 +62,7 @@ class SendMailController {
       token = configs.pagseguro_sandbox_token
       isSandBox = '.sandbox'
     }
+    const JSON = require('circular-json')
     const url = `https://ws${isSandBox}.pagseguro.uol.com.br/v2/transactions/notifications/${notificationCode}?email=${email}&token=${token}`
     if (notificationCode) {
       axios.get(url).then((response) => {
@@ -74,7 +75,6 @@ class SendMailController {
     // console.log(notificationCode)
     // res.status(200).send()
     // https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/69EE73F4B374B3745D9CC4BA5F9BD00A1555?email=diogo@diogocezar.com&token=9C16049D5E124FF6B818BB75B3BACBF7
-    // const JSON = require('circular-json')
     // const html = `<html>${JSON.stringify(req)}</html>`
   }
 
