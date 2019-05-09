@@ -59,7 +59,7 @@ class SendMailController {
     // console.log(notificationCode)
     // res.status(200).send()
     // https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications/69EE73F4B374B3745D9CC4BA5F9BD00A1555?email=diogo@diogocezar.com&token=9C16049D5E124FF6B818BB75B3BACBF7
-    const html = `<html>${JSON.stringify(req.parameters)}</html>`
+    const html = `<html>${JSON.stringify(req.params)}</html>`
     this.send(html, res)
   }
 
