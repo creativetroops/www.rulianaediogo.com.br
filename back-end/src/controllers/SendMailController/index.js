@@ -65,7 +65,7 @@ class SendMailController {
     const url = `https://ws${isSandBox}.pagseguro.uol.com.br/v2/transactions/notifications/${notificationCode}?email=${email}&token=${token}`
     if (notificationCode) {
       axios.get(url).then((response) => {
-        const html = `<html>${response}</html>`
+        const html = `<html>${JSON.stringify(response)}</html>`
         this.send(html, res)
       })
     }
