@@ -134,6 +134,7 @@ const StyledFormButton = styled.button`
     margin-right: 0px !important;
   }
   @media ${devices.mobileLarge} {
+    min-width: 170px !important;
     height: 50px;
     line-height: 35px;
     font-size: 0.9rem;
