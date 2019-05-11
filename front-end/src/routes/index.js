@@ -2,8 +2,8 @@ import React, { Component, Fragment } from 'react'
 import { HashRouter as MainRouter, Switch, Route } from 'react-router-dom'
 
 import Home from '../pages/Home'
-import LogIn from '../components/Auth/LogIn'
-import Dashboard from '../components/Dashboard'
+import Login from '../pages/Login'
+import Dashboard from '../pages/Dashboard'
 
 import Settings from '../styles/settings'
 import Generic from '../styles/generic'
@@ -18,8 +18,8 @@ class Router extends Component {
       <MainRouter>
         <Fragment>
           <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/login" component={LogIn} />
+            <Route exact path="/" component={Home} />
+            <Route path="/login" component={Login} />
             <Route path="/dashboard" component={Dashboard} />
           </Switch>
           <Settings />

@@ -8,7 +8,8 @@ const Types = {
 
 // Init State
 const initState = {
-  rsvp: null,
+  loading: false,
+  message: null,
 }
 
 // Reducers

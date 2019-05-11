@@ -4,8 +4,6 @@ import 'firebase/firestore'
 import 'firebase/auth'
 
 firebase.initializeApp(firebaseConfig)
-firebase.firestore().settings({
-  timestampsInSnapshots: true,
-})
+firebase.firestore()
 
 export default firebase

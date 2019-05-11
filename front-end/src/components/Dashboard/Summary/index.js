@@ -1,28 +1,20 @@
 import React, { Fragment } from 'react'
 
 const Summary = ({
-  contacts, gifts, rsvps, users,
+  messages, billets, deposits, rsvps, users,
 }) => {
-  const countPeople = rsvps => rsvps.reduce((count, item) => count + item.peopleList.length, 0)
-  const countChildren = rsvps => rsvps.reduce((count, item) => count + item.childrenList.length, 0)
-  const countTotal = rsvps => rsvps.reduce((count, item) => count + (item.childrenList.length + item.peopleList.length), 0)
+  const totalBillet = billetsBase => billetsBase.reduce((count, item) => count + parseFloat(item.value), 0).toFixed(2)
+  const totalDeposit = depositsBase => depositsBase.reduce((count, item) => count + parseFloat(item.value), 0).toFixed(2)
   return (
     <Fragment>
       <h2>Resumos</h2>
-      <p>Total de contatos: {contacts.length}</p>
-      <p>Total de presentes: {gifts.length}</p>
+      <p>Total de mensagens: {messages.length}</p>
+      <p>Total de boletos: {billets.length}</p>
+      <p>Total de depósitos: {deposits.length}</p>
       <p>Total de confirmações: {rsvps.length}</p>
-      <p>Total de Administradores: {users.length}</p>
-      <p>
-        Valor total arrecadado:{' '}
-        {
-          gifts.reduce((acc, cur) => ({ value: parseFloat(acc.value) + parseFloat(cur.value) }))
-            .value
-        }
-      </p>
-      <p>Quantidade de Pessoas: {countPeople(rsvps)}</p>
-      <p>Quantidade de Crianças: {countChildren(rsvps)}</p>
-      <p>Total de Convidados: {countTotal(rsvps)}</p>
+      <p>Total de usuários: {users.length}</p>
+      <p>Valor total arrecadado com boletos: R$ {totalBillet(billets)}</p>
+      <p>Valor total arrecadado com depósitos: R$ {totalDeposit(deposits)}</p>
     </Fragment>
   )
 }

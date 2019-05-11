@@ -14,41 +14,27 @@ const Infos = props => (
   <Container bg="green-dark">
     <Section>
       <StyledInfos>
-        <TitleInternalDecoration>
-          Informações Adicionais
-        </TitleInternalDecoration>
+        <TitleInternalDecoration>Informações Adicionais</TitleInternalDecoration>
         <Paragraph>
-          Temos mais algumas coisas que você podem ver aqui em nosso site.
-          Fizemos tudo com muito carinho espero que aproveitem!
+          Temos mais algumas coisas que você podem ver aqui em nosso site. Fizemos tudo com muito
+          carinho espero que aproveitem!
         </Paragraph>
         <div className="icons">
           <ItemInfo
             src="/assets/images/red-info-history-icon.svg"
-            onClick={() => props.modalActions.toggleModal('MODAL_HISTORY', true)
-            }
+            onClick={() => props.modalActions.toggleModal('MODAL_HISTORY', true)}
           >
             História
           </ItemInfo>
+          <ItemInfo src="/assets/images/red-info-accommodation-icon.svg">Hospedagem</ItemInfo>
+          <ItemInfo src="/assets/images/red-info-beauty-icon.svg">Dica de Salão</ItemInfo>
           <ItemInfo
-            src="/assets/images/red-info-accommodation-icon.svg"
-            onClick={() => props.modalActions.toggleModal('MODAL_ACCOMMODATION', true)
-            }
+            src="/assets/images/red-info-map-icon.svg"
+            onClick={() => {
+              window.open('https://goo.gl/maps/P6g1DRwqb81EHojv6')
+            }}
           >
-            Hospedagem
-          </ItemInfo>
-          <ItemInfo
-            src="/assets/images/red-info-godfathers-icon.svg"
-            onClick={() => props.modalActions.toggleModal('MODAL_GODFATHERS', true)
-            }
-          >
-            Padrinhos
-          </ItemInfo>
-          <ItemInfo
-            src="/assets/images/red-info-schedule-icon.svg"
-            onClick={() => props.modalActions.toggleModal('MODAL_SCHEDULE', true)
-            }
-          >
-            Cronograma
+            Veja o Mapa
           </ItemInfo>
         </div>
       </StyledInfos>

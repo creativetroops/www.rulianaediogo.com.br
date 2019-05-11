@@ -11,6 +11,8 @@ const StyledWrapperItemInfo = styled.div`
 const StyledImageItemInfo = styled.img`
   margin-bottom: 30px;
   cursor: pointer;
+  width: 125px;
+  height: 125px;
   @media ${devices.mobileLarge} {
     width: 85px;
     height: 85px;

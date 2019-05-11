@@ -4,20 +4,24 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
+- Página de Login;
+- Layout página de Login;
+
 - Informações adicionais:
-  - Link para o mapa;
   - História;
 - Admin:
   - Login;
   - Dashboard;
+
+## DONE
+
+- Dica de Salões;
+- Link para o mapa;
 - Refatorar html public;
   - Meta tags;
   - Título;
   - Favicon;
   - OG;
-
-## DONE
-
 - Testar Boleto;
 - Enviar para os emails de teste
 - Colocar link para o boleto quando funcionar (boleto);
