@@ -2,6 +2,7 @@
 const Types = {
   START_CREATE_USER: 'auth/START_CREATE_USER',
   END_CREATE_USER: 'auth/END_CREATE_USER',
+  START_LOGIN_LOGOUT: 'auth/START_LOGIN_LOGOUT',
   LOGIN: 'auth/LOGIN',
   LOGOUT: 'auth/LOGOUT',
 }
@@ -21,6 +22,12 @@ export default function MessageReducer(state = initState, action) {
         loading: true,
         message: action.payload.message,
       }
+    case Types.START_LOGIN_LOGOUT:
+      return {
+        ...state,
+        loading: true,
+        message: action.payload.message,
+      }
     case Types.END_CREATE_USER:
       return {
         ...state,
@@ -31,6 +38,7 @@ export default function MessageReducer(state = initState, action) {
     case Types.LOGIN:
       return {
         ...state,
+        loading: false,
         success: action.payload.success,
         message: action.payload.message,
       }
@@ -49,6 +57,10 @@ export default function MessageReducer(state = initState, action) {
 export const Creators = {
   startCreateUser: (message = 'Aguarde, carregando...') => (dispatch) => {
     dispatch({ type: Types.START_CREATE_USER, payload: { message } })
+  },
+
+  startLoginLogout: (message = 'Aguarde, carregando...') => (dispatch) => {
+    dispatch({ type: Types.START_LOGIN_LOGOUT, payload: { message } })
   },
 
   login: credentials => (dispatch, getState, { getFirebase }) => {
@@ -78,7 +90,7 @@ export const Creators = {
       .then(() => {
         dispatch({
           type: Types.LOGOUT,
-          payload: { success: true, message: 'Logout efetuado com sucesso!' },
+          payload: { success: true, message: 'Até mais!' },
         })
       })
       .catch((err) => {

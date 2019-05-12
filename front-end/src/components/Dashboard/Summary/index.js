@@ -7,7 +7,6 @@ const Summary = ({
   const totalDeposit = depositsBase => depositsBase.reduce((count, item) => count + parseFloat(item.value), 0).toFixed(2)
   return (
     <Fragment>
-      <h2>Resumos</h2>
       <p>Total de mensagens: {messages.length}</p>
       <p>Total de boletos: {billets.length}</p>
       <p>Total de depósitos: {deposits.length}</p>

@@ -7,7 +7,7 @@ const Base = createGlobalStyle`
     height: 100%;
   }
 	body{
-    background-color: var(--color-gray);
+    background-color: var(--color-gray)!important;
     height: 100%;
     font-family: 'Montserrat', sans-serif;
 	}

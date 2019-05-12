@@ -1,21 +1,27 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
-import { compose } from 'redux'
+import { compose, bindActionCreators } from 'redux'
 import { firestoreConnect } from 'react-redux-firebase'
+import { Creators as AuthCreators } from '../../store/ducks/auth'
 
 import Summary from '../../components/Dashboard/Summary'
 import ListMessage from '../../components/Dashboard/Lists/ListMessage'
 import ListBillet from '../../components/Dashboard/Lists/ListBillet'
 import ListDeposit from '../../components/Dashboard/Lists/ListDeposit'
 import ListRsvp from '../../components/Dashboard/Lists/ListRsvp'
-import ListUser from '../../components/Dashboard/Lists/ListUser'
 
 import { Button } from '../../objects/Button'
+import { Container, Section } from '../../objects/Containers'
+import { TitleMain, SubTitleMain, TitleInternal } from '../../objects/Titles'
 
 class Dashboard extends Component {
   state = {
     path: '',
+  }
+
+  logout = () => {
+    this.props.authActions.logout()
   }
 
   changeRoute = (path) => {
@@ -36,43 +42,48 @@ class Dashboard extends Component {
     } = this.props
     if (!auth.uid) return <Redirect to="/login" />
     return (
-      <div className="container">
-        <h1>Painel de Controle</h1>
-        {(messages && billets && deposits && rsvps && users && (
-          <Summary
-            messages={messages}
-            billets={billets}
-            deposits={deposits}
-            rsvps={rsvps}
-            users={users}
+      <Container>
+        <Section>
+          <hgroup>
+            <TitleMain>Ruliana & Diogo</TitleMain>
+            <SubTitleMain>painel de controle</SubTitleMain>
+          </hgroup>
+          <TitleInternal>Opções</TitleInternal>
+          <Button onClick={() => this.changeRoute('messages')}>Mensagens</Button>
+          <Button onClick={() => this.changeRoute('billets')}>Boletos</Button>
+          <Button onClick={() => this.changeRoute('deposits')}>Depósitos</Button>
+          <Button onClick={() => this.changeRoute('rsvps')}>Confirmações de Presença</Button>
+          <Button onClick={() => this.logout()}>Sair</Button>
+          <TitleInternal>Resumo</TitleInternal>
+          {(messages && billets && deposits && rsvps && users && (
+            <Summary
+              messages={messages}
+              billets={billets}
+              deposits={deposits}
+              rsvps={rsvps}
+              users={users}
+            />
+          )) || <h2>Carregando</h2>}
+          <TitleInternal>Detalhes</TitleInternal>
+          <Route
+            exact
+            path="/dashboard"
+            render={() => <h1>Selecione uma opção para ver seus detalhes.</h1>}
           />
-        )) || <h2>Carregando</h2>}
-        <h2>Detalhes</h2>
-        <Button onClick={() => this.changeRoute('messages')}>Mensagens</Button>
-        <Button onClick={() => this.changeRoute('billets')}>Boletos</Button>
-        <Button onClick={() => this.changeRoute('deposits')}>Depósitos</Button>
-        <Button onClick={() => this.changeRoute('rsvps')}>Confirmações de Presença</Button>
-        <Button onClick={() => this.changeRoute('users')}>Usuários</Button>
-        <h2>Controles</h2>
-        <Route
-          exact
-          path="/dashboard"
-          render={() => <h1>Selecione uma opção para ver seus detalhes.</h1>}
-        />
-        <Route
-          exact
-          path="/dashboard/messages"
-          render={() => <ListMessage messages={messages} />}
-        />
-        <Route exact path="/dashboard/billets" render={() => <ListBillet billets={billets} />} />
-        <Route
-          exact
-          path="/dashboard/deposits"
-          render={() => <ListDeposit deposits={deposits} />}
-        />
-        <Route exact path="/dashboard/rsvps" render={() => <ListRsvp rsvps={rsvps} />} />
-        <Route exact path="/dashboard/users" render={() => <ListUser users={users} />} />
-      </div>
+          <Route
+            exact
+            path="/dashboard/messages"
+            render={() => <ListMessage messages={messages} />}
+          />
+          <Route exact path="/dashboard/billets" render={() => <ListBillet billets={billets} />} />
+          <Route
+            exact
+            path="/dashboard/deposits"
+            render={() => <ListDeposit deposits={deposits} />}
+          />
+          <Route exact path="/dashboard/rsvps" render={() => <ListRsvp rsvps={rsvps} />} />
+        </Section>
+      </Container>
     )
   }
 }
@@ -86,9 +97,16 @@ const mapStateToProps = state => ({
   auth: state.firebase.auth,
 })
 
+const mapDispatchToProps = dispatch => ({
+  authActions: bindActionCreators(AuthCreators, dispatch),
+})
+
 export default withRouter(
   compose(
-    connect(mapStateToProps),
+    connect(
+      mapStateToProps,
+      mapDispatchToProps,
+    ),
     firestoreConnect([
       { collection: 'messages', orderBy: [['createdAt', 'desc']] },
       { collection: 'rsvps', orderBy: [['createdAt', 'desc']] },

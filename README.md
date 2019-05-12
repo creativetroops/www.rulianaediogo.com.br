@@ -4,17 +4,16 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Página de Login;
-- Layout página de Login;
-
+- Mudar mensagem de minimo de caracteres para a mensagem!
+- Layout da Página Dashboard;
 - Informações adicionais:
   - História;
-- Admin:
-  - Login;
-  - Dashboard;
 
 ## DONE
 
+- Layout página de Login;
+- Página de Login;
+- Pagina Dashboard;
 - Dica de Salões;
 - Link para o mapa;
 - Refatorar html public;
@@ -218,6 +217,34 @@ service cloud.firestore {
 			allow read : if request.auth.uid != null;
 		}
 		match /gifts/{gifts}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /rsvps/{rsvp}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /users/{userId}{
+			allow create;
+			allow read: if request.auth.uid != null;
+			allow write: if request.auth.uid == userId;
+		}
+	}
+}
+```
+
+```
+service cloud.firestore {
+  match /databases/{database}/documents {
+		match /messages/{message}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /billets/{billet}{
+    	allow write;
+			allow read : if request.auth.uid != null;
+		}
+		match /deposits/{deposit}{
     	allow write;
 			allow read : if request.auth.uid != null;
 		}

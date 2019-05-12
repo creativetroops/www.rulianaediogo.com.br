@@ -7,7 +7,7 @@ const isValidName = (str) => {
   return true
 }
 
-const isValidMessage = str => str.length < 10
+const isValidMessage = str => str.length < 1
 
 const isValidPhone = str => !str.match(/^(?:(?:\+|00)?(55)\s?)?(?:\(?([1-9][0-9])\)?\s?)?(?:((?:9\d|[2-9])\d{3})-?(\d{4}))$/)
 

@@ -142,6 +142,21 @@ const StyledFormButton = styled.button`
   }
 `
 
+const StyledLoginButton = styled(StyledFormButton)`
+  background-color: var(--color-green);
+  border: 2px solid var(--color-green) !important;
+  margin-bottom: 0px;
+  margin-top: 30px;
+  &:hover {
+    border: 2px solid var(--color-green) !important;
+    color: var(--color-white);
+  }
+`
+
 export {
-  StyledButton, StyledContainerButtons, StyledTransparentButton, StyledFormButton,
+  StyledButton,
+  StyledContainerButtons,
+  StyledTransparentButton,
+  StyledFormButton,
+  StyledLoginButton,
 }

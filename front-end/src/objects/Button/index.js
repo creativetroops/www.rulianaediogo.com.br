@@ -5,6 +5,7 @@ import {
   StyledContainerButtons,
   StyledTransparentButton,
   StyledFormButton,
+  StyledLoginButton,
 } from './styles'
 
 const Button = props => <StyledButton {...props}>{props.children}</StyledButton>
@@ -15,7 +16,8 @@ const ButtonForm = props => <StyledFormButton {...props}>{props.children}</Style
 const ContainerButtons = props => (
   <StyledContainerButtons {...props}>{props.children}</StyledContainerButtons>
 )
+const ButtonLogin = props => <StyledLoginButton {...props}>{props.children}</StyledLoginButton>
 
 export {
-  Button, ButtonTransparent, ContainerButtons, ButtonForm,
+  Button, ButtonTransparent, ContainerButtons, ButtonForm, ButtonLogin,
 }
