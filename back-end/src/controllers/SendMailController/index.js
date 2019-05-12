@@ -101,7 +101,6 @@ class SendMailController {
     if (email) {
       this.mailOptions.to = email
     }
-    console.log(this.mailOptions)
     transporter.sendMail(this.mailOptions, (err, infos) => {
       if (res) {
         let status = 200
