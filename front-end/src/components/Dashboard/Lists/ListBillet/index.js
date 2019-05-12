@@ -1,21 +1,13 @@
 import React, { Fragment } from 'react'
-import moment from 'moment'
-import 'moment/locale/pt-br'
+import ListBase from '../ListBase'
+import { SubTitleMain } from '../../../../objects/Titles'
+import { Paragraph } from '../../../../objects/Paragraphs'
 
 const ListBillet = ({ billets }) => (
   <Fragment>
-    <h2>Boletos</h2>
-    {billets
-      && billets.map(billet => (
-        <Fragment key={billet.id}>
-          <h3>{billet.name}</h3>
-          <p>{billet.email}</p>
-          <p>{billet.phone}</p>
-          <p>{billet.message}</p>
-          <p>{billet.value}</p>
-          <p>{moment(billet.createdAt.toDate()).calendar()}</p>
-        </Fragment>
-      ))}
+    <SubTitleMain bottom="60px">boletos</SubTitleMain>
+    <Paragraph>Aqui estão a lista dos boletos criados pelo site.</Paragraph>
+    <ListBase data={billets} />
   </Fragment>
 )
 

@@ -1,17 +1,20 @@
 # www.rulianaediogo.com.br
 
-Repositório do Front-End do site do casamento de Ruliana e Diogo.
+Repositório do sistema para o site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Alterar imagem do email para um png;
-
-- Layout da Página Dashboard;
+- Imagens Dashboard;
 - Informações adicionais:
   - História;
 
 ## DONE
 
+- Ajustes Reponsivos no Dashboard;
+- Layout Menu de Opções;
+- Layout Detalhes;
+- Layout Resumo;
+- Alterar imagem do email para um png;
 - Mudar mensagem de minimo de caracteres para a mensagem!
 - Layout página de Login;
 - Página de Login;

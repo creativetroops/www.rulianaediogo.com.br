@@ -1,19 +1,13 @@
 import React, { Fragment } from 'react'
-import moment from 'moment'
-import 'moment/locale/pt-br'
+import ListBase from '../ListBase'
+import { SubTitleMain } from '../../../../objects/Titles'
+import { Paragraph } from '../../../../objects/Paragraphs'
 
 const ListRsvp = ({ rsvps }) => (
   <Fragment>
-    <h2>Confirmações de Presença</h2>
-    {rsvps
-      && rsvps.map(rsvp => (
-        <Fragment key={rsvp.id}>
-          <h3>{rsvp.name}</h3>
-          <p>{rsvp.email}</p>
-          <p>{rsvp.message}</p>
-          <p>{moment(rsvp.createdAt.toDate()).calendar()}</p>
-        </Fragment>
-      ))}
+    <SubTitleMain bottom="60px">confirmação de presença</SubTitleMain>
+    <Paragraph>Aqui estão as confirmações de presenças enviadas pelo site.</Paragraph>
+    <ListBase data={rsvps} />
   </Fragment>
 )
 

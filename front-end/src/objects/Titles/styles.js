@@ -25,7 +25,7 @@ const StyledSubTitleMain = styled.h2`
   color: var(--color-green);
   font-weight: normal;
   line-height: 1rem;
-  margin-bottom: 100px;
+  margin-bottom: ${({ bottom }) => bottom || '100px'};
   @media ${devices.laptop} {
     font-size: 5rem;
     line-height: 0.5rem;

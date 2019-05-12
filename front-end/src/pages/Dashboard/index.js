@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import { Redirect, Route, withRouter } from 'react-router-dom'
 import { compose, bindActionCreators } from 'redux'
@@ -14,6 +14,10 @@ import ListRsvp from '../../components/Dashboard/Lists/ListRsvp'
 import { Button } from '../../objects/Button'
 import { Container, Section } from '../../objects/Containers'
 import { TitleMain, SubTitleMain, TitleInternal } from '../../objects/Titles'
+import { Paragraph } from '../../objects/Paragraphs'
+import ItemInfo from '../../objects/ItemInfo'
+
+import StyledDashboard from './styles'
 
 class Dashboard extends Component {
   state = {
@@ -44,44 +48,92 @@ class Dashboard extends Component {
     return (
       <Container>
         <Section>
-          <hgroup>
-            <TitleMain>Ruliana & Diogo</TitleMain>
-            <SubTitleMain>painel de controle</SubTitleMain>
-          </hgroup>
-          <TitleInternal>Opções</TitleInternal>
-          <Button onClick={() => this.changeRoute('messages')}>Mensagens</Button>
-          <Button onClick={() => this.changeRoute('billets')}>Boletos</Button>
-          <Button onClick={() => this.changeRoute('deposits')}>Depósitos</Button>
-          <Button onClick={() => this.changeRoute('rsvps')}>Confirmações de Presença</Button>
-          <Button onClick={() => this.logout()}>Sair</Button>
-          <TitleInternal>Resumo</TitleInternal>
-          {(messages && billets && deposits && rsvps && users && (
-            <Summary
-              messages={messages}
-              billets={billets}
-              deposits={deposits}
-              rsvps={rsvps}
-              users={users}
-            />
-          )) || <h2>Carregando</h2>}
-          <TitleInternal>Detalhes</TitleInternal>
-          <Route
-            exact
-            path="/dashboard"
-            render={() => <h1>Selecione uma opção para ver seus detalhes.</h1>}
-          />
-          <Route
-            exact
-            path="/dashboard/messages"
-            render={() => <ListMessage messages={messages} />}
-          />
-          <Route exact path="/dashboard/billets" render={() => <ListBillet billets={billets} />} />
-          <Route
-            exact
-            path="/dashboard/deposits"
-            render={() => <ListDeposit deposits={deposits} />}
-          />
-          <Route exact path="/dashboard/rsvps" render={() => <ListRsvp rsvps={rsvps} />} />
+          <StyledDashboard>
+            <header>
+              <hgroup>
+                <TitleMain>Ruliana & Diogo</TitleMain>
+                <SubTitleMain>painel de controle</SubTitleMain>
+              </hgroup>
+            </header>
+            {(messages && billets && deposits && rsvps && users && (
+              <Fragment>
+                <div className="dashboard-summary">
+                  <TitleInternal>Resumo</TitleInternal>
+                  <Paragraph>Aqui estão os resumos das interações realizadas com o site.</Paragraph>
+                  <Summary
+                    messages={messages}
+                    billets={billets}
+                    deposits={deposits}
+                    rsvps={rsvps}
+                    users={users}
+                  />
+                </div>
+                <div className="dashboard-options">
+                  <TitleInternal>Opções</TitleInternal>
+                  <Paragraph>Escolha uma opção para ver os detalhes!</Paragraph>
+                  <div className="dashboard-options-items">
+                    <ItemInfo
+                      src="/assets/images/red-info-accommodation-icon.svg"
+                      onClick={() => this.changeRoute('messages')}
+                    >
+                      Mensagens
+                    </ItemInfo>
+                    <ItemInfo
+                      src="/assets/images/red-info-accommodation-icon.svg"
+                      onClick={() => this.changeRoute('billets')}
+                    >
+                      Boletos
+                    </ItemInfo>
+                    <ItemInfo
+                      src="/assets/images/red-info-accommodation-icon.svg"
+                      onClick={() => this.changeRoute('deposits')}
+                    >
+                      Depósitos
+                    </ItemInfo>
+                    <ItemInfo
+                      src="/assets/images/red-info-accommodation-icon.svg"
+                      onClick={() => this.changeRoute('rsvps')}
+                    >
+                      Presenças
+                    </ItemInfo>
+                  </div>
+                </div>
+                <div className="dashboard-internal">
+                  <TitleInternal>Detalhes</TitleInternal>
+                  <div className="dashboard-internal-routes">
+                    <Route
+                      exact
+                      path="/dashboard"
+                      render={() => (
+                        <Paragraph>Selecione uma opção para ver os detalhes.</Paragraph>
+                      )}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard/messages"
+                      render={() => <ListMessage messages={messages} />}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard/billets"
+                      render={() => <ListBillet billets={billets} />}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard/deposits"
+                      render={() => <ListDeposit deposits={deposits} />}
+                    />
+                    <Route
+                      exact
+                      path="/dashboard/rsvps"
+                      render={() => <ListRsvp rsvps={rsvps} />}
+                    />
+                  </div>
+                </div>
+                <Button onClick={() => this.logout()}>Sair</Button>
+              </Fragment>
+            )) || <Paragraph>Carregando...</Paragraph>}
+          </StyledDashboard>
         </Section>
       </Container>
     )
