@@ -1,14 +1,12 @@
 import React from 'react'
-import {
-  StyledWrapperItemInfo,
-  StyledImageItemInfo,
-  StyledTitleItemInfo,
-} from './styles'
+import { StyledWrapperItemInfo, StyledImageItemInfo, StyledTitleItemInfo } from './styles'
 
-const ItemInfo = ({ src, children, onClick }) => (
+const ItemInfo = ({
+  src, children, onClick, actived,
+}) => (
   <StyledWrapperItemInfo onClick={onClick}>
     <StyledImageItemInfo src={src} />
-    <StyledTitleItemInfo>{children}</StyledTitleItemInfo>
+    <StyledTitleItemInfo actived={actived}>{children}</StyledTitleItemInfo>
   </StyledWrapperItemInfo>
 )
 

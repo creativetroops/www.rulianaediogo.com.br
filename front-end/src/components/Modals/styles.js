@@ -20,7 +20,7 @@ const StyledModal = styled.div`
 const StyledModalMain = styled.div`
   position: relative;
   float: left;
-  min-width: 80%;
+  width: 80%;
   border-radius: 0px;
   padding: 20px 30px;
   background-color: var(--color-white);

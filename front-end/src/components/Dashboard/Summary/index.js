@@ -13,77 +13,77 @@ const Summary = ({
   }
   return (
     <StyledSummary>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-message.svg"
           alt="Imagem de Decoração Mensagens"
         />
-        <div class="summary-number">{messages.length}</div>
-        <h3 class="summary-title">Mensagens</h3>
+        <div className="summary-number">{messages.length}</div>
+        <h3 className="summary-title">Mensagens</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-billet.svg"
           alt="Imagem de Decoração Boletos"
         />
-        <div class="summary-number">{billets.length}</div>
-        <h3 class="summary-title">Boletos</h3>
+        <div className="summary-number">{billets.length}</div>
+        <h3 className="summary-title">Boletos</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-deposit.svg"
           alt="Imagem de Decoração Depóstios"
         />
-        <div class="summary-number">{deposits.length}</div>
-        <h3 class="summary-title">Depóstios</h3>
+        <div className="summary-number">{deposits.length}</div>
+        <h3 className="summary-title">Depóstios</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-rsvp.svg"
           alt="Imagem de Decoração Confirmações"
         />
-        <div class="summary-number">{rsvps.length}</div>
-        <h3 class="summary-title">Confirmações</h3>
+        <div className="summary-number">{rsvps.length}</div>
+        <h3 className="summary-title">Confirmações</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-user.svg"
           alt="Imagem de Decoração Usuários"
         />
-        <div class="summary-number">{users.length}</div>
-        <h3 class="summary-title">Usuários</h3>
+        <div className="summary-number">{users.length}</div>
+        <h3 className="summary-title">Usuários</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-billet.svg"
           alt="Imagem de Valor Boletos"
         />
-        <div class="summary-number">R$ {totalBillet(billets).replace('.', ',')}</div>
-        <h3 class="summary-title">Valor Boletos</h3>
+        <div className="summary-number">R$ {totalBillet(billets).replace('.', ',')}</div>
+        <h3 className="summary-title">Valor Boletos</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-deposit.svg"
           alt="Imagem de Decoração Valor Depósitos"
         />
-        <div class="summary-number">R$ {totalDeposit(deposits).replace('.', ',')}</div>
-        <h3 class="summary-title">Valor Depósitos</h3>
+        <div className="summary-number">R$ {totalDeposit(deposits).replace('.', ',')}</div>
+        <h3 className="summary-title">Valor Depósitos</h3>
       </div>
-      <div class="summary-box">
+      <div className="summary-box">
         <img
-          class="summary-icon"
-          src="/assets/images/red-message-icon.svg"
+          className="summary-icon"
+          src="/assets/images/dashboard/red-dashboard-billet.svg"
           alt="Imagem de Decoração Valor Total"
         />
-        <div class="summary-number">R$ {total(deposits, billets).replace('.', ',')}</div>
-        <h3 class="summary-title">Valor Total</h3>
+        <div className="summary-number">R$ {total(deposits, billets).replace('.', ',')}</div>
+        <h3 className="summary-title">Valor Total</h3>
       </div>
     </StyledSummary>
   )

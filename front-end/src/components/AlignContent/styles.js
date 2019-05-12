@@ -65,6 +65,10 @@ const StyledCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  @media ${devices.tablet} {
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
 `
 
 export {

@@ -25,6 +25,9 @@ const StyledDashboard = styled.div`
   .dashboard-internal {
     margin-top: 60px;
   }
+  button {
+    margin-top: 30px;
+  }
 `
 
 export default StyledDashboard

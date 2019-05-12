@@ -14,8 +14,7 @@ import {
   ModalMessage,
   ModalHistory,
   ModalAccommodation,
-  ModalGodfathers,
-  ModalSchedule,
+  ModalBeautySalon,
 } from '../../components/Modals'
 
 class Home extends Component {
@@ -28,8 +27,7 @@ class Home extends Component {
         <ModalMessage />
         <ModalHistory />
         <ModalAccommodation />
-        <ModalGodfathers />
-        <ModalSchedule />
+        <ModalBeautySalon />
         <Header />
         <Red />
         <Separator src="/assets/images/red-separator-1.jpg" />

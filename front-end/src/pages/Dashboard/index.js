@@ -22,18 +22,22 @@ import StyledDashboard from './styles'
 class Dashboard extends Component {
   state = {
     path: '',
+    actived: '',
   }
 
   logout = () => {
     this.props.authActions.logout()
   }
 
+  scrollToMenu = () => window.scrollTo(0, document.querySelector('.dashboard-internal').offsetTop - 40)
+
   changeRoute = (path) => {
     const pathDash = `/dashboard/${path}`
     if (pathDash !== this.state.path) {
-      this.setState({ path: pathDash })
+      this.setState({ path: pathDash, actived: path })
       this.props.history.push(pathDash)
     }
+    this.scrollToMenu()
   }
 
   componentDidMount() {
@@ -73,33 +77,37 @@ class Dashboard extends Component {
                   <Paragraph>Escolha uma opção para ver os detalhes!</Paragraph>
                   <div className="dashboard-options-items">
                     <ItemInfo
-                      src="/assets/images/red-info-accommodation-icon.svg"
+                      src="/assets/images/dashboard/red-dashboard-message.svg"
                       onClick={() => this.changeRoute('messages')}
+                      actived={this.state.actived === 'messages'}
                     >
                       Mensagens
                     </ItemInfo>
                     <ItemInfo
-                      src="/assets/images/red-info-accommodation-icon.svg"
+                      src="/assets/images/dashboard/red-dashboard-billet.svg"
                       onClick={() => this.changeRoute('billets')}
+                      actived={this.state.actived === 'billets'}
                     >
                       Boletos
                     </ItemInfo>
                     <ItemInfo
-                      src="/assets/images/red-info-accommodation-icon.svg"
+                      src="/assets/images/dashboard/red-dashboard-deposit.svg"
                       onClick={() => this.changeRoute('deposits')}
+                      actived={this.state.actived === 'deposits'}
                     >
                       Depósitos
                     </ItemInfo>
                     <ItemInfo
-                      src="/assets/images/red-info-accommodation-icon.svg"
+                      src="/assets/images/dashboard/red-dashboard-rsvp.svg"
                       onClick={() => this.changeRoute('rsvps')}
+                      actived={this.state.actived === 'rsvps'}
                     >
                       Presenças
                     </ItemInfo>
                   </div>
                 </div>
                 <div className="dashboard-internal">
-                  <TitleInternal>Detalhes</TitleInternal>
+                  <TitleInternal ref={this.refMenu}>Detalhes</TitleInternal>
                   <div className="dashboard-internal-routes">
                     <Route
                       exact

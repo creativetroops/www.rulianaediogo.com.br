@@ -22,7 +22,7 @@ const StyledImageItemInfo = styled.img`
 
 const StyledTitleItemInfo = styled.h3`
   text-transform: uppercase;
-  color: var(--color-white);
+  color: ${({ actived }) => (actived ? 'var(--color-green)' : 'var(--color-white)')};
   @media ${devices.mobileLarge} {
     font-size: 0.9rem;
   }

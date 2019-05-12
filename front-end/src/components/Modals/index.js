@@ -9,6 +9,8 @@ import ContentRsvp from './ContentRsvp'
 import ContentBillet from './ContentBillet'
 import ContentDeposit from './ContentDeposit'
 import ContentHistory from './ContentHistory'
+import ContentAccommodation from './ContentAccommodation'
+import ContentBeautySalon from './ContentBeautySalon'
 
 const Modal = props => (
   <StyledModal className={props.show && 'show'}>
@@ -81,32 +83,18 @@ const ModalAccommodationStructure = props => (
       props.modalActions.toggleModal('MODAL_ACCOMMODATION', false)
     }}
   >
-    <h1>Hospedagem</h1>
-    <p>Testando uma mensagem</p>
+    <ContentAccommodation />
   </Modal>
 )
 
-const ModalGodfathersStructure = props => (
+const ModalBeautySalonStructure = props => (
   <Modal
-    show={props.modal.MODAL_GODFATHERS || false}
+    show={props.modal.MODAL_BEAUTY_SALON || false}
     onClose={() => {
-      props.modalActions.toggleModal('MODAL_GODFATHERS', false)
+      props.modalActions.toggleModal('MODAL_BEAUTY_SALON', false)
     }}
   >
-    <h1>Padrinhos</h1>
-    <p>Testando uma mensagem</p>
-  </Modal>
-)
-
-const ModalScheduleStructure = props => (
-  <Modal
-    show={props.modal.MODAL_SCHEDULE || false}
-    onClose={() => {
-      props.modalActions.toggleModal('MODAL_SCHEDULE', false)
-    }}
-  >
-    <h1>Cronograma</h1>
-    <p>Testando uma mensagem</p>
+    <ContentBeautySalon />
   </Modal>
 )
 
@@ -148,15 +136,10 @@ const ModalAccommodation = connect(
   mapDispatchToProps,
 )(ModalAccommodationStructure)
 
-const ModalGodfathers = connect(
+const ModalBeautySalon = connect(
   mapStateToProps,
   mapDispatchToProps,
-)(ModalGodfathersStructure)
-
-const ModalSchedule = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ModalScheduleStructure)
+)(ModalBeautySalonStructure)
 
 export {
   Modal,
@@ -166,6 +149,5 @@ export {
   ModalMessage,
   ModalHistory,
   ModalAccommodation,
-  ModalGodfathers,
-  ModalSchedule,
+  ModalBeautySalon,
 }

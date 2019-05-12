@@ -26,8 +26,18 @@ const Infos = props => (
           >
             História
           </ItemInfo>
-          <ItemInfo src="/assets/images/red-info-accommodation-icon.svg">Hospedagem</ItemInfo>
-          <ItemInfo src="/assets/images/red-info-beauty-icon.svg">Dica de Salão</ItemInfo>
+          <ItemInfo
+            src="/assets/images/red-info-accommodation-icon.svg"
+            onClick={() => props.modalActions.toggleModal('MODAL_ACCOMMODATION', true)}
+          >
+            Hospedagem
+          </ItemInfo>
+          <ItemInfo
+            src="/assets/images/red-info-beauty-icon.svg"
+            onClick={() => props.modalActions.toggleModal('MODAL_BEAUTY_SALON', true)}
+          >
+            Dica de Salão
+          </ItemInfo>
           <ItemInfo
             src="/assets/images/red-info-map-icon.svg"
             onClick={() => {
