@@ -4,13 +4,15 @@ Repositório do Front-End do site do casamento de Ruliana e Diogo.
 
 ## TODO
 
-- Mudar mensagem de minimo de caracteres para a mensagem!
+- Alterar imagem do email para um png;
+
 - Layout da Página Dashboard;
 - Informações adicionais:
   - História;
 
 ## DONE
 
+- Mudar mensagem de minimo de caracteres para a mensagem!
 - Layout página de Login;
 - Página de Login;
 - Pagina Dashboard;
