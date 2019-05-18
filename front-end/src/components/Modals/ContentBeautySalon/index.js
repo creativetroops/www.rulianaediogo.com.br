@@ -16,8 +16,9 @@ class ContentBeautySalon extends Component {
         <TitleModal>Dicas de Salão de Beleza</TitleModal>
         <Paragraph color="gray">
           Pessoal, como sabemos que muitos são de fora, nós vamos indicar aqui alguns salões de
-          beleza. Basta acessar o link nos botões abaixo para saber mais informações.
+          beleza.
         </Paragraph>
+        <Paragraph color="gray">Indicamos duas opções disponíveis nos links a seguir.</Paragraph>
         <Row bottom="1.3rem" top="2rem">
           <CenterContent>
             <ButtonForm

@@ -1,6 +1,6 @@
 import React from 'react'
 import StyledSeparator from './styles'
-import Decoration from '../../objects/Decoration'
+import Decoration from '../Decoration'
 
 const Separator = props => (
   <StyledSeparator {...props}>

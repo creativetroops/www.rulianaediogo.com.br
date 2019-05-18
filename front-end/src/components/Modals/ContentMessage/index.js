@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
@@ -27,7 +27,7 @@ class ContentMessage extends Component {
   }
 
   form = getFieldDecorator => (
-    <Fragment>
+    <>
       <Row bottom="1.3rem">
         <Col2 full={true}>
           <FormItem label="Nome" colon={false}>
@@ -90,18 +90,18 @@ class ContentMessage extends Component {
           </ButtonForm>
         </CenterContent>
       </Row>
-    </Fragment>
+    </>
   )
 
   loading = () => (
-    <Fragment>
+    <>
       <SubTitleModal>Aguarde...</SubTitleModal>
       <Paragraph color="gray">Enviando as informações!</Paragraph>
-    </Fragment>
+    </>
   )
 
   finished = (title, message) => (
-    <Fragment>
+    <>
       <SubTitleModal>{title}</SubTitleModal>
       <Paragraph color="gray">{message}</Paragraph>
       <CenterContent>
@@ -115,7 +115,7 @@ class ContentMessage extends Component {
           Fechar
         </ButtonForm>
       </CenterContent>
-    </Fragment>
+    </>
   )
 
   render() {

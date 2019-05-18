@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
@@ -27,17 +27,18 @@ class ContentDeposit extends Component {
     const { validateFields, resetFields } = this.props.form
     validateFields(async (errors, values) => {
       if (!errors) {
-        const newValue = parseFloat(values.value).toFixed(2)
-        values.value = newValue
+        const sendValues = values
+        const newValue = parseFloat(sendValues.value).toFixed(2)
+        sendValues.value = newValue
         await this.props.giftActions.startGiftDeposit()
-        await this.props.giftActions.createGiftDeposit(values)
+        await this.props.giftActions.createGiftDeposit(sendValues)
         resetFields()
       }
     })
   }
 
   form = getFieldDecorator => (
-    <Fragment>
+    <>
       <Row bottom="1.3rem">
         <Col3>
           <FormItem label="Nome" colon={false}>
@@ -131,21 +132,21 @@ class ContentDeposit extends Component {
           </ButtonForm>
         </CenterContent>
       </Row>
-    </Fragment>
+    </>
   )
 
   loading = () => (
-    <Fragment>
+    <>
       <SubTitleModal>Aguarde...</SubTitleModal>
       <Paragraph color="gray">Enviando as informações!</Paragraph>
-    </Fragment>
+    </>
   )
 
   finished = (title, message) => (
-    <Fragment>
+    <>
       <SubTitleModal>{title}</SubTitleModal>
       {(this.props.gift.successDeposit && (
-        <Fragment>
+        <>
           <ParagraphFeedBack>
             Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
           </ParagraphFeedBack>
@@ -163,7 +164,7 @@ class ContentDeposit extends Component {
           <ParagraphFeedBack bottom="3.5rem">
             Também te enviamos um <strong>e-mail</strong> para lembrar de efetuar o depósito!
           </ParagraphFeedBack>
-        </Fragment>
+        </>
       )) || <Paragraph color="gray">Não foi possível criar o depósito.</Paragraph>}
       <CenterContent>
         <ButtonForm
@@ -177,7 +178,7 @@ class ContentDeposit extends Component {
           Fechar
         </ButtonForm>
       </CenterContent>
-    </Fragment>
+    </>
   )
 
   render() {

@@ -30,6 +30,18 @@ class ContentAccommodation extends Component {
         <Row bottom="1.3rem" top="2rem">
           <CenterContent>
             <ButtonForm
+              onClick={() => {
+                window.open('http://www.villalbahoteis.com.br/londrina/')
+              }}
+              right="0"
+            >
+              Hotel Villalba
+            </ButtonForm>
+          </CenterContent>
+        </Row>
+        <Row bottom="1.3rem" top="2rem">
+          <CenterContent>
+            <ButtonForm
               className="closeButton"
               onClick={() => {
                 this.props.modalActions.toggleModal('MODAL_ACCOMMODATION', false)
@@ -37,14 +49,6 @@ class ContentAccommodation extends Component {
               right="0"
             >
               Fechar
-            </ButtonForm>
-            <ButtonForm
-              onClick={() => {
-                window.open('http://www.villalbahoteis.com.br/londrina/')
-              }}
-              right="0"
-            >
-              Hotel Villalba
             </ButtonForm>
           </CenterContent>
         </Row>

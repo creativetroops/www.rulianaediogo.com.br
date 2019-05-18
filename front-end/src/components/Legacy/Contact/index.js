@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Route, withRouter } from 'react-router-dom'
 import { Formik, Form } from 'formik'
@@ -67,7 +67,7 @@ class Contact extends Component {
   render() {
     const { loadingContact, finalMessage } = this.props
     return (
-      <Fragment>
+      <>
         <Formik
           initialValues={initialValues}
           validationSchema={this.validation()}
@@ -85,7 +85,7 @@ class Contact extends Component {
             handleBlur,
             handleReset,
           }) => (
-            <Fragment>
+            <>
               {this.checkPath() && (
                 <Form>
                   <h1>Entre em Contato</h1>
@@ -188,10 +188,10 @@ class Contact extends Component {
                   <ComponentMessage>{finalMessage && <h1>{finalMessage}</h1>}</ComponentMessage>
                 </Form>
               )}
-            </Fragment>
+            </>
           )}
         />
-      </Fragment>
+      </>
     )
   }
 }

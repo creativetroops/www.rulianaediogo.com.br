@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Form } from 'antd'
@@ -38,15 +38,15 @@ class ContentBillet extends Component {
       if (!errors) {
         await this.props.giftActions.startGiftBillet()
         window.PagSeguroDirectPayment.onSenderHashReady(async (response) => {
-          const newValue = parseFloat(values.value).toFixed(2)
-          values.value = newValue
-          const newValues = values
+          const sendValues = values
+          const newValue = parseFloat(sendValues.value).toFixed(2)
+          sendValues.value = newValue
           if (response.status !== 'error' && response.senderHash) {
             this.setState({
               senderHash: response.senderHash,
             })
-            newValues.senderHash = response.senderHash
-            await this.props.giftActions.createGiftBillet(newValues)
+            sendValues.senderHash = response.senderHash
+            await this.props.giftActions.createGiftBillet(sendValues)
           }
         })
 
@@ -56,7 +56,7 @@ class ContentBillet extends Component {
   }
 
   form = getFieldDecorator => (
-    <Fragment>
+    <>
       <Row bottom="1.3rem">
         <Col2 full={true}>
           <FormItem label="Nome" colon={false}>
@@ -182,21 +182,21 @@ class ContentBillet extends Component {
           </ButtonForm>
         </CenterContent>
       </Row>
-    </Fragment>
+    </>
   )
 
   loading = () => (
-    <Fragment>
+    <>
       <SubTitleModal>Aguarde...</SubTitleModal>
       <Paragraph color="gray">Enviando as informações!</Paragraph>
-    </Fragment>
+    </>
   )
 
   finished = (title, message) => (
-    <Fragment>
+    <>
       <SubTitleModal>{title}</SubTitleModal>
       {(this.props.gift.successBillet && (
-        <Fragment>
+        <>
           <ParagraphFeedBack bottom="2rem">
             Oba! Seu presente foi contabilizado com <strong>sucesso!</strong>
           </ParagraphFeedBack>
@@ -218,7 +218,7 @@ class ContentBillet extends Component {
           <ParagraphFeedBack bottom="3.5rem">
             Também te enviamos um <strong>e-mail</strong> com o link do boleto!
           </ParagraphFeedBack>
-        </Fragment>
+        </>
       )) || <Paragraph color="gray">Não foi possível criar o boleto.</Paragraph>}
       <CenterContent>
         <ButtonForm
@@ -232,7 +232,7 @@ class ContentBillet extends Component {
           Fechar
         </ButtonForm>
       </CenterContent>
-    </Fragment>
+    </>
   )
 
   render() {
