@@ -153,16 +153,16 @@ class ContentDeposit extends Component {
           <ParagraphFeedBack>Agora é só fazer uma transferência para:</ParagraphFeedBack>
           <ParagraphFeedBack>Banco do Brasil</ParagraphFeedBack>
           <ParagraphFeedBack>
-            Agência: <strong>3509-3</strong>
+            Agência: <strong>3509-2</strong>
           </ParagraphFeedBack>
           <ParagraphFeedBack>
             Conta Corrente: <strong>35845-2</strong>
           </ParagraphFeedBack>
+          <ParagraphFeedBack>
+            CPF: <strong>046.351.449-17</strong>
+          </ParagraphFeedBack>
           <ParagraphFeedBack bottom="2rem">
             Valor: <strong>R$ {this.props.gift.valueDeposit}</strong>
-          </ParagraphFeedBack>
-          <ParagraphFeedBack bottom="3.5rem">
-            Também te enviamos um <strong>e-mail</strong> para lembrar de efetuar o depósito!
           </ParagraphFeedBack>
         </>
       )) || <Paragraph color="gray">Não foi possível criar o depósito.</Paragraph>}
