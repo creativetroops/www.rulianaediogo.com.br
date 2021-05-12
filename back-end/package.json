@@ -16,7 +16,7 @@
     "express": "^4.16.4",
     "lodash.template": "^4.4.0",
     "node-pagseguro": "^0.1.9",
-    "nodemailer": "^4.6.8",
+    "nodemailer": "^6.4.16",
     "request": "^2.88.0",
     "xml2json": "^0.11.2"
   },
